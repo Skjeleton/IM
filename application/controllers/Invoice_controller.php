@@ -8,7 +8,9 @@
         }
         
         public function show_customers(){
-            $this->load->view("customer_view");
+            $data["dbAnswer"] = $this->db->get(__DB_CUSTOMERS__)->result();
+            
+            $this->load->view("customer_view", $dbAnswer);
         }
         
         public function index(){
