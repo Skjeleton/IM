@@ -18,7 +18,7 @@
 <tr>
 <th>Nazwa</th>
 <th>Adres</th>
-<th>Edytuj</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
