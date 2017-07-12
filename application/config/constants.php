@@ -83,3 +83,19 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+// Database structure
+define("__DB_NAME__", "Invoice Manager");
+define("__DB_CUSTOMERS__", "Customers");
+define("__DB_CUSTOMERS_CUSTOMERID__", "CustomerID");
+define("__DB_CUSTOMERS_NAME__", "Name");
+define("__DB_CUSTOMERS_COUNTRY__", "Country");
+define("__DB_CUSTOMERS_CITY__", "City");
+define("__DB_CUSTOMERS_POSTALCODE__", "PostalCode");
+define("__DB_CUSTOMERS_STREET__", "Street");
+define("__DB_CUSTOMERS_HOUSENUMBER__", "HouseNo");
+define("__DB_CUSTOMERS_APARTMENTNUMBER__", "ApartmentNo");
+define("__DB_CUSTOMERS_NIP__", "NIP");
+
+
+
