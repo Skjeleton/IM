@@ -14,19 +14,31 @@
 	<div class="container">
 		<div class="panel">
         	<form>
-            	<label for="username">Imie</label>
-               	<input type="text" id="username" name="username">
-               	<label for="username">Nazwisko</label>
-               	<input type="text" id="surname" name="surname">
-				<label for="firma">Imie</label>
-               	<input type="text" id="company" name="company">
+            	<label for="username">Imie</label></br>
+               	<input type="text" id="Name" name="Name"></br>
+               	<label for="username">Nazwisko</label></br>
+               	<input type="text" id="Surname" name="Surname"></br>
+				<label for="firma">Państwo</label></br>
+               	<input type="text" id="Country" name="Country"></br>
+				<label for="firma">Kod Pocztowy</label></br>
+               	<input type="text" id="PostalCode" name="PostalCode"></br>
+               	<label for="firma">Adres</label></br>
+               	<input type="text" id="Street" name="Street"></br>
+               	<label for="firma">Numer bloku</label></br>
+               	<input type="text" id="HouseNo" name="HouseNo"></br>
+               	<label for="firma">Numer drzwi</label></br>
+               	<input type="text" id="ApartmentNo" name="ApartmetNo"></br>
+               	<label for="firma">NIP</label></br>
+               	<input type="text" id="NIP" name="NIP"></br>
                 
                 	<div class="lower">
-            		<input type="submit" value="Login">
+            		<input type="submit" value="Dodaj"></br>
     				</div>
 			</form>
 		</div>
 	</div>
+	
+	<pre><?php var_dump(get_defined_vars());?></pre>
 </body>
 
 
