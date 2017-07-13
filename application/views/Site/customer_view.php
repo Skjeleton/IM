@@ -1,8 +1,7 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tuwstawcochcesz">
 </head>
 <body>
 
@@ -17,7 +16,7 @@
             </tr>
         </thead>
             <tbody>
-            <?php foreach($customers as $customer){
+            <?php foreach($fromController as $customer){
                 echo "<tr>";    
                 
                 echo "<td>".$customer["Name"]."</td>";
@@ -30,7 +29,7 @@
             ?>
             
       	  </tbody>
-    </able>
+    </table>
 </div>
 </body>
 </html>
