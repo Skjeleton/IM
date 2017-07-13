@@ -31,7 +31,7 @@
          * @needs   ID of the customer one wants to edit (in the 3rd segment of the uri)
          * @passes  array of the customers' names and addresses
          */
-        public function customers_show_view(){
+        public function customer_show_view(){
             $this->load->view("Site/header");
             $this->db->select(array(__DB_CUSTOMERS_CUSTOMERID__, __DB_CUSTOMERS_NAME__, __DB_CUSTOMERS_COUNTRY__, __DB_CUSTOMERS_CITY__, __DB_CUSTOMERS_STREET__, __DB_CUSTOMERS_HOUSENUMBER__, __DB_CUSTOMERS_APARTMENTNUMBER__));
             $result = $this->db->get(__DB_CUSTOMERS__);
@@ -85,11 +85,11 @@
             $this->load->model("Customer_model");
             $this->Customer_model->update($data, $customerId);
             
-            $this->customers_show_view();
+            $this->customer_show_view();
         }
         
         public function index(){
-            $this->customers_show_view();
+            $this->customer_show_view();
         }
         
         
