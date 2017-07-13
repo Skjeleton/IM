@@ -30,10 +30,7 @@
             <li><a href="<?php echo base_url()."index.php/invoice_controller/customer_add_view"; ?>">Dodaj klienta</a></li>
           </ul>          
         </li>
-      </ul>	
-      
-      
-      
+      </ul>
     </div>
   </div>
 </nav>

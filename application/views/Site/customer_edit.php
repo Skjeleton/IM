@@ -8,48 +8,48 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.css">
     </head>
     <body>
-        <div class="row margines-top">
-    		<div class="panel">
-            	<?php
-                    echo form_open("invoice_controller/customer_edit");
-                    echo form_hidden(__DB_CUSTOMERS_CUSTOMERID__, $fromController[__DB_CUSTOMERS_CUSTOMERID__]);
-                    
-                    $title = __DB_CUSTOMERS_NAME__;
-                    echo form_label("Nazwa", $title);
-                    echo form_input($title, $fromController[$title]);
-                    
-                    $title = __DB_CUSTOMERS_COUNTRY__;
-                    echo form_label("Państwo", $title);
-                    echo form_input($title, $fromController[$title]);
-                    
-                    $title = __DB_CUSTOMERS_CITY__;
-                    echo form_label("Miasto", $title);
-                    echo form_input($title, $fromController[$title]);
-                    
-                    $title = __DB_CUSTOMERS_POSTALCODE__;
-                    echo form_label("Kod pocztowy", $title);
-                    echo form_input($title, $fromController[$title]);
-                    
-                    $title = __DB_CUSTOMERS_STREET__;
-                    echo form_label("Ulica", $title);
-                    echo form_input($title, $fromController[$title]);
-                    
-                    $title = __DB_CUSTOMERS_HOUSENUMBER__;
-                    echo form_label("Numer domu", $title);
-                    echo form_input($title, $fromController[$title]);
-                    
-                    $title = __DB_CUSTOMERS_APARTMENTNUMBER__;
-                    echo form_label("Numer lokalu", $title);
-                    echo form_input($title, $fromController[$title]);
-                    
-                    $title = __DB_CUSTOMERS_NIP__;
-                    echo form_label("NIP", $title);
-                    echo form_input($title, $fromController[$title]);
-                    
-                    echo form_submit("Submit", "Dokonaj zmian");
-                    echo form_close();
-            	?>
-     		</div>	
+        <div class="row margines-top panel">
+        <center>
+        	<?php
+                echo form_open("invoice_controller/customer_edit");
+                echo form_hidden(__DB_CUSTOMERS_CUSTOMERID__, $fromController[__DB_CUSTOMERS_CUSTOMERID__]);
+                
+                $title = __DB_CUSTOMERS_NAME__;
+                echo form_label("Nazwa", $title)."</br>";
+                echo form_input($title, $fromController[$title])."</br>";
+                
+                $title = __DB_CUSTOMERS_COUNTRY__;
+                echo form_label("Państwo", $title)."</br>";
+                echo form_input($title, $fromController[$title])."</br>";
+                
+                $title = __DB_CUSTOMERS_CITY__;
+                echo form_label("Miasto", $title)."</br>";
+                echo form_input($title, $fromController[$title])."</br>";
+                
+                $title = __DB_CUSTOMERS_POSTALCODE__;
+                echo form_label("Kod pocztowy", $title)."</br>";
+                echo form_input($title, $fromController[$title])."</br>";
+                
+                $title = __DB_CUSTOMERS_STREET__;
+                echo form_label("Ulica", $title)."</br>";
+                echo form_input($title, $fromController[$title])."</br>";
+                
+                $title = __DB_CUSTOMERS_HOUSENUMBER__;
+                echo form_label("Numer domu", $title)."</br>";
+                echo form_input($title, $fromController[$title])."</br>";
+                
+                $title = __DB_CUSTOMERS_APARTMENTNUMBER__;
+                echo form_label("Numer lokalu", $title)."</br>";
+                echo form_input($title, $fromController[$title])."</br>";
+                
+                $title = __DB_CUSTOMERS_NIP__;
+                echo form_label("NIP", $title)."</br>";
+                echo form_input($title, $fromController[$title])."</br>";
+                
+                echo form_submit("Submit", "Dokonaj zmian")."</br>";
+                echo form_close();
+        	?>
+         </center>
          </div>
     </body>
 </html>
