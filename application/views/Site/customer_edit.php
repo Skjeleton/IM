@@ -24,7 +24,18 @@
                    		<input type="text" id="<?php echo __DB_CUSTOMERS_APARTMENTNUMBER__ ?>" name="<?php echo __DB_CUSTOMERS_APARTMENTNUMBER__ ?>"></br>
                    	<label for="nip">NIP</label></br>
                    		<input type="text" id="<?php echo __DB_CUSTOMERS_NIP__ ?>" name="<?php echo __DB_CUSTOMERS_NIP__ ?>"></br>
- </center> 
+ </center> 	
+ 
+ <div class="row">
+	<div class="col-sm-5"></div>
+	<div class="col-sm-2">
+                <div class="btn">
+            		<input type="submit" value="Edit">
+            	</div>
+	<div class="col-sm-5"></div>
+			</form>
+		</div>
+</div>
 
 
 
