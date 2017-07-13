@@ -1,19 +1,19 @@
 <html>
-<link rel="stylesheet" href="css/style.css">
-//<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<head>
+    	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.css">
+	</head>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="css/bootstrap.css">
+  
 
 <body>
 
 
-<div class="row marginess-top">
+<div class="row margin-topes">
 <center>	
 		<div class="panel">
         	<form metod="post">
