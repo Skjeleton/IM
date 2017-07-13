@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<div class="row margin-topes">
+<div class="row margines-top">
 <center>	
 		<div class="panel">
         	<form metod="post">
