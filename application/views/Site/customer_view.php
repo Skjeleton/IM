@@ -6,7 +6,6 @@
 </head>
 <body>
 
-</style>
 
 <div class="container margines-top">
     <table class="table table-striped table-hover">

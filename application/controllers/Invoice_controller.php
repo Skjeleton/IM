@@ -22,6 +22,7 @@
         function __construct(){
             parent::__construct();
             $this->load->database();
+            $this->load->helper("url");
         }
         
         /*
@@ -65,8 +66,7 @@
          * @needs   Post data with user's input
          */
         public function edit_customer(){
-            $this->load->model("Customer_model");
-            
+            $customerId = $this->input->post(__DB_CUSTOMERS_CUSTOMERID__);
             $data = array(
                 __DB_CUSTOMERS_NAME__ => $this->input->post(__DB_CUSTOMERS_NAME__),
                 __DB_CUSTOMERS_COUNTRY__ => $this->input->post(__DB_CUSTOMERS_COUNTRY__),
@@ -76,12 +76,14 @@
                 __DB_CUSTOMERS_HOUSENUMBER__ => $this->input->post(__DB_CUSTOMERS_HOUSENUMBER__),
                 __DB_CUSTOMERS_APARTMENTNUMBER__ => $this->input->post(__DB_CUSTOMERS_APARTMENTNUMBER__),
                 __DB_CUSTOMERS_NIP__ => $this->input->post(__DB_CUSTOMERS_NIP__) 
-            )
+            );
             
+            $this->load->model("Customer_model");
+            $this->Customer_model->update($data, $customerId);
         }
         
         public function index(){
-            $this->show_customers();
+            $this->show_customers_view();
         }
         
         
