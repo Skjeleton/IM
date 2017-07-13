@@ -17,7 +17,7 @@
             </tr>
         </thead>
             <tbody>
-            <?php foreach($customers as $customer){
+            <?php foreach($fromController as $customer){
                 echo "<tr>";    
                 
                 echo "<td>".$customer["Name"]."</td>";
@@ -30,7 +30,7 @@
             ?>
             
       	  </tbody>
-    </able>
+    </table>
 </div>
 </body>
 </html>
