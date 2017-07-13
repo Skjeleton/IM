@@ -1,44 +1,51 @@
 <html>
-<head>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tuwstawcochcesz">
-</head>
-<body>
-
-<div class="row margines-top">
-<center>	
-		<div class="panel">
-        	<form metod="post">
-
-              		<label for="username">Imie</label></br>
-                   		<input type="text" id="<?php echo __DB_CUSTOMERS_NAME__ ?>" name="<?php echo __DB_CUSTOMERS_NAME__ ?>"></br>
-    				<label for="country">Państwo</label></br>
-                   		<input type="text" id="<?php echo __DB_CUSTOMERS_COUNTRY__ ?>" name="<?php echo __DB_CUSTOMERS_COUNTRY__ ?>"></br>
-    				<label for="postalcode">Kod Pocztowy</label></br>
-                   		<input type="text" id="<?php echo __DB_CUSTOMERS_POSTALCODE__ ?>" name="<?php echo __DB_CUSTOMERS_POSTALCODE__ ?>"></br>
-                   	<label for="adress">Adres</label></br>
-                   		<input type="text" id="<?php echo __DB_CUSTOMERS_STREET__ ?>" name="<?php echo __DB_CUSTOMERS_STREET__ ?>"></br>
-                   	<label for="houseno">Numer bloku</label></br>
-                   		<input type="text" id="<?php echo __DB_CUSTOMERS_HOUSENUMBER__ ?>" name="<?php echo __DB_CUSTOMERS_HOUSENUMBER__ ?>"></br>
-                   	<label for="apartmenno">Numer drzwi</label></br>
-                   		<input type="text" id="<?php echo __DB_CUSTOMERS_APARTMENTNUMBER__ ?>" name="<?php echo __DB_CUSTOMERS_APARTMENTNUMBER__ ?>"></br>
-                   	<label for="nip">NIP</label></br>
-                   		<input type="text" id="<?php echo __DB_CUSTOMERS_NIP__ ?>" name="<?php echo __DB_CUSTOMERS_NIP__ ?>"></br>
- </center> 	
- 
- <div class="row">
-	<div class="col-sm-5"></div>
-	<div class="col-sm-2">
-                <div class="btn">
-            		<input type="submit" value="Edit">
-            	</div>
-	<div class="col-sm-5"></div>
-			</form>
-		</div>
-</div>
-
-
-
-
-</body>
+    <head>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tuwstawcochcesz">
+    </head>
+    <body>
+        <div class="row margines-top">
+    		<div class="panel">
+            	<?php
+                    echo form_open("invoice_controller/customer_edit");
+                    echo form_hidden(__DB_CUSTOMERS_CUSTOMERID__, $fromController[__DB_CUSTOMERS_CUSTOMERID__]);
+                    
+                    $title = __DB_CUSTOMERS_NAME__;
+                    echo form_label("Nazwa", $title);
+                    echo form_input($title, $fromController[$title]);
+                    
+                    $title = __DB_CUSTOMERS_COUNTRY__;
+                    echo form_label("Państwo", $title);
+                    echo form_input($title, $fromController[$title]);
+                    
+                    $title = __DB_CUSTOMERS_CITY__;
+                    echo form_label("Miasto", $title);
+                    echo form_input($title, $fromController[$title]);
+                    
+                    $title = __DB_CUSTOMERS_POSTALCODE__;
+                    echo form_label("Kod pocztowy", $title);
+                    echo form_input($title, $fromController[$title]);
+                    
+                    $title = __DB_CUSTOMERS_STREET__;
+                    echo form_label("Ulica", $title);
+                    echo form_input($title, $fromController[$title]);
+                    
+                    $title = __DB_CUSTOMERS_HOUSENUMBER__;
+                    echo form_label("Numer domu", $title);
+                    echo form_input($title, $fromController[$title]);
+                    
+                    $title = __DB_CUSTOMERS_APARTMENTNUMBER__;
+                    echo form_label("Numer lokalu", $title);
+                    echo form_input($title, $fromController[$title]);
+                    
+                    $title = __DB_CUSTOMERS_NIP__;
+                    echo form_label("NIP", $title);
+                    echo form_input($title, $fromController[$title]);
+                    
+                    echo form_submit("Submit", "Dokonaj zmian");
+                    echo form_close();
+            	?>
+     		</div>	
+         </div>
+    </body>
 </html>

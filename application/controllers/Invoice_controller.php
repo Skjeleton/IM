@@ -55,8 +55,9 @@
          * @passes  array of the customer's data
          */
         public function customer_edit_view(){
+            $this->load->helper("form");
             $customerId = $this->uri->segment(3);
-            $data["fromController"] = $this->db->get_where(__DB_CUSTOMERS__, array(__DB_CUSTOMERS_CUSTOMERID__), $customerId)->result_array()[0];
+            $data["fromController"] = $this->db->get_where(__DB_CUSTOMERS__, array(__DB_CUSTOMERS_CUSTOMERID__ => $customerId ))->result_array()[0];
             
             $this->load->view("Site/header");
             $this->load->view("Site/customer_edit", $data);
@@ -66,8 +67,10 @@
          * Edits the customer's data with given changes.
          * @needs   Post data with user's input
          */
-        public function customer_show(){
+        public function customer_edit(){
             $customerId = $this->input->post(__DB_CUSTOMERS_CUSTOMERID__);
+            $nip = $this->input->post(__DB_CUSTOMERS_NIP__) OR $nip = null;
+            
             $data = array(
                 __DB_CUSTOMERS_NAME__ => $this->input->post(__DB_CUSTOMERS_NAME__),
                 __DB_CUSTOMERS_COUNTRY__ => $this->input->post(__DB_CUSTOMERS_COUNTRY__),
@@ -76,11 +79,13 @@
                 __DB_CUSTOMERS_STREET__ => $this->input->post(__DB_CUSTOMERS_STREET__),
                 __DB_CUSTOMERS_HOUSENUMBER__ => $this->input->post(__DB_CUSTOMERS_HOUSENUMBER__),
                 __DB_CUSTOMERS_APARTMENTNUMBER__ => $this->input->post(__DB_CUSTOMERS_APARTMENTNUMBER__),
-                __DB_CUSTOMERS_NIP__ => $this->input->post(__DB_CUSTOMERS_NIP__) 
+                __DB_CUSTOMERS_NIP__ => $nip
             );
             
             $this->load->model("Customer_model");
             $this->Customer_model->update($data, $customerId);
+            
+            $this->customers_show_view();
         }
         
         public function index(){
