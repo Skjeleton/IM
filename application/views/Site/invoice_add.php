@@ -30,6 +30,22 @@
             	echo form_label("Forma płatności", $title)."</br>";
             	echo form_input($title)."</br>";
             	
+            	$title = __DB_TRANSACTIONS_MEASUREUNIT__;
+            	echo form_label("", $title)."</br>";
+            	echo form_input($title)."</br>";
+            	
+            	$title = __DB_TRANSACTIONS_COUNT__;
+            	echo form_label("Ilość", $title)."</br>";
+            	echo form_input($title)."</br>";
+            	
+            	$title = __DB_TRANSACTIONS_NETUNITPRICE__;
+            	echo form_label("Nazwa", $title)."</br>";
+            	echo form_input($title)."</br>";
+            	
+            	$title = __DB_TRANSACTIONS_NAME__;
+            	echo form_label("Nazwa", $title)."</br>";
+            	echo form_input($title)."</br>";
+            	
         	?>
 		</center>
 		 </div>
