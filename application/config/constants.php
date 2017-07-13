@@ -96,3 +96,20 @@ define("__DB_CUSTOMERS_STREET__", "Street");
 define("__DB_CUSTOMERS_HOUSENUMBER__", "HouseNo");
 define("__DB_CUSTOMERS_APARTMENTNUMBER__", "ApartmentNo");
 define("__DB_CUSTOMERS_NIP__", "NIP");
+
+define("__DB_INVOICES__", "Invoices");
+define("__DB_INVOICES_INVOICEID__", "InvoiceID");
+define("__DB_INVOICES_CUSTOMERID__", __DB_CUSTOMERS_CUSTOMERID__);
+define("__DB_INVOICES_INVOICENUMBER__", "InvoiceNumber");
+define("__DB_INVOICES_DATE__", "Date");
+define("__DB_INVOICES_PAYMENTDEADLINE__", "PaymentDeadline");
+define("__DB_INVOICES_PAYMENTMETHOD__", "PaymentMethod");
+
+define("__DB_TRANSACTIONS__", "Transaction");
+define("__DB_TRANSACTIONS_TRANSACTIONID__", "TransactionID");
+define("__DB_TRANSACTIONS_INVOICEID__", __DB_INVOICES_INVOICEID__);
+define("__DB_TRANSACTIONS_NAME__", "Name");
+define("__DB_TRANSACTIONS_MEASUREUNIT__", "MeasureUnit");
+define("__DB_TRANSACTIONS_COUNT__", "Count");
+define("__DB_TRANSACTIONS_NETUNITPRICE__", "NetUnitPrice");
+

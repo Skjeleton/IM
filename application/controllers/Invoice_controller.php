@@ -19,6 +19,23 @@
            // return var_export($data);
         }
         
+        private function fetch_user_input(){
+            $nip = $this->input->post(__DB_CUSTOMERS_NIP__) OR $nip = null;
+            
+            $data = array(
+                __DB_CUSTOMERS_NAME__ => $this->input->post(__DB_CUSTOMERS_NAME__),
+                __DB_CUSTOMERS_COUNTRY__ => $this->input->post(__DB_CUSTOMERS_COUNTRY__),
+                __DB_CUSTOMERS_CITY__ => $this->input->post(__DB_CUSTOMERS_CITY__),
+                __DB_CUSTOMERS_POSTALCODE__ => $this->input->post(__DB_CUSTOMERS_POSTALCODE__),
+                __DB_CUSTOMERS_STREET__ => $this->input->post(__DB_CUSTOMERS_STREET__),
+                __DB_CUSTOMERS_HOUSENUMBER__ => $this->input->post(__DB_CUSTOMERS_HOUSENUMBER__),
+                __DB_CUSTOMERS_APARTMENTNUMBER__ => $this->input->post(__DB_CUSTOMERS_APARTMENTNUMBER__),
+                __DB_CUSTOMERS_NIP__ => $nip
+            );
+            
+            return $data;
+        }
+        
         function __construct(){
             parent::__construct();
             $this->load->database();
@@ -69,23 +86,28 @@
          */
         public function customer_edit(){
             $customerId = $this->input->post(__DB_CUSTOMERS_CUSTOMERID__);
-            $nip = $this->input->post(__DB_CUSTOMERS_NIP__) OR $nip = null;
             
-            $data = array(
-                __DB_CUSTOMERS_NAME__ => $this->input->post(__DB_CUSTOMERS_NAME__),
-                __DB_CUSTOMERS_COUNTRY__ => $this->input->post(__DB_CUSTOMERS_COUNTRY__),
-                __DB_CUSTOMERS_CITY__ => $this->input->post(__DB_CUSTOMERS_CITY__),
-                __DB_CUSTOMERS_POSTALCODE__ => $this->input->post(__DB_CUSTOMERS_POSTALCODE__),
-                __DB_CUSTOMERS_STREET__ => $this->input->post(__DB_CUSTOMERS_STREET__),
-                __DB_CUSTOMERS_HOUSENUMBER__ => $this->input->post(__DB_CUSTOMERS_HOUSENUMBER__),
-                __DB_CUSTOMERS_APARTMENTNUMBER__ => $this->input->post(__DB_CUSTOMERS_APARTMENTNUMBER__),
-                __DB_CUSTOMERS_NIP__ => $nip
-            );
+            $data = $this->fetch_user_input();
             
             $this->load->model("Customer_model");
             $this->Customer_model->update($data, $customerId);
             
-            $this->customer_show_view();
+            redirect("invoice_controller/customer_show_view");
+        }
+        
+        public function customer_add_view(){
+            $this->load->helper("form");
+            $this->load->view("Site/header");
+            $this->load->view("Site/customer_add");
+        }
+        
+        public function customer_add(){
+            $data = $this->fetch_user_input();
+            
+            $this->load->model("Customer_model");
+            $this->Customer_model->add($data);
+            
+            redirect("invoice_controller/customer_show_view");
         }
         
         public function index(){
