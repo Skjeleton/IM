@@ -9,39 +9,37 @@
 	</head>
 	
 	<body>
-<div class="container margines-top">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Numer faktury</th>
-                <th>Data</th>
-                <th>Nazwa</th>
-                <th>Wartość brutto</th>
-                <th>Termin płatności</th>
-                <th></th>
-            </tr>
-        </thead>
-            <tbody>
-            <?php foreach($fromController as $invoices){
-                echo "<tr>";
-                
-                echo "<td>".$invoices[__DB_INVOICES_INVOICENUMBER__]."</td>";
-                
-                echo "<td>".$invoice[__DB_INVOICES_DATE__]."</td>";
-                
-                echo "<td>".$invoice[__DB_CUSTOMERS_NAME__]."</td>";
-                
-                echo "<td>".$invoice["GrossValue"]."</td>";
-                
-                echo "<td>".$invoice[__DB_INVOICES_PAYMENTDEADLINE__]."</td>";
-            
-                echo "<td><a class='button' href='".base_url()."wpisz sciezke do invoice_edit".$Invoices[__DB_INVOICES_INVOICEID__]."'>Edytuj</a>";
-      	     
-                
-      	     </tbody>
-    </table>
-</div>
-    
-    
+        <div class="container margines-top">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Numer faktury</th>
+                        <th>Data</th>
+                        <th>Nazwa</th>
+                        <th>Wartość brutto</th>
+                        <th>Termin płatności</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    foreach($fromController as $invoice){
+                        echo "<tr>";
+                        
+                        echo "<td>".$invoice[__DB_INVOICES_INVOICENUMBER__]."</td>";
+                        
+                        echo "<td>".$invoice[__DB_INVOICES_DATE__]."</td>";
+                        
+                        echo "<td>".$invoice[__DB_CUSTOMERS_NAME__]."</td>";
+                        
+                        echo "<td>".$invoice["GrossValue"]."</td>";
+                        
+                        echo "<td>".$invoice[__DB_INVOICES_PAYMENTDEADLINE__]."</td>";
+                    
+                        echo "<td><a class='button' href='".base_url()."index.php/invoice_controller/invoice_edit/".$invoice[__DB_INVOICES_INVOICEID__]."'>Edytuj</a></td></tr>";
+                    } 
+                ?></tbody>
+            </table>
+        </div>
 	</body>
 </html>
