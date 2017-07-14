@@ -121,8 +121,55 @@
     </div>
 <!-- Panel info end -->
 
-<!-- Method payment and expirient date -->
+<!-- Total -->
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                	<div class="row">
+                    	<div class="col-xs-3"></div>
+                    	<div class="col-xs-2"></div>
+                    	<div class="col-xs-2"></div>
+                    	<div class="col-xs-2"></div>
+                    	<div class="col-xs-3"></div>
+                	</div>
+                </div>
+                <div class="panel-heading">
+                    <div class="row">
+                    	<div class="col-xs-8"><h4 class="text-center"><strong>Do zaplaty</strong></h4></div>
+                    	<div class="col-xs-4">CENA</div>
+                    </div>
+                </div>
+            </div>
+    	</div>
+    </div>
+    
+<!-- END Total -->
 
+
+<!-- Method payment and expirient date -->
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="panel panel-info">
+            	<div class="panel-body">
+            		<table class="table table-bordered">
+            			<tr>
+            				<thead>
+                				<th><strong>Termin płatności</strong></th>
+                				<th><strong>Forma płatności</strong></th>
+                			</thead>
+            			</tr>
+            				<tbody>
+           						 <tr>
+                					<td><?php echo $invoice[__DB_INVOICES_PAYMENTDEADLINE__]?></td>
+                					<td><?php echo $invoice[__DB_INVOICES_PAYMENTMETHOD__]?></td>
+                				 </tr>
+                			</tbody>
+            		</table>
+            	</div>
+            </div>
+        </div>
+	</div>
 <!-- END Method payment and expirient date -->
 
 </body>
