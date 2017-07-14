@@ -36,7 +36,7 @@
                         
                         echo "<td>".$invoice[__DB_INVOICES_PAYMENTDEADLINE__]."</td>";
                     
-                        echo "<td><a class='button' href='".base_url()."index.php/invoice_controller/invoice_edit/".$invoice[__DB_INVOICES_INVOICEID__]."'>Edytuj</a></td></tr>";
+                        echo "<td><a class='button' href='".base_url()."index.php/invoice_controller/invoice_edit_view/".$invoice[__DB_INVOICES_INVOICEID__]."'>Edytuj</a></td></tr>";
                     } 
                 ?></tbody>
             </table>

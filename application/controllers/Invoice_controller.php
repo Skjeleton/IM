@@ -155,6 +155,7 @@
                 $invoice["GrossValue"]= $this->count_whole_gross_value($transactions);
             }
             
+            $this->load->view("Site/header");
             $this->load->view("Site/invoice_view", $data);
         }
         
