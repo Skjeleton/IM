@@ -17,23 +17,23 @@
             	
             	$title = __DB_INVOICES_INVOICENUMBER__;
             	echo form_label("Faktura VAT nr.", $title)."</br>";
-            	echo form_input($title, $fromController[__DB_INVOICES_INVOICENUMBER__][$title])."</br>";
+            	echo form_input($title, $fromController[__DB_INVOICES__][$title])."</br>";
             	
             	$title = __DB_INVOICES_DATE__;
             	echo form_label("Data faktury", $title)."</br>";
-            	echo form_input($title, $fromController[__DB_INVOICES_DATE__][$title])."</br>";
+            	echo form_input($title, $fromController[__DB_INVOICES__][$title])."</br>";
             	
             	$title = __DB_CUSTOMERS__;
             	echo form_label("Klient", $title)."</br>";
-            	echo form_input($title, $fromController[__DB_CUSTOMERS__][$title])."</br>";
+            	echo form_input($title, $fromController[__DB_INVOICES__][$title])."</br>";
             	
             	$title = __DB_INVOICES_PAYMENTDEADLINE__;
             	echo form_label("Termin płatności", $title)."</br>";
-            	echo form_input($title, $fromController[__DB_INVOICES_PAYMENTDEADLINE__][$title])."</br>";
+            	echo form_input($title, $fromController[__DB_INVOICES__][$title])."</br>";
             	
             	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";
-            	echo form_input($title, $fromController[__DB_INVOICES_PAYMENTMETHOD__][$title])."</br>";
+            	echo form_input($title, $fromController[__DB_INVOICES__][$title])."</br>";
             ?>
             	
             <table border="1">

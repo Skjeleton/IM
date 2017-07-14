@@ -208,21 +208,29 @@
             foreach($data[__DB_TRANSACTIONS__] as $transaction){
                 $this->Transaction_model->add($transaction);
             }
-                
+            
             redirect("invoice_controller/invoice_show_view");
         }
         
         public function invoice_edit_view(){
             $this->load->helper("form");
             $data = array();
+            $data["fromController"] = array();
             
-            $this->db->select(array(__DB_INVOICES_DATE__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_PAYMENTDEADLINE__, __DB_INVOICES_PAYMENTMETHOD__));
-            $this->db->where()
+            $invoiceId = $this->uri->segment(3);
+            $this->db->select(array(__DB_INVOICES_CUSTOMERID__, __DB_INVOICES_DATE__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_PAYMENTDEADLINE__, __DB_INVOICES_PAYMENTMETHOD__));
+            $this->db->where(__DB_INVOICES_INVOICEID__." = ".$invoiceId);
+            $data["fromController"][__DB_INVOICES__] = $this->db->get(__DB_INVOICES__)->result_array()[0];
             
+            $this->db->select(array(__DB_TRANSACTIONS_NAME__, __DB_TRANSACTIONS_MEASUREUNIT__, __DB_TRANSACTIONS_NETUNITPRICE__, __DB_TRANSACTIONS_COUNT__));
+            $this->db->from(__DB_TRANSACTIONS__);
+            $this->db->where(__DB_TRANSACTIONS_INVOICEID__." = ".$invoiceId);
             
+            $transactions = $this->db->get()->result_array();
+            $data["fromController"][__DB_TRANSACTIONS__] = $this->count_whole_gross_value($transactions);
             
             $this->load->view("Site/header");
-            $this->load->view("Site/invoice_edit");
+            $this->load->view("Site/invoice_edit", $data);
         }
         
         public function invoice_edit(){
