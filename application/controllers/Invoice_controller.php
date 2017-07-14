@@ -160,10 +160,22 @@
         }
         
         public function invoice_add_view(){
-            
+            $this->load->helper("form");
+            $this->load->view("Site/header");
+            $this->load->view("Site/invoice_add");
         }
         
         public function invoice_add(){
+            
+        }
+        
+        public function invoice_edit_view(){
+            $this->load->helper("form");
+            $this->load->view("Site/header");
+            $this->load->view("Site/invoice_add");
+        }
+        
+        public function invoice_edit(){
             
         }
         
