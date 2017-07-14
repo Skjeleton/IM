@@ -179,6 +179,10 @@
             
         }
         
+        public function invoice_pdf_view(){
+            $this->load->view("invoice_pdf_show");
+        }
+        
         public function index(){
             $this->customer_show_view();
         }
