@@ -37,11 +37,9 @@
             
                 echo "<td><a class='button' href='".base_url()."wpisz sciezke do invoice_edit".$Invoices[__DB_INVOICES_INVOICEID__]."'>Edytuj</a>";
       	     
-                
-      	     </tbody>
-    </table>
-</div>
-    
-    
-	</body>
-</html>
+             ?>   
+          	     </tbody>
+        </table>
+    </div>   
+    	</body>
+    </html>
