@@ -48,7 +48,11 @@
             	
             	echo form_submit("Submit", "Dokonaj zmian")."</br>";
             	echo form_close();
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
         	?>
 		</center>
 		 </div>
