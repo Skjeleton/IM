@@ -10,12 +10,120 @@
 		<div class="col-lg-6">
     		 <div class="panel-group">
              	<div class="panel panel-default">
-             		<div class="panel-heading">FAKTURA VAT</div>
+             		<div class="panel-heading"><h4>FAKTURA VAT</h4></div>
              		<div class="panel-body">
+                 		<h4>Faktura VAT nr</h4> <div class="text-right"><?php echo $invoices[__DB_INVOICES_INVOICENUMBER__]?></div>
+                 		<h4>Data</h4> <div class="text-right"><?php echo $invoices[__DB_INVOICES_DATE__] ?>
+    <!--              			Content -->
+                 		</div>
+    				</div>
+				</div>
+	</div>
+<!-- 	Start Buyer -->
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="panel-group">
+             	<div class="panel panel-default">
+             		<div class="panel-heading"><H4>NABYWCA</H4></div>
+             		<div class="panel-body">
+             		<h4><strong><?php echo $customers[__DB_CUSTOMERS_NAME__]?></strong></h4> 
+             		<h4><?php echo $customers[__DB_CUSTOMERS_ADRESS__]?></h4>
+             		<h4><?php echo $customers[__DB_CUSTOMERS_POSTALCODE__] echo $customers[__DB_CUSTOMERS_CITY__]?></h4> 
+             		<h4><?php echo $customers[__DB_CUSTOMERS_COUNTRY__]?></h4></br>
+             		<h4><?php echo $customers[__DB_CUSTOMERS_NIP__]?></h4>
 <!--              			Content -->
              		</div>
     			</div>
 			</div>
+		</div>
+<!-- 		End Buyer -->
+<!-- 	Start Seller -->
+		<div class="col-lg-6">
+			<div class="panel-group">
+             	<div class="panel panel-default">
+             		<div class="panel-heading"><H4>SPRZEDAWCA</H4></div>
+             		<div class="panel-body">
+             		<h4><strong>ABASTRA Sp. z.o.o</strong></h4> 
+             		<h4>ul. 11Listopada 79/28</h4>
+             		<h4>91-372 Łódź</h4> 
+             		<h4>Polska</h4></br>
+             		<h4><strong>NIP		9471974189</strong></h4>
+<!--              			Content -->
+             		</div>
+    			</div>
+			</div>
+		</div>
 	</div>
-</body><
+<!-- 		End Seller -->
+<!-- 		Start articles -->
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th><h4>L.p</h4></th>
+                <th><h4>Nazwa</h4></th>
+                <th><h4>J.M</h4></th>
+                <th><h4>Ilość</h4></th>
+                <th><h4>Cena jed. netto</h4></th>
+                <th><h4>Wartość netto</h4></th>
+                <th><h4>VAT%</h4></th>
+                <th><h4>Wartość VAT</h4></th>
+                <th><h4>Wartość brutto</h4></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>numer</td>
+                <td>nazwa</td>
+                <td>j.m</td>
+                <td>ilość</td>
+                <td class="text-right">cena jednostkowa</td>
+                <td class="text-right">wartosc netto</td>
+                <td class="text-right">23%</td>
+                <td class="text-right">Wartość vat</td>
+                <td class="text-right">wartosc brutto</td>
+ 			</tr>
+        </tbody>
+    </table>
+
+<!-- 		End articles -->
+
+<!-- Panel info start -->
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4>Konto</h4>
+                </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Nazwa banku:</strong>
+                                <strong>Adres:</strong>
+                                <strong>BIC/SWIFT CODE:</strong></br>
+                                <strong>Numer rachunku:</strong>
+                                <strong>IBAN:</strong>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                Alior Bank S.A.
+                                Al.Jerozolimskie 94, 00-807 Warszawa
+                                ALBPPLPW
+                                ABASTRA sp. z o.o.
+                                98 2490 0005 0000 4520 3585 2559
+                                PL98249000050000452035852559
+                            </div>
+                    	</div> 
+                	</div>
+            </div>
+        </div>
+    </div>
+<!-- Panel info end -->
+
+<!-- Method payment and expirient date -->
+
+<!-- END Method payment and expirient date -->
+
+</body>
 </html>
