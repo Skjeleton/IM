@@ -36,6 +36,28 @@
             return $data;
         }
         
+        private function count_vat($value, $vat = 0.23){
+            return $value * $vat;
+        }
+        
+        private function value_with_vat($value, $vat = 0.23){
+            $fullValue = $value + $this->count_vat($value, $vat) + 0.005;
+            $fullValue = floor($fullValue * 100) / 100;
+            return $fullValue;
+        }
+        
+        private function count_whole_net_value($transactions){
+            $netValue= 0;
+            foreach($transactions as $transaction){
+                $netValue += $transaction[__DB_TRANSACTIONS_COUNT__] * $transaction[__DB_TRANSACTIONS_NETUNITPRICE__];
+            }
+            return $netValue;
+        }
+        
+        private function count_whole_gross_value($transactions){
+            return $this->value_with_vat($this->count_whole_net_value($transactions));
+        }
+        
         function __construct(){
             parent::__construct();
             $this->load->database();
@@ -49,7 +71,6 @@
          * @passes  array of the customers' names and addresses
          */
         public function customer_show_view(){
-            $this->load->view("Site/header");
             $this->db->select(array(__DB_CUSTOMERS_CUSTOMERID__, __DB_CUSTOMERS_NAME__, __DB_CUSTOMERS_COUNTRY__, __DB_CUSTOMERS_CITY__, __DB_CUSTOMERS_STREET__, __DB_CUSTOMERS_HOUSENUMBER__, __DB_CUSTOMERS_APARTMENTNUMBER__));
             $result = $this->db->get(__DB_CUSTOMERS__);
             
@@ -63,6 +84,7 @@
                 array_push($data["fromController"], $row);
             }
             
+            $this->load->view("Site/header");
             $this->load->view("Site/customer_view", $data);
         }
         
@@ -83,6 +105,7 @@
         /*
          * Edits the customer's data with given changes.
          * @needs   Post data with user's input
+         * @passes  Array of specific customer's data
          */
         public function customer_edit(){
             $customerId = $this->input->post(__DB_CUSTOMERS_CUSTOMERID__);
@@ -95,12 +118,19 @@
             redirect("invoice_controller/customer_show_view");
         }
         
+        /*
+         * Displays the page containing the user adding form
+         */
         public function customer_add_view(){
             $this->load->helper("form");
             $this->load->view("Site/header");
             $this->load->view("Site/customer_add");
         }
         
+        /*
+         * Not-display function that adds the customer from user's post input
+         * @needs   Post with information about customer
+         */
         public function customer_add(){
             $data = $this->fetch_user_input();
             
@@ -108,6 +138,32 @@
             $this->Customer_model->add($data);
             
             redirect("invoice_controller/customer_show_view");
+        }
+        
+        public function invoice_show_view(){
+            $this->db->select(array(__DB_INVOICES_INVOICEID__, __DB_INVOICES_INVOICENUMBER__, __DB_INVOICES_DATE__, __DB_INVOICES_PAYMENTDEADLINE__, __DB_CUSTOMERS_NAME__));
+            $this->db->from(__DB_INVOICES__);
+            $this->db->join(__DB_CUSTOMERS__, __DB_INVOICES__.".".__DB_INVOICES_CUSTOMERID__." = ".__DB_CUSTOMERS__.".".__DB_CUSTOMERS_CUSTOMERID__);
+            $data["fromController"] = $this->db->get()->result_array();
+            
+            foreach($data["fromController"] as $key => &$invoice){
+                $this->db->select(array(__DB_TRANSACTIONS_NETUNITPRICE__, __DB_TRANSACTIONS_COUNT__));
+                $this->db->from(__DB_TRANSACTIONS__);
+                $this->db->where(__DB_TRANSACTIONS_INVOICEID__." = ".$invoice[__DB_INVOICES_INVOICEID__]);
+                
+                $transactions = $this->db->get()->result_array();
+                $invoice["GrossValue"]= $this->count_whole_gross_value($transactions);
+            }
+            
+            $this->load->view("Site/invoice_view", $data);
+        }
+        
+        public function invoice_add_view(){
+            
+        }
+        
+        public function invoice_add(){
+            
         }
         
         public function index(){

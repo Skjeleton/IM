@@ -105,7 +105,7 @@ define("__DB_INVOICES_DATE__", "Date");
 define("__DB_INVOICES_PAYMENTDEADLINE__", "PaymentDeadline");
 define("__DB_INVOICES_PAYMENTMETHOD__", "PaymentMethod");
 
-define("__DB_TRANSACTIONS__", "Transaction");
+define("__DB_TRANSACTIONS__", "Transactions");
 define("__DB_TRANSACTIONS_TRANSACTIONID__", "TransactionID");
 define("__DB_TRANSACTIONS_INVOICEID__", __DB_INVOICES_INVOICEID__);
 define("__DB_TRANSACTIONS_NAME__", "Name");
