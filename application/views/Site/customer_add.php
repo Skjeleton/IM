@@ -12,7 +12,8 @@
 
     <body>
         <div class="row margines-top panel">
-        <center>
+        <div class="col-md-5"></div>
+		<div class="col-md-2">
         	<?php
                 echo form_open("invoice_controller/customer_add");
                 
@@ -53,6 +54,8 @@
                 
                
         	?>
+        </div>
+        <div class="col-md-5"></div>
          </div>
          </center>
     </body>
