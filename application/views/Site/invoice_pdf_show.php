@@ -75,10 +75,10 @@
         <tbody>
             <tr>
                 <td>numer</td>
-                <td>nazwa</td>
+                <td><?php echo $invoices[__DB_TRANSACTIONS_NAME__]?></td>
                 <td>j.m</td>
-                <td>ilość</td>
-                <td class="text-right">cena jednostkowa</td>
+                <td><?php echo $invoices[__DB_TRANSACTIONS_COUNT__]?></td>
+                <td class="text-right"><?php echo $invoices[]?></td>
                 <td class="text-right">wartosc netto</td>
                 <td class="text-right">23%</td>
                 <td class="text-right">Wartość vat</td>
