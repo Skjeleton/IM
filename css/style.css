@@ -7,3 +7,8 @@
 .panel{
 	display: inline;
 }
+.abastra{
+	some-src-property: url("abastra.jpg");
+	padding-right: 35px;
+	
+}
