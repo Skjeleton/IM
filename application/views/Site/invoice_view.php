@@ -27,19 +27,19 @@
                 
                 echo "<td>".$invoices[__DB_INVOICES_INVOICENUMBER__]."</td>";
                 
-                echo "<td>".$invoice[__DB_INVOICES_DATE__]."</td>";
+                echo "<td>".$invoices[__DB_INVOICES_DATE__]."</td>";
                 
-                echo "<td>".$invoice[__DB_CUSTOMERS_NAME__]."</td>";
+                echo "<td>".$invoices[__DB_CUSTOMERS_NAME__]."</td>";
                 
-                echo "<td>".$invoice["GrossValue"]."</td>";
+                echo "<td>".$invoices["GrossValue"]."zł</td>";
                 
-                echo "<td>".$invoice[__DB_INVOICES_PAYMENTDEADLINE__]."</td>";
+                echo "<td>".$invoices[__DB_INVOICES_PAYMENTDEADLINE__]."</td>";
             
-                echo "<td><a class='button' href='".base_url()."wpisz sciezke do invoice_edit".$Invoices[__DB_INVOICES_INVOICEID__]."'>Edytuj</a>";
-      	     
+                echo "<td><a class='button' href='".base_url()."wpisz sciezke do invoice_edit".$invoices[__DB_INVOICES_INVOICEID__]."'>Edytuj</a>";
+            }   
              ?>   
-          	     </tbody>
-        </table>
+          	 </tbody>
+    </table>
     </div>   
-    	</body>
-    </html>
+    </body>
+</html>
