@@ -48,7 +48,7 @@
             	
             	echo form_submit("Submit", "Dokonaj zmian")."</br>";
             	echo form_close();
-}
+                
         	?>
 		</center>
 		 </div>
