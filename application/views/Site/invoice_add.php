@@ -10,6 +10,8 @@
 	
 	<body>
 		 <div class="row margines-top panel">
+		 <div class="col-md-5"></div>
+		 <div class="col-md-2">
         	<?php
             	echo form_open("invoice_controller/invoice_add");
             	
@@ -52,6 +54,8 @@
             	echo form_submit("Submit", "Dodaj fakturę")."</br>";
             	echo form_close();
         	?>
+        	</div>
+        	<div class="col-md-5"></div>
 		 </div>
 		 <script>
 				var rowsNo = 0;
