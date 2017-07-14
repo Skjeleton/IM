@@ -214,8 +214,15 @@
         
         public function invoice_edit_view(){
             $this->load->helper("form");
+            $data = array();
+            
+            $this->db->select(array(__DB_INVOICES_DATE__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_PAYMENTDEADLINE__, __DB_INVOICES_PAYMENTMETHOD__));
+            $this->db->where()
+            
+            
+            
             $this->load->view("Site/header");
-            $this->load->view("Site/invoice_add");
+            $this->load->view("Site/invoice_edit");
         }
         
         public function invoice_edit(){
