@@ -74,15 +74,15 @@
         </thead>
         <tbody>
             <tr>
-                <td>numer</td>
-                <td><?php echo $invoices[__DB_TRANSACTIONS_NAME__]?></td>
-                <td>j.m</td>
-                <td><?php echo $invoices[__DB_TRANSACTIONS_COUNT__]?></td>
-                <td class="text-right"><?php echo $invoices[]?></td>
-                <td class="text-right">wartosc netto</td>
-                <td class="text-right">23%</td>
-                <td class="text-right">Wartość vat</td>
-                <td class="text-right">wartosc brutto</td>
+                <td>numer</td> <!-- l.p -->
+                <td><?php echo $invoices[__DB_TRANSACTIONS_NAME__]?></td> <!-- nazwa -->
+                <td>j.m</td> <!-- j.m -->
+                <td><?php echo $invoices[__DB_TRANSACTIONS_COUNT__]?></td> <!-- ilosc -->
+                <td class="text-right"><?php echo $invoices[__DB_TRANSACTIONS_NETUNITPRICE__]?></td> <!-- cena jednostkowa -->
+                <td class="text-right"><?php echo "netValue"?></td> <!-- wartosc netto -->
+                <td class="text-right"><?php echo "vat"?></td> <!-- vat -->
+                <td class="text-right"><?php echo "netValue"?></td> <!-- wartosc vat -->
+                <td class="text-right"><?php echo "fullValue"?></td> <!-- wartosc brutto -->
  			</tr>
         </tbody>
     </table>
@@ -127,7 +127,7 @@
             <div class="panel panel-info">
                 <div class="panel-body">
                 	<div class="row">
-                    	<div class="col-xs-3"></div>
+                    	<div class="col-xs-3"><h4>Razem</h4></div>
                     	<div class="col-xs-2"></div>
                     	<div class="col-xs-2"></div>
                     	<div class="col-xs-2"></div>
@@ -161,8 +161,8 @@
             			</tr>
             				<tbody>
            						 <tr>
-                					<td><?php echo $invoice[__DB_INVOICES_PAYMENTDEADLINE__]?></td>
-                					<td><?php echo $invoice[__DB_INVOICES_PAYMENTMETHOD__]?></td>
+                					<td><?php echo $invoices[__DB_INVOICES_PAYMENTDEADLINE__]?></td>
+                					<td><?php echo $invoices[__DB_INVOICES_PAYMENTMETHOD__]?></td>
                 				 </tr>
                 			</tbody>
             		</table>
