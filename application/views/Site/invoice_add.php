@@ -21,38 +21,58 @@
             	echo form_label("Data faktury", $title)."</br>";
             	echo form_input(array("name" => $title, "type" => "date"))."</br>";
             	
+            	$title = __DB_CUSTOMERS__;
+            	echo form_label("Klient", $title)."</br>";
+            	echo form_dropdown($title, $fromController)."</br>";
+            	
             	$title = __DB_INVOICES_PAYMENTDEADLINE__;
             	echo form_label("Termin płatności", $title)."</br>";
-            	echo form_input($title)."</br>";
+            	echo form_input(array("name" => $title, "type" => "date"))."</br>";
             	
             	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";
             	echo form_input($title)."</br>";
+            ?>
             	
-            	$title = __DB_TRANSACTIONS_MEASUREUNIT__;
-            	echo form_label("", $title)."</br>";
-            	echo form_input($title)."</br>";
+            <table border="1">
+            	<thead>
+            		<th>Nazwa</th>
+            		<th>J.M.</th>
+            		<th>Ilość</th>
+            		<th>Cena netto</th>
+            		<th><button type="button" id="addInvoice">+</button></th>
+            	</thead>
+            	<tbody id="tContainer">
+            		
+            	</tbody>
+            </table>
+            
             	
-            	$title = __DB_TRANSACTIONS_COUNT__;
-            	echo form_label("Ilość", $title)."</br>";
-            	echo form_input($title)."</br>";
-            	
-            	$title = __DB_TRANSACTIONS_NETUNITPRICE__;
-            	echo form_label("Nazwa", $title)."</br>";
-            	echo form_input($title)."</br>";
-            	
-            	$title = __DB_TRANSACTIONS_NAME__;
-            	echo form_label("Nazwa", $title)."</br>";
-            	echo form_input($title)."</br>";
-            	
-            	echo form_submit("Submit", "Dokonaj zmian")."</br>";
+            <?php	
+            	echo form_submit("Submit", "Dodaj fakturę")."</br>";
             	echo form_close();
         	?>
 		 </div>
-		 <button class="add_field_button">Dodaj</button>
 		 <script>
+				var rowsNo = 0;
+		 
+				function addTableCell(tableRef, columnNo){
+					var content = "<input type='text' name='tData_" + rowsNo + "_" + columnNo + "'></input>";
+					tableRef.append("<td>"+content+"</td>");
+				}
+		
+				function addTableRow(tableRef){
+					tableRef.append("<tr>");
+					for(var i = 0; i < 4 ; i++ )
+						addTableCell(tableRef, i);
+					tableRef.append("</tr>");
+					rowsNo++;
+				}
+		 
             	$(document).ready(function() {
-            	    
+            	    $("#addInvoice").click(function(){
+                	    addTableRow($("#tContainer"));
+            	    });
             	});    
 		 </script>
 	</body>

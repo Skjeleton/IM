@@ -160,13 +160,56 @@
         }
         
         public function invoice_add_view(){
+            $this->db->select(array(__DB_CUSTOMERS_CUSTOMERID__, __DB_CUSTOMERS_NAME__, __DB_CUSTOMERS_COUNTRY__, __DB_CUSTOMERS_CITY__, __DB_CUSTOMERS_STREET__, __DB_CUSTOMERS_HOUSENUMBER__, __DB_CUSTOMERS_APARTMENTNUMBER__));
+            $result = $this->db->get(__DB_CUSTOMERS__);
+            
+            $data = array();
+            $data["fromController"] = array();
+            foreach($result->result_array() as $customer){
+                $data["fromController"][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_address($customer);
+            }
+            
+            
             $this->load->helper("form");
             $this->load->view("Site/header");
-            $this->load->view("Site/invoice_add");
+            $this->load->view("Site/invoice_add", $data);
         }
         
         public function invoice_add(){
+            $data = array();
+            $data[__DB_INVOICES__] = array();
+            $data[__DB_INVOICES__][__DB_INVOICES_INVOICENUMBER__] = $this->input->post(__DB_INVOICES_INVOICENUMBER__);
+            $data[__DB_INVOICES__][__DB_INVOICES_DATE__] = $this->input->post(__DB_INVOICES_DATE__);
+            $data[__DB_INVOICES__][__DB_INVOICES_CUSTOMERID__] = $this->input->post(__DB_CUSTOMERS__);
+            $data[__DB_INVOICES__][__DB_INVOICES_PAYMENTDEADLINE__] = $this->input->post(__DB_INVOICES_PAYMENTDEADLINE__);
+            $data[__DB_INVOICES__][__DB_INVOICES_PAYMENTMETHOD__] = $this->input->post(__DB_INVOICES_PAYMENTMETHOD__);
             
+            $this->load->model("Invoice_model");
+            $this->Invoice_model->add($data[__DB_INVOICES__]);
+            $invoiceId = $this->db->insert_id();
+            
+            $data[__DB_TRANSACTIONS__] = array();
+            for( $i = 0 ; $this->input->post("tData_".$i."_0") !== null ; $i++ ){
+                $data[__DB_TRANSACTIONS__][$i] = array();
+                
+                for($j = 0 ; $j < 4 ; $j++){
+                    $title = "sf";
+                    $j == 0 AND $title = __DB_TRANSACTIONS_NAME__;
+                    $j == 1 AND $title = __DB_TRANSACTIONS_MEASUREUNIT__;
+                    $j == 2 AND $title = __DB_TRANSACTIONS_COUNT__;
+                    $j == 3 AND $title = __DB_TRANSACTIONS_NETUNITPRICE__;
+                    $data[__DB_TRANSACTIONS__][$i][$title] = $this->input->post("tData_".$i."_".$j);
+                }
+                $data[__DB_TRANSACTIONS__][$i][__DB_TRANSACTIONS_INVOICEID__] = $invoiceId;
+            }
+            
+            
+            $this->load->model("Transaction_model");
+            foreach($data[__DB_TRANSACTIONS__] as $transaction){
+                $this->Transaction_model->add($transaction);
+            }
+                
+            redirect("invoice_controller/invoice_show_view");
         }
         
         public function invoice_edit_view(){
