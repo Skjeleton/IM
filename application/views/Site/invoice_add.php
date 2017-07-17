@@ -25,7 +25,7 @@
             	
             	$title = __DB_CUSTOMERS__;
             	echo form_label("Klient", $title)."</br>";
-            	echo form_dropdown($title, $fromController,'width="100%"')."</br>";
+            	echo form_dropdown($title, $fromController,'width="100%"   ')."</br>";
             	
             	$title = __DB_INVOICES_PAYMENTDEADLINE__;
             	echo form_label("Termin płatności", $title)."</br>";
