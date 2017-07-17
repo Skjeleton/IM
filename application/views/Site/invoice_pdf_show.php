@@ -27,8 +27,8 @@
              	<div class="panel panel-default">
              		<div class="panel-heading"><H4>NABYWCA</H4></div>
              		<div class="panel-body">
-             		<h4><strong><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_NAME__]?></strong></h4> 
-             		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_ADRESS__]; ?></h4>
+             		<h4><strong><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_NAME__]; ?></strong></h4> 
+             		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_STREET__]; ?></h4>
              		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_POSTALCODE__]; echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_CITY__]; ?></h4> 
              		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_COUNTRY__]; ?></h4></br>
              		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_NIP__]; ?></h4>
