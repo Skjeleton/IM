@@ -9,8 +9,8 @@
     </head>
     <body>
         <div class="row margines-top panel">
-        <div class="col-md-5"></div>
-		<div class="col-md-2">
+		 <div class="col-md-4"></div>
+		 <div class="col-md-4">
         	<?php
                 echo form_open("invoice_controller/customer_edit");
                 echo form_hidden(__DB_CUSTOMERS_CUSTOMERID__, $fromController[__DB_CUSTOMERS_CUSTOMERID__]);
@@ -51,7 +51,6 @@
                 echo form_close();
         	?>
          </div>
-         <div class="col-md-5"></div>
          </div>
     </body>
 </html>
