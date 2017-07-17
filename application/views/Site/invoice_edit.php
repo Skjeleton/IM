@@ -36,7 +36,7 @@
             	echo form_input($title, $fromController[__DB_INVOICES__][$title])."</br>";
             ?>
             	
-            <table border="1" width="43%">
+            <table border="1" width="100%">
             	<thead>
             		<th>Nazwa</th>
             		<th>J.M.</th>
