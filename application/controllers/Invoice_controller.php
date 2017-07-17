@@ -229,7 +229,7 @@
             $this->db->where(__DB_TRANSACTIONS_INVOICEID__." = ".$invoiceId);
             
             $transactions = $this->db->get()->result_array();
-            $data["fromController"][__DB_TRANSACTIONS__] = $transactions;//$this->count_whole_gross_value($transactions);
+            $data["fromController"][__DB_TRANSACTIONS__] = $transactions;
             
             $this->db->select(array(__DB_CUSTOMERS_CUSTOMERID__, __DB_CUSTOMERS_NAME__, __DB_CUSTOMERS_COUNTRY__, __DB_CUSTOMERS_CITY__, __DB_CUSTOMERS_STREET__, __DB_CUSTOMERS_HOUSENUMBER__, __DB_CUSTOMERS_APARTMENTNUMBER__));
             $customersRaw = $this->db->get(__DB_CUSTOMERS__);
@@ -239,7 +239,6 @@
             
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_edit", $data);
-            //$this->load->view("var_dump", $data);
         }
         
         public function invoice_edit(){
@@ -283,7 +282,33 @@
         }
         
         public function invoice_pdf_view(){
-            $this->load->view("invoice_pdf_show");
+            $this->load->helper("form");
+            $data = array();
+            $data["fromController"] = array();
+            $data["fromController"][__DB_INVOICES__] = array();
+            $data["fromController"][__DB_INVOICES__][__DB_CUSTOMERS__] = array();
+            
+            $invoiceId = $this->uri->segment(3);
+            $this->db->select(array(__DB_INVOICES_INVOICEID__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_INVOICENUMBER__,  __DB_INVOICES_DATE__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_PAYMENTDEADLINE__, __DB_INVOICES_PAYMENTMETHOD__));
+            $this->db->where(__DB_INVOICES_INVOICEID__." = ".$invoiceId);
+            $data["fromController"][__DB_INVOICES__] = $this->db->get(__DB_INVOICES__)->result_array()[0];
+            
+            $this->db->select(array(__DB_TRANSACTIONS_TRANSACTIONID__, __DB_TRANSACTIONS_NAME__, __DB_TRANSACTIONS_MEASUREUNIT__, __DB_TRANSACTIONS_NETUNITPRICE__, __DB_TRANSACTIONS_COUNT__));
+            $this->db->from(__DB_TRANSACTIONS__);
+            $this->db->where(__DB_TRANSACTIONS_INVOICEID__." = ".$invoiceId);
+            
+            $transactions = $this->db->get()->result_array();
+            $data["fromController"][__DB_TRANSACTIONS__] = $transactions;
+            
+            $this->db->select(array(__DB_CUSTOMERS_CUSTOMERID__, __DB_CUSTOMERS_NAME__, __DB_CUSTOMERS_COUNTRY__, __DB_CUSTOMERS_CITY__, __DB_CUSTOMERS_STREET__, __DB_CUSTOMERS_HOUSENUMBER__, __DB_CUSTOMERS_APARTMENTNUMBER__));
+            $customersRaw = $this->db->get(__DB_CUSTOMERS__);
+            foreach($customersRaw->result_array() as $customer){
+                $data["fromController"][__DB_INVOICES__][__DB_CUSTOMERS__][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_address($customer);
+            }
+            
+            $this->load->view("Site/header");
+            $this->load->view("Site/invoice_pdf_show", $data);
+            
         }
         
         public function index(){

@@ -59,7 +59,7 @@
             		          echo "<input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
             		      }
             		      for($i = 0; $i < 4 ; $i++){
-            		          echo "<td></td>;
+            		          echo "<td></td>";
             		      }
             		      echo "</tr>";
             		  }
@@ -69,6 +69,15 @@
             
             	
             <?php	
+                $data = array(
+                    'name'          => 'button',
+                    'id'            => 'button',
+                    'value'         => 'true',
+                    'type'          => 'button',
+                    'content'       => 'PDF',
+                    'onclick'       => 'redirectPDF()'
+                );
+                echo form_button($data);
             	echo form_submit("Submit", "Edytuj fakturę")."</br>";
             	echo form_close();
         	?>
@@ -76,5 +85,10 @@
         	<div class="col-md-4"></div>
 		 </div>
 		 <script src='<?php echo base_url()."js/tableController.js"; ?>'></script>
+		 <script>
+		 	function redirectPDF(){
+		 		window.location.replace('<?php echo base_url()."index.php/invoice_controller/invoice_pdf_view/".$fromController[__DB_INVOICES__][__DB_INVOICES_INVOICEID__] ?>');
+		 	}
+		 </script>
 	</body>
 </html>
