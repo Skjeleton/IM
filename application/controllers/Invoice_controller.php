@@ -220,11 +220,11 @@
             $data["fromController"][__DB_INVOICES__][__DB_CUSTOMERS__] = array();
             
             $invoiceId = $this->uri->segment(3);
-            $this->db->select(array(__DB_INVOICES_CUSTOMERID__,__DB_INVOICES_INVOICENUMBER__,  __DB_INVOICES_DATE__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_PAYMENTDEADLINE__, __DB_INVOICES_PAYMENTMETHOD__));
+            $this->db->select(array(__DB_INVOICES_INVOICEID__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_INVOICENUMBER__,  __DB_INVOICES_DATE__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_PAYMENTDEADLINE__, __DB_INVOICES_PAYMENTMETHOD__));
             $this->db->where(__DB_INVOICES_INVOICEID__." = ".$invoiceId);
             $data["fromController"][__DB_INVOICES__] = $this->db->get(__DB_INVOICES__)->result_array()[0];
             
-            $this->db->select(array(__DB_TRANSACTIONS_NAME__, __DB_TRANSACTIONS_MEASUREUNIT__, __DB_TRANSACTIONS_NETUNITPRICE__, __DB_TRANSACTIONS_COUNT__));
+            $this->db->select(array(__DB_TRANSACTIONS_TRANSACTIONID__, __DB_TRANSACTIONS_NAME__, __DB_TRANSACTIONS_MEASUREUNIT__, __DB_TRANSACTIONS_NETUNITPRICE__, __DB_TRANSACTIONS_COUNT__));
             $this->db->from(__DB_TRANSACTIONS__);
             $this->db->where(__DB_TRANSACTIONS_INVOICEID__." = ".$invoiceId);
             
@@ -239,11 +239,47 @@
             
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_edit", $data);
-            $this->load->view("var_dump", $data);
+            //$this->load->view("var_dump", $data);
         }
         
         public function invoice_edit(){
+            $data = array();
+            $data[__DB_INVOICES__] = array();
+            $data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__] = $this->uri->segment(3);
+            $data[__DB_INVOICES__][__DB_INVOICES_INVOICENUMBER__] = $this->input->post(__DB_INVOICES_INVOICENUMBER__);
+            $data[__DB_INVOICES__][__DB_INVOICES_DATE__] = $this->input->post(__DB_INVOICES_DATE__);
+            $data[__DB_INVOICES__][__DB_INVOICES_CUSTOMERID__] = $this->input->post(__DB_CUSTOMERS__);
+            $data[__DB_INVOICES__][__DB_INVOICES_PAYMENTDEADLINE__] = $this->input->post(__DB_INVOICES_PAYMENTDEADLINE__);
+            $data[__DB_INVOICES__][__DB_INVOICES_PAYMENTMETHOD__] = $this->input->post(__DB_INVOICES_PAYMENTMETHOD__);
             
+            $this->load->model("Invoice_model");
+            $this->Invoice_model->update($data[__DB_INVOICES__], $data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__]);
+            $invoiceId = $this->db->insert_id();
+            
+            $data[__DB_TRANSACTIONS__] = array();
+            for( $i = 0 ; $this->input->post("tData_".$i."_0") !== null ; $i++ ){
+                $data[__DB_TRANSACTIONS__][$i] = array();
+                
+                for($j = 0 ; $j < 4 ; $j++){
+                    $title = "";
+                    $j == 0 AND $title = __DB_TRANSACTIONS_NAME__;
+                    $j == 1 AND $title = __DB_TRANSACTIONS_MEASUREUNIT__;
+                    $j == 2 AND $title = __DB_TRANSACTIONS_COUNT__;
+                    $j == 3 AND $title = __DB_TRANSACTIONS_NETUNITPRICE__;
+                    $data[__DB_TRANSACTIONS__][$i][$title] = $this->input->post("tData_".$i."_".$j);
+                }
+                $data[__DB_TRANSACTIONS__][$i][__DB_TRANSACTIONS_TRANSACTIONID__] = $this->input->post("tData_".$i."_0_id");
+                $data[__DB_TRANSACTIONS__][$i][__DB_TRANSACTIONS_INVOICEID__] = $data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__];
+            }
+            
+            
+            $this->load->model("Transaction_model");
+            foreach($data[__DB_TRANSACTIONS__] as $key => $transaction){
+                $this->Transaction_model->update($transaction, $transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
+            }
+            
+            //$this->load->view("var_dump", $data);
+            redirect("invoice_controller/invoice_show_view");
         }
         
         public function invoice_pdf_view(){

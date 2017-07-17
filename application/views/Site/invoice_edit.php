@@ -13,7 +13,7 @@
 		 <div class="col-md-5"></div>
 		 <div class="col-md-2">
         	<?php
-            	echo form_open("invoice_controller/invoice_edit");
+            	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES__][__DB_INVOICES_INVOICEID__]);
             	
             	$title = __DB_INVOICES_INVOICENUMBER__;
             	echo form_label("Faktura VAT nr.", $title)."</br>";
@@ -53,7 +53,9 @@
             		          $i == 1 AND $title = __DB_TRANSACTIONS_MEASUREUNIT__;
             		          $i == 2 AND $title = __DB_TRANSACTIONS_COUNT__;
             		          $i == 3 AND $title = __DB_TRANSACTIONS_NETUNITPRICE__;
-            		          echo "<td><input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
+            		          echo "<td>";
+            		          echo form_hidden("tData_".$key."_".$i."_id", $transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
+            		          echo "<input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
             		      }
             		      echo "</tr>";
             		  }
@@ -63,7 +65,7 @@
             
             	
             <?php	
-            	echo form_submit("Submit", "Dodaj fakturę")."</br>";
+            	echo form_submit("Submit", "Edytuj fakturę")."</br>";
             	echo form_close();
         	?>
         	</div>
