@@ -3,8 +3,10 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.css">
+        <meta charset="UTF-8">
 </head>
 <body>
+<div class="mainContainer">
 	<div class="row">
 		<div class="col-lg-6"><div class="abastra"></div></div>
 		<div class="col-lg-6">
@@ -31,7 +33,7 @@
              		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_STREET__]; ?></h4>
              		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_POSTALCODE__]; echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_CITY__]; ?></h4> 
              		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_COUNTRY__]; ?></h4></br>
-             		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_NIP__]; ?></h4>
+             		<h4><strong>NIP <?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_NIP__]; ?></strong></h4>
 <!--              			Content -->
              		</div>
     			</div>
@@ -74,17 +76,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>numer</td> <!-- l.p -->
-                <td><?php echo $fromController[__DB_TRANSACTIONS__][__DB_TRANSACTIONS_NAME__]; ?></td> <!-- nazwa -->
-                <td>j.m</td> <!-- j.m -->
-                <td><?php echo $fromController[__DB_TRANSACTIONS__][__DB_TRANSACTIONS_COUNT__]; ?></td> <!-- ilosc -->
-                <td class="text-right"><?php echo $fromController[__DB_TRANSACTIONS__][__DB_TRANSACTIONS_NETUNITPRICE__]; ?></td> <!-- cena jednostkowa -->
-                <td class="text-right"><?php echo $fromController[__DB_TRANSACTIONS__]"netValue"; ?></td> <!-- wartosc netto -->
-                <td class="text-right"><?php echo "vat"; ?></td> <!-- vat -->
-                <td class="text-right"><?php echo $fromController[__DB_TRANSACTIONS__]"vatValue"; ?></td> <!-- wartosc vat -->
-                <td class="text-right"><?php echo $fromController[__DB_TRANSACTIONS__]"grossValue"; ?></td> <!-- wartosc brutto -->
- 			</tr>
+			<?php
+                foreach($fromController[__DB_TRANSACTIONS__] as $key => $transaction){
+                echo "<tr>";
+                    echo "<td>".($key+1)."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_NAME__]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_MEASUREUNIT__]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_COUNT__]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_NETUNITPRICE__]."</td>";
+                    echo "<td>".$transaction["netValue"]."</td>";
+                    echo "<td>".$transaction["vat"]."</td>";
+                    echo "<td>".$transaction["vatValue"]."</td>";
+                    echo "<td>".$transaction["grossValue"]."</td>";
+     			echo "</tr>";
+                }
+ 			?>
         </tbody>
     </table>
 
@@ -92,7 +98,7 @@
 
 <!-- Panel info start -->
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-8">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4>Konto</h4>
@@ -100,31 +106,27 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <strong>Nazwa banku:</strong>
-                                <strong>Adres:</strong>
+                                <strong>Nazwa banku:</strong></br>
+                                <strong>Adres:</strong></br>	
                                 <strong>BIC/SWIFT CODE:</strong></br>
-                                <strong>Numer rachunku:</strong>
-                                <strong>IBAN:</strong>
+                                </br>
+                                <strong>Numer rachunku:</strong></br>
+                                <strong>IBAN:</strong></br>
                             </div>
                             
                             <div class="col-md-6">
-                                Alior Bank S.A.
-                                Al.Jerozolimskie 94, 00-807 Warszawa
-                                ALBPPLPW
-                                ABASTRA sp. z o.o.
-                                98 2490 0005 0000 4520 3585 2559
-                                PL98249000050000452035852559
+                                Alior Bank S.A.</br>
+                                Al.Jerozolimskie 94, 00-807 Warszawa</br>
+                                ALBPPLPW</br>
+                                ABASTRA sp. z o.o.</br>
+                                98 2490 0005 0000 4520 3585 2559</br>
+                                PL98249000050000452035852559</br>
                             </div>
                     	</div> 
                 	</div>
             </div>
         </div>
-    </div>
-<!-- Panel info end -->
-
-<!-- Total -->
-    <div class="row">
-        <div class="col-xs-6">
+        	<div class="col-xs-4">
             <div class="panel panel-info">
                 <div class="panel-body">
                 	<div class="row">
@@ -143,6 +145,12 @@
                 </div>
             </div>
     	</div>
+    </div>
+<!-- Panel info end -->
+
+<!-- Total -->
+    <div class="row">
+        
     </div>
     
 <!-- END Total -->
@@ -172,6 +180,6 @@
         </div>
 	</div>
 <!-- END Method payment and expirient date -->
-
+</div>
 </body>
 </html>
