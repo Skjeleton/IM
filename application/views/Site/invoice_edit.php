@@ -10,8 +10,8 @@
 	
 	<body>
 		 <div class="row margines-top panel">
-		 <div class="col-md-5"></div>
-		 <div class="col-md-2">
+		 <div class="col-md-4"></div>
+		 <div class="col-md-4">
         	<?php
             	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES__][__DB_INVOICES_INVOICEID__]);
             	
@@ -73,7 +73,7 @@
             	echo form_close();
         	?>
         	</div>
-        	<div class="col-md-5"></div>
+        	<div class="col-md-4"></div>
 		 </div>
 		 <script src='<?php echo base_url()."js/tableController.js"; ?>'></script>
 	</body>
