@@ -73,17 +73,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>numer</td> <!-- l.p -->
-                <td><?php echo $fromController[__DB_TRANSACTIONS__][__DB_TRANSACTIONS_NAME__]; ?></td> <!-- nazwa -->
-                <td>j.m</td> <!-- j.m -->
-                <td><?php echo $fromController[__DB_TRANSACTIONS__][__DB_TRANSACTIONS_COUNT__]; ?></td> <!-- ilosc -->
-                <td class="text-right"><?php echo $fromController[__DB_TRANSACTIONS__][__DB_TRANSACTIONS_NETUNITPRICE__]; ?></td> <!-- cena jednostkowa -->
-                <td class="text-right"><?php echo "netValue"; ?></td> <!-- wartosc netto -->
-                <td class="text-right"><?php echo "vat"; ?></td> <!-- vat -->
-                <td class="text-right"><?php echo "netValue"; ?></td> <!-- wartosc vat -->
-                <td class="text-right"><?php echo "fullValue"; ?></td> <!-- wartosc brutto -->
- 			</tr>
+           <?php
+                foreach($fromController[__DB_TRANSACTIONS__] as $key => $transaction){
+                echo "<tr>";
+                    echo "<td>".($key+1)."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_NAME__]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_MEASUREUNIT__]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_COUNT__]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_NETUNITPRICE__]."</td>";
+                    echo "<td>".$transaction["netValue"]."</td>";
+                    echo "<td>".$transaction["vat"]."</td>";
+                    echo "<td>".$transaction["vatValue"]."</td>";
+                    echo "<td>".$transaction["grossValue"]."</td>";
+     			echo "</tr>";
+                }
+ 			?>
         </tbody>
     </table>
 
