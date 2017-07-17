@@ -58,6 +58,9 @@
             		          echo form_hidden("tData_".$key."_".$i."_id", $transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
             		          echo "<input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
             		      }
+            		      for($i = 0; $i < 4 ; $i++){
+            		          echo "<td></td>;
+            		      }
             		      echo "</tr>";
             		  }
             		?>
