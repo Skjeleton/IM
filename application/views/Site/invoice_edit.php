@@ -10,10 +10,10 @@
 	
 	<body>
 		 <div class="row margines-top panel">
-		 	<div class="col-md-4"></div>
-			 <div class="col-md-4">
+		 <div class="col-md-5"></div>
+		 <div class="col-md-2">
         	<?php
-            	echo form_open("invoice_controller/invoice_edit");
+            	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES__][__DB_INVOICES_INVOICEID__]);
             	
             	$title = __DB_INVOICES_INVOICENUMBER__;
             	echo form_label("Faktura VAT nr.", $title)."</br>";
@@ -36,13 +36,14 @@
             	echo form_input($title, $fromController[__DB_INVOICES__][$title])."</br>";
             ?>
             	
-            <table border="1" width="100%">
+            <table border="1">
             	<thead>
             		<th>Nazwa</th>
             		<th>J.M.</th>
             		<th>Ilość</th>
             		<th>Cena netto</th>
             		<th><button type="button" id="addInvoice">+</button></th>
+            		<th><button type="button" id="removeInvoice">-</button></th>
             	</thead>
             	<tbody id="tContainer">
             		<?php
@@ -53,7 +54,9 @@
             		          $i == 1 AND $title = __DB_TRANSACTIONS_MEASUREUNIT__;
             		          $i == 2 AND $title = __DB_TRANSACTIONS_COUNT__;
             		          $i == 3 AND $title = __DB_TRANSACTIONS_NETUNITPRICE__;
-            		          echo "<td><input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
+            		          echo "<td>";
+            		          echo form_hidden("tData_".$key."_".$i."_id", $transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
+            		          echo "<input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
             		      }
             		      echo "</tr>";
             		  }
@@ -63,42 +66,12 @@
             
             	
             <?php	
-            	echo form_submit("Submit", "Dodaj fakturę")."</br>";
+            	echo form_submit("Submit", "Edytuj fakturę")."</br>";
             	echo form_close();
         	?>
         	</div>
+        	<div class="col-md-5"></div>
 		 </div>
-		 <script>
-				var rowsNo = 0;
-
-				function removeTableRow(rowNo){
-					$("#tRow
-							_"+rowNo).empty();
-					$("#tRow_"+rowNo).remove();
-					
-				}
-				 
-				function addTableCell(tableRef, columnNo){
-					var content = "<input type='text' name='tData_" + rowsNo + "_" + columnNo + "'></input>";
-					return "<td>"+content+"</td>";
-				}
-		
-				function addTableRow(tableRef){
-					var toAppend = "";
-					toAppend += "<tr id='tRow_"+rowsNo+"'>";
-					for(var i = 0; i < 4 ; i++ )
-						toAppend += addTableCell(tableRef, i);
-					toAppend += "<td><button id='tButton_"+rowsNo+"' type='button'>-</button></td>";
-					toAppend += "</tr>";
-					$("#tContainer").append(toAppend);
-					rowsNo++;
-				}
-		 
-            	$(document).ready(function() {
-            	    $("#addInvoice").click(function(){
-                	    addTableRow($("#tContainer"));
-            	    });
-            	});    
-		 </script>
+		 <script src='<?php echo base_url()."js/tableController.js"; ?>'></script>
 	</body>
 </html>
