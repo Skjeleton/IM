@@ -10,8 +10,12 @@
 .abastra{
 	background: url("abastra1.png");
 	padding-right: 35px;
+<<<<<<< HEAD
 	width: 490px;
 	height: 230px;
+=======
+	width: 50%;
+>>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
 }
 label{
 	margin: auto;

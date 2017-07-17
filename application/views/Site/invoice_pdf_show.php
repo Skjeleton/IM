@@ -8,7 +8,7 @@
 <body>
 <div class="mainContainer">
 	<div class="row">
-		<div class="col-lg-6"><div class="abastra"></div></div>
+		<div class="col-lg-6"><img src="<?php echo base_url(); ?>css/abastra.jpg>"></img></div>
 		<div class="col-lg-6">
     		 <div class="panel-group">
              	<div class="panel panel-default">
@@ -107,9 +107,16 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <strong>Nazwa banku:</strong></br>
+<<<<<<< HEAD
                                 <strong>Adres:</strong></br>	
+=======
+                                <strong>Adres:</strong></br>
+>>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
                                 <strong>BIC/SWIFT CODE:</strong></br>
+<<<<<<< HEAD
                                 </br>
+=======
+>>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
                                 <strong>Numer rachunku:</strong></br>
                                 <strong>IBAN:</strong></br>
                             </div>
@@ -126,7 +133,11 @@
                 	</div>
             </div>
         </div>
+<<<<<<< HEAD
         	<div class="col-xs-4">
+=======
+        	<div class="col-xs-6">
+>>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
             <div class="panel panel-info">
                 <div class="panel-body">
                 	<div class="row">
