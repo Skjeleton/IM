@@ -10,6 +10,7 @@
 .abastra{
 	some-src-property: url("abastra.jpg");
 	padding-right: 35px;
+	width: 50%;
 }
 label{
 	margin: auto;
@@ -43,4 +44,8 @@ Dropdown{
 }
 #addInvoice,#removeInvoice{
 	width: 100%;
+}
+.mainContainer{
+	margin: 0 auto;
+	width: 1000px;
 }
