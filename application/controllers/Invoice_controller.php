@@ -2,6 +2,7 @@
     defined('BASEPATH') OR exit('No direct script access allowed');
 
     class Invoice_controller extends CI_Controller{
+       //PRIVATE METHODS --------------------------------------------------------------------------------------------------------------------------------------------
         
         // Merges the address in the $data table 
         private function fetch_address($data){
@@ -19,7 +20,7 @@
            // return var_export($data);
         }
         
-        private function fetch_user_input(){
+        private function fetch_input_customer(){
             $nip = $this->input->post(__DB_CUSTOMERS_NIP__) OR $nip = null;
             
             $data = array(
@@ -58,6 +59,39 @@
             return $this->value_with_vat($this->count_whole_net_value($transactions));
         }
         
+        // Returns an array of all customers and their data or one user with given id
+        private function get_customer($id = null){
+            if($id == null){
+                return $this->db->get(__DB_CUSTOMERS__)->result_array();
+            }
+            else{
+                return $this->db->get_where(__DB_CUSTOMERS__, array(__DB_CUSTOMERS_CUSTOMERID__ => $id))->result_array()[0];
+            }
+        }
+        
+       
+        private function get_invoice($id = null){
+            if($id == null){
+                return $this->db->get(__DB_INVOICES__)->result_array();
+            } else {
+                return $this->db->get_where(__DB_INVOICES__, array(__DB_INVOICES_INVOICEID__ => $id))->result_array()[0];
+            }
+        }
+        
+        private function get_transaction($id = null){
+            if($id == null){
+                return $this->db->get(__DB_TRANSACTIONS__)->result_array();
+            }
+            else{
+                return $this->db->get_where(__DB_TRANSACTIONS__, array(__DB_TRANSACTIONS_TRANSACTIONID__ => $id))->result_array()[0];
+            }
+        }
+        
+        private function get_invoice_transactions($id){
+            return $this->db->get_where(__DB_TRANSACTIONS__, array(__DB_TRANSACTIONS_INVOICEID__ => $id))->result_array();
+        }
+        
+        //PUBLIC METHODS --------------------------------------------------------------------------------------------------------------------------------------------
         function __construct(){
             parent::__construct();
             $this->load->database();
@@ -71,12 +105,12 @@
          * @passes  array of the customers' names and addresses
          */
         public function customer_show_view(){
-            $this->db->select(array(__DB_CUSTOMERS_CUSTOMERID__, __DB_CUSTOMERS_NAME__, __DB_CUSTOMERS_COUNTRY__, __DB_CUSTOMERS_CITY__, __DB_CUSTOMERS_STREET__, __DB_CUSTOMERS_HOUSENUMBER__, __DB_CUSTOMERS_APARTMENTNUMBER__));
-            $result = $this->db->get(__DB_CUSTOMERS__);
+            $customers = $this->get_customer();
             
             $data = array();
             $data["fromController"] = array();
-            foreach($result->result_array() as $customer){
+            
+            foreach($customers as $customer){
                 $row = array(__DB_CUSTOMERS_NAME__ => $customer[__DB_CUSTOMERS_NAME__],
                              "Address" => $this->fetch_address($customer),
                              __DB_CUSTOMERS_CUSTOMERID__ => $customer[__DB_CUSTOMERS_CUSTOMERID__]
@@ -96,7 +130,8 @@
         public function customer_edit_view(){
             $this->load->helper("form");
             $customerId = $this->uri->segment(3);
-            $data["fromController"] = $this->db->get_where(__DB_CUSTOMERS__, array(__DB_CUSTOMERS_CUSTOMERID__ => $customerId ))->result_array()[0];
+            $data = array();
+            $data["fromController"] = $this->get_customer($customerId);
             
             $this->load->view("Site/header");
             $this->load->view("Site/customer_edit", $data);
@@ -108,11 +143,10 @@
          * @passes  Array of specific customer's data
          */
         public function customer_edit(){
-            $customerId = $this->input->post(__DB_CUSTOMERS_CUSTOMERID__);
-            
-            $data = $this->fetch_user_input();
-            
             $this->load->model("Customer_model");
+            
+            $customerId = $this->input->post(__DB_CUSTOMERS_CUSTOMERID__);
+            $data = $this->fetch_input_customer();
             $this->Customer_model->update($data, $customerId);
             
             redirect("invoice_controller/customer_show_view");
@@ -132,20 +166,26 @@
          * @needs   Post with information about customer
          */
         public function customer_add(){
-            $data = $this->fetch_user_input();
-            
             $this->load->model("Customer_model");
+            $data = $this->fetch_input_customer();
             $this->Customer_model->add($data);
             
             redirect("invoice_controller/customer_show_view");
         }
         
         public function invoice_show_view(){
+            $data = array();
+            $data["fromController"] = array();
+            $invoices = $this->get_invoices();
+            
+            $customers = $this->get_customer($data["fromControler"][__DB_INVOICES_CUSTOMERID__]);
+            $data["fromController"] = array_merge_recursive($invoices, $customers);
+            /*
             $this->db->select(array(__DB_INVOICES_INVOICEID__, __DB_INVOICES_INVOICENUMBER__, __DB_INVOICES_DATE__, __DB_INVOICES_PAYMENTDEADLINE__, __DB_CUSTOMERS_NAME__));
             $this->db->from(__DB_INVOICES__);
             $this->db->join(__DB_CUSTOMERS__, __DB_INVOICES__.".".__DB_INVOICES_CUSTOMERID__." = ".__DB_CUSTOMERS__.".".__DB_CUSTOMERS_CUSTOMERID__);
             $data["fromController"] = $this->db->get()->result_array();
-            
+            */
             foreach($data["fromController"] as $key => &$invoice){
                 $this->db->select(array(__DB_TRANSACTIONS_NETUNITPRICE__, __DB_TRANSACTIONS_COUNT__));
                 $this->db->from(__DB_TRANSACTIONS__);
@@ -214,13 +254,18 @@
         
         public function invoice_edit_view(){
             $this->load->helper("form");
+            
+            $invoiceId = $this->uri->segment(3);
+            
             $data = array();
             $data["fromController"] = array();
             $data["fromController"][__DB_INVOICES__] = array();
             $data["fromController"][__DB_INVOICES__][__DB_CUSTOMERS__] = array();
+            $data["fromController"][__DB_CUSTOMERS__] = array();
+            $data["fromController"][__DB_TRANSACTIONS__] = array();
             
-            $invoiceId = $this->uri->segment(3);
-            $this->db->select(array(__DB_INVOICES_INVOICEID__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_INVOICENUMBER__,  __DB_INVOICES_DATE__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_PAYMENTDEADLINE__, __DB_INVOICES_PAYMENTMETHOD__));
+            
+            $this->db->select(array(__DB_INVOICES_INVOICEID__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_INVOICENUMBER__,  __DB_INVOICES_DATE__,__DB_INVOICES_PAYMENTDEADLINE__, __DB_INVOICES_PAYMENTMETHOD__));
             $this->db->where(__DB_INVOICES_INVOICEID__." = ".$invoiceId);
             $data["fromController"][__DB_INVOICES__] = $this->db->get(__DB_INVOICES__)->result_array()[0];
             
@@ -316,8 +361,13 @@
             
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_pdf_show", $data);
-            $this->load->view("var_dump", $data);
+            //$this->load->view("var_dump", $data);
             
+        }
+        
+        public function test(){
+            $data["fromController"] = $this->get_customer(3);
+            $this->load->view("var_dump", $data);
         }
         
         public function index(){
