@@ -298,13 +298,20 @@
             $this->db->where(__DB_TRANSACTIONS_INVOICEID__." = ".$invoiceId);
             
             $transactions = $this->db->get()->result_array();
+            foreach($transactions as $transaction){
+                $transaction["netValue"] = $transaction[__DB_TRANSACTIONS_COUNT__] * $transaction[__DB_TRANSACTIONS_NETUNITPRICE__];
+                $transaction["vatValue"] = $this->count_vat($transaction["netValue"]);
+                $transaction["grossValue"] = $transaction["netValue"] + $transaction["vatValue"];
+            }
             $data["fromController"][__DB_TRANSACTIONS__] = $transactions;
             
             $this->db->select(array(__DB_CUSTOMERS_CUSTOMERID__, __DB_CUSTOMERS_NAME__, __DB_CUSTOMERS_COUNTRY__, __DB_CUSTOMERS_CITY__, __DB_CUSTOMERS_STREET__, __DB_CUSTOMERS_HOUSENUMBER__, __DB_CUSTOMERS_APARTMENTNUMBER__));
-            $customersRaw = $this->db->get(__DB_CUSTOMERS__);
-            foreach($customersRaw->result_array() as $customer){
-                $data["fromController"][__DB_INVOICES__][__DB_CUSTOMERS__][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_address($customer);
-            }
+            $data["fromController"][__DB_CUSTOMERS__] = $this->db->get_where(__DB_CUSTOMERS__,  $data["fromController"][__DB_INVOICES__][__DB_INVOICES_CUSTOMERID__])->result_array()[0];
+            
+            
+            $data["fromController"][__DB_INVOICES__]["netValue"] = $this->count_whole_net_value($transactions);
+            $data["fromController"][__DB_INVOICES__]["vatValue"] = $this->count_vat($data["fromController"][__DB_INVOICES__]["netValue"]);
+            $data["fromController"][__DB_INVOICES__]["grossValue"] = $this->count_whole_gross_value($transactions);
             
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_pdf_show", $data);
