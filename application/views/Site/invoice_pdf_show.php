@@ -14,10 +14,11 @@
              		<div class="panel-body">
                  		<h4>Faktura VAT nr</h4> <div class="text-right"><?php echo $fromController[__DB_INVOICES__][__DB_INVOICES_INVOICENUMBER__]; ?></div>
                  		<h4>Data</h4> <div class="text-right"><?php echo $fromController[__DB_INVOICES__][__DB_INVOICES_DATE__]; ?>
-    <!--              			Content -->
                  		</div>
     				</div>
 				</div>
+			</div>
+		</div>
 	</div>
 <!-- 	Start Buyer -->
 	<div class="row">
@@ -79,10 +80,10 @@
                 <td>j.m</td> <!-- j.m -->
                 <td><?php echo $fromController[__DB_TRANSACTIONS__][__DB_TRANSACTIONS_COUNT__]; ?></td> <!-- ilosc -->
                 <td class="text-right"><?php echo $fromController[__DB_TRANSACTIONS__][__DB_TRANSACTIONS_NETUNITPRICE__]; ?></td> <!-- cena jednostkowa -->
-                <td class="text-right"><?php echo "netValue"; ?></td> <!-- wartosc netto -->
+                <td class="text-right"><?php echo $fromController[__DB_TRANSACTIONS__]"netValue"; ?></td> <!-- wartosc netto -->
                 <td class="text-right"><?php echo "vat"; ?></td> <!-- vat -->
-                <td class="text-right"><?php echo "netValue"; ?></td> <!-- wartosc vat -->
-                <td class="text-right"><?php echo "fullValue"; ?></td> <!-- wartosc brutto -->
+                <td class="text-right"><?php echo $fromController[__DB_TRANSACTIONS__]"vatValue"; ?></td> <!-- wartosc vat -->
+                <td class="text-right"><?php echo $fromController[__DB_TRANSACTIONS__]"grossValue"; ?></td> <!-- wartosc brutto -->
  			</tr>
         </tbody>
     </table>
