@@ -43,6 +43,7 @@
             		<th>Ilość</th>
             		<th>Cena netto</th>
             		<th><button type="button" id="addInvoice">+</button></th>
+            		<th><button type="button" id="removeInvoice">-</button></th>
             	</thead>
             	<tbody id="tContainer">
             		<?php
@@ -71,37 +72,6 @@
         	</div>
         	<div class="col-md-5"></div>
 		 </div>
-		 <script>
-				var rowsNo = 0;
-
-				function removeTableRow(rowNo){
-					$("#tRow
-							_"+rowNo).empty();
-					$("#tRow_"+rowNo).remove();
-					
-				}
-				 
-				function addTableCell(tableRef, columnNo){
-					var content = "<input type='text' name='tData_" + rowsNo + "_" + columnNo + "'></input>";
-					return "<td>"+content+"</td>";
-				}
-		
-				function addTableRow(tableRef){
-					var toAppend = "";
-					toAppend += "<tr id='tRow_"+rowsNo+"'>";
-					for(var i = 0; i < 4 ; i++ )
-						toAppend += addTableCell(tableRef, i);
-					toAppend += "<td><button id='tButton_"+rowsNo+"' type='button'>-</button></td>";
-					toAppend += "</tr>";
-					$("#tContainer").append(toAppend);
-					rowsNo++;
-				}
-		 
-            	$(document).ready(function() {
-            	    $("#addInvoice").click(function(){
-                	    addTableRow($("#tContainer"));
-            	    });
-            	});    
-		 </script>
+		 <script src='<?php echo base_url()."js/tableController.js"; ?>'></script>
 	</body>
 </html>
