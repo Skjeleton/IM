@@ -12,8 +12,8 @@
              	<div class="panel panel-default">
              		<div class="panel-heading"><h4>FAKTURA VAT</h4></div>
              		<div class="panel-body">
-                 		<h4>Faktura VAT nr</h4> <div class="text-right"><?php echo $invoices[__DB_INVOICES_INVOICENUMBER__]?></div>
-                 		<h4>Data</h4> <div class="text-right"><?php echo $invoices[__DB_INVOICES_DATE__] ?>
+                 		<h4>Faktura VAT nr</h4> <div class="text-right"><?php echo $fromController[__DB_INVOICES__][__DB_INVOICES_INVOICENUMBER__]; ?></div>
+                 		<h4>Data</h4> <div class="text-right"><?php echo $fromController[__DB_INVOICES__][__DB_INVOICES_DATE__]; ?>
     <!--              			Content -->
                  		</div>
     				</div>
@@ -26,11 +26,11 @@
              	<div class="panel panel-default">
              		<div class="panel-heading"><H4>NABYWCA</H4></div>
              		<div class="panel-body">
-             		<h4><strong><?php echo $customers[__DB_CUSTOMERS_NAME__]?></strong></h4> 
-             		<h4><?php echo $customers[__DB_CUSTOMERS_ADRESS__]?></h4>
-             		<h4><?php echo $customers[__DB_CUSTOMERS_POSTALCODE__] echo $customers[__DB_CUSTOMERS_CITY__]?></h4> 
-             		<h4><?php echo $customers[__DB_CUSTOMERS_COUNTRY__]?></h4></br>
-             		<h4><?php echo $customers[__DB_CUSTOMERS_NIP__]?></h4>
+             		<h4><strong><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_NAME__]?></strong></h4> 
+             		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_ADRESS__]; ?></h4>
+             		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_POSTALCODE__]; echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_CITY__]; ?></h4> 
+             		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_COUNTRY__]; ?></h4></br>
+             		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_NIP__]; ?></h4>
 <!--              			Content -->
              		</div>
     			</div>
@@ -75,14 +75,14 @@
         <tbody>
             <tr>
                 <td>numer</td> <!-- l.p -->
-                <td><?php echo $invoices[__DB_TRANSACTIONS_NAME__]?></td> <!-- nazwa -->
+                <td><?php echo $fromController[__DB_TRANSACTIONS__][__DB_TRANSACTIONS_NAME__]; ?></td> <!-- nazwa -->
                 <td>j.m</td> <!-- j.m -->
-                <td><?php echo $invoices[__DB_TRANSACTIONS_COUNT__]?></td> <!-- ilosc -->
-                <td class="text-right"><?php echo $invoices[__DB_TRANSACTIONS_NETUNITPRICE__]?></td> <!-- cena jednostkowa -->
-                <td class="text-right"><?php echo "netValue"?></td> <!-- wartosc netto -->
-                <td class="text-right"><?php echo "vat"?></td> <!-- vat -->
-                <td class="text-right"><?php echo "netValue"?></td> <!-- wartosc vat -->
-                <td class="text-right"><?php echo "fullValue"?></td> <!-- wartosc brutto -->
+                <td><?php echo $fromController[__DB_TRANSACTIONS__][__DB_TRANSACTIONS_COUNT__]; ?></td> <!-- ilosc -->
+                <td class="text-right"><?php echo $fromController[__DB_TRANSACTIONS__][__DB_TRANSACTIONS_NETUNITPRICE__]; ?></td> <!-- cena jednostkowa -->
+                <td class="text-right"><?php echo "netValue"; ?></td> <!-- wartosc netto -->
+                <td class="text-right"><?php echo "vat"; ?></td> <!-- vat -->
+                <td class="text-right"><?php echo "netValue"; ?></td> <!-- wartosc vat -->
+                <td class="text-right"><?php echo "fullValue"; ?></td> <!-- wartosc brutto -->
  			</tr>
         </tbody>
     </table>
@@ -161,8 +161,8 @@
             			</tr>
             				<tbody>
            						 <tr>
-                					<td><?php echo $invoices[__DB_INVOICES_PAYMENTDEADLINE__]?></td>
-                					<td><?php echo $invoices[__DB_INVOICES_PAYMENTMETHOD__]?></td>
+                					<td><?php echo $fromController[__DB_INVOICES__][__DB_INVOICES_PAYMENTDEADLINE__]; ?></td>
+                					<td><?php echo $fromController[__DB_INVOICES__][__DB_INVOICES_PAYMENTMETHOD__]; ?></td>
                 				 </tr>
                 			</tbody>
             		</table>
