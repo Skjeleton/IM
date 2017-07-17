@@ -9,7 +9,8 @@
     </head>
     <body>
         <div class="row margines-top panel">
-        <center>
+        <div class="col-md-5"></div>
+		<div class="col-md-2">
         	<?php
                 echo form_open("invoice_controller/customer_edit");
                 echo form_hidden(__DB_CUSTOMERS_CUSTOMERID__, $fromController[__DB_CUSTOMERS_CUSTOMERID__]);
@@ -49,7 +50,8 @@
                 echo form_submit("Submit", "Dokonaj zmian")."</br>";
                 echo form_close();
         	?>
-         </center>
+         </div>
+         <div class="col-md-5"></div>
          </div>
     </body>
 </html>
