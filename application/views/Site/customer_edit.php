@@ -31,25 +31,33 @@
                 echo form_label("Kod pocztowy", $title)."</br>";
                 echo form_input($title, $fromController[$title])."</br>";
                 
-                $title = __DB_CUSTOMERS_STREET__;
-                echo form_label("Ulica", $title)."</br>";
-                echo form_input($title, $fromController[$title])."</br>";
-                
-                $title = __DB_CUSTOMERS_HOUSENUMBER__;
-                echo form_label("Numer domu", $title)."</br>";
-                echo form_input($title, $fromController[$title])."</br>";
-                
-                $title = __DB_CUSTOMERS_APARTMENTNUMBER__;
-                echo form_label("Numer lokalu", $title)."</br>";
-                echo form_input($title, $fromController[$title])."</br>";
+                echo form_label("Ulica / Numer domu / Numer mieszkania");
+                echo form_fieldset();
+                $data= array(
+                    'title' => '__DB_CUSTOMERS_STREET__',
+                    'class' => 'Street'
+                );
+                echo form_input($data,$fromController[__DB_CUSTOMERS_STREET__] );
+                $data= array(
+                    'title' => '__DB_CUSTOMERS_HOUSENUMBER__',
+                    'class' => 'Numbers'
+                );
+                echo form_input($data,$fromController[__DB_CUSTOMERS_HOUSENUMBER__] );
+                echo "/";
+                $data= array(
+                    'title' => '__DB_CUSTOMERS_APARTMENTNUMBER__',
+                    'class' => 'Numbers'
+                );
+                echo form_input($data,$fromController[__DB_CUSTOMERS_APARTMENTNUMBER__] );
+                echo form_fieldset_close();
                 
                 $title = __DB_CUSTOMERS_NIP__;
                 echo form_label("NIP", $title)."</br>";
                 echo form_input($title, $fromController[$title])."</br>";
                 
-                $title = __DB_CUSTOMERS_OTHERS__;
-                echo form_label("Inne",$title)."</br>";
-                echo form_textarea($title,$fromController[$title])."</br>";
+//                 $title = __DB_CUSTOMERS_OTHERS__;
+//                 echo form_label("Inne",$title)."</br>";
+//                 echo form_textarea($title,$fromController[$title])."</br>";
                 
                 echo form_submit("Submit", "Dokonaj zmian")."</br>";
                 echo form_close();
