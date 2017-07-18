@@ -54,3 +54,11 @@ Dropdown{
 	margin: 0 auto;
 	width: 1000px;
 }
+.nav{
+	background:-webkit-gradient(linear,left top,left bottom,from(#363636),to(#0A0A0A));
+	background:-webkit-linear-gradient(top,#363636,#0A0A0A);
+	background:-moz-linear-gradient(top,#363636,#0A0A0A);
+	background:-o-linear-gradient(top,#363636,#0A0A0A);
+	background:-ms-linear-gradient(top,#363636,#0A0A0A);
+	background:linear-gradient(top,#363636,#0A0A0A);
+}
