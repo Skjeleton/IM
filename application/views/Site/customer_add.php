@@ -18,38 +18,80 @@
                 echo form_open("invoice_controller/customer_add");
                 
                 $title = __DB_CUSTOMERS_NAME__;
-                echo form_label("Nazwa", $title)."</br>";
-                echo form_input($title)."</br>";
+                echo form_label("Nazwa", $title);
+                echo form_input($title);
                 
                 $title = __DB_CUSTOMERS_COUNTRY__;
-                echo form_label("Państwo", $title)."</br>";
-                echo form_input($title)."</br>";
+                echo form_label("Państwo", $title);
+                echo form_input($title);
                 
                 $title = __DB_CUSTOMERS_CITY__;
-                echo form_label("Miasto", $title)."</br>";
-                echo form_input($title)."</br>";
+                echo form_label("Miasto", $title);
+                echo form_input($title);
                 
                 $title = __DB_CUSTOMERS_POSTALCODE__;
-                echo form_label("Kod pocztowy", $title)."</br>";
-                echo form_input($title)."</br>";
+                echo form_label("Kod pocztowy", $title);
+                echo form_input($title);
+                //
                 
-                $title = __DB_CUSTOMERS_STREET__;
-                echo form_label("Ulica", $title)."</br>";
-                echo form_input($title)."</br>";
+                //
+                echo form_label("Ulica / Numer domu / Numer mieszkania");
+                echo form_fieldset();
+                $data= array(
+                    'title' => '__DB_CUSTOMERS_STREET__',
+                    'class' => 'Street'
+                );
+                echo form_input($data);
+                $data= array(
+                    'title' => '__DB_CUSTOMERS_HOUSENUMBER__',
+                    'class' => 'Numbers'
+                );
+                echo form_input($data);
+                echo "/";
+                $data= array(
+                    'title' => '__DB_CUSTOMERS_APARTMENTNUMBER__',
+                    'class' => 'Numbers'
+                );
+                echo form_input($data);
+                echo form_fieldset_close();
                 
-                $title = __DB_CUSTOMERS_HOUSENUMBER__;
-                echo form_label("Numer domu", $title)."</br>";
-                echo form_input($title)."</br>";
+//                 Editable forms Street/HouseNumber/ApartmentNumber
                 
-                $title = __DB_CUSTOMERS_APARTMENTNUMBER__;
-                echo form_label("Numer lokalu", $title)."</br>";
-                echo form_input($title)."</br>";
+//                 $title = __DB_CUSTOMERS_STREET__;
+//                 $data= array(
+//                     'title' => '__DB_CUSTOMERS_STREET__',
+//                     'class' => 'Street'
+//                 );
+//                 echo form_label("Ulica", $title);
+//                 echo form_input($data);
+                
+//                 $title = __DB_CUSTOMERS_HOUSENUMBER__;
+//                 $data= array(
+//                     'title' => '__DB_CUSTOMERS_HOUSENUMBER__',
+//                     'class' => 'Numbers'
+//                     );
+//                 echo form_label("Numer domu", $title);
+//                 echo form_input($data);
+                
+//                 $title = __DB_CUSTOMERS_APARTMENTNUMBER__;
+//                 $data= array(
+//                     'title' => '__DB_CUSTOMERS_APARTMENTNUMBER__',
+//                     'class' => 'Numbers'
+//                 );
+//                 echo form_label("Numer lokalu", $title);
+//                 echo form_input($data);
+                
+//                 End editable forms
                 
                 $title = __DB_CUSTOMERS_NIP__;
-                echo form_label("NIP", $title)."</br>";
-                echo form_input($title)."</br>";
+                echo form_label("NIP", $title);
+                echo form_input($title);
                 
-                echo form_submit("Submit", "Dodaj!")."</br>";
+                $title = __DB_CUSTOMERS_OTHERS__;
+                echo form_label("Inne",$title);
+                echo form_textarea($title);
+                
+                echo form_submit("Submit", "Dodaj!");
                 echo form_close();
                 
                
@@ -57,6 +99,5 @@
         </div>
         <div class="col-md-3"></div>
 <!--          </div> -->
-         </center>
     </body>
 </html>

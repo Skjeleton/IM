@@ -360,10 +360,8 @@
             
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_pdf_show", $data);
-<<<<<<< HEAD
             //$this->load->view("var_dump", $data);
-=======
->>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
+
             
         }
         
