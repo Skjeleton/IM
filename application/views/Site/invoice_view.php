@@ -33,7 +33,7 @@
                         
                         echo "<td>".$invoice[__DB_CUSTOMERS_NAME__]."</td>";
                         
-                        echo "<td>".$invoice["GrossValue"]."</td>";
+                        echo "<td>".$invoice[__DB_INVOICES_GROSSVALUE__]."</td>";
                         
                         echo "<td>".$invoice[__DB_INVOICES_PAYMENTDEADLINE__]."</td>";
                     

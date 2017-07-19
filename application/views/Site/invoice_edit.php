@@ -13,27 +13,27 @@
 		 <div class="col-md-4"></div>
 		 <div class="col-md-4">
         	<?php
-            	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES__][__DB_INVOICES_INVOICEID__]);
+            	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES_INVOICEID__]);
             	
             	$title = __DB_INVOICES_INVOICENUMBER__;
             	echo form_label("Faktura VAT nr.", $title)."</br>";
-            	echo form_input($title, $fromController[__DB_INVOICES__][$title])."</br>";
+            	echo form_input($title, $fromController[$title])."</br>";
             	
             	$title = __DB_INVOICES_DATE__;
             	echo form_label("Data faktury", $title)."</br>";
-            	echo form_input(array("name" => $title, "type" => "date"), $fromController[__DB_INVOICES__][$title])."</br>";
+            	echo form_input(array("name" => $title, "type" => "date"), $fromController[$title])."</br>";
             	
-            	$title = __DB_CUSTOMERS__;
+            	$title = __DB_INVOICES_CUSTOMER__;
             	echo form_label("Klient", $title)."</br>";
-            	echo form_dropdown($title, $fromController[__DB_INVOICES__][$title], $fromController[__DB_INVOICES__][__DB_INVOICES_CUSTOMERID__])."</br>";
+            	echo form_dropdown($title, $fromController[__DB_CUSTOMERS__], $fromController[__DB_INVOICES_CUSTOMER__])."</br>";
             	
             	$title = __DB_INVOICES_PAYMENTDEADLINE__;
             	echo form_label("Termin płatności", $title)."</br>";
-            	echo form_input(array("name" => $title, "type" => "date"), $fromController[__DB_INVOICES__][$title])."</br>";
+            	echo form_input(array("name" => $title, "type" => "date"), $fromController[$title])."</br>";
             	
             	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";
-            	echo form_input($title, $fromController[__DB_INVOICES__][$title])."</br>";
+            	echo form_input($title, $fromController[$title])."</br>";
             ?>
             	
             <table border="1">
@@ -55,9 +55,9 @@
             		          $i == 2 AND $title = __DB_TRANSACTIONS_COUNT__;
             		          $i == 3 AND $title = __DB_TRANSACTIONS_NETUNITPRICE__;
             		          echo "<td>";
-            		          echo form_hidden("tData_".$key."_".$i."_id", $transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
             		          echo "<input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
             		      }
+            		      echo form_hidden("tData_".$key."_id", $transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
             		      for($i = 0; $i < 4 ; $i++){
             		          echo "<td></td>";
             		      }

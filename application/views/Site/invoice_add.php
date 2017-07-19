@@ -24,7 +24,7 @@
             	echo form_label("Data faktury", $title)."</br>";
             	echo form_input(array("name" => $title, "type" => "date"))."</br>";
             	
-            	$title = __DB_CUSTOMERS__;
+            	$title = __DB_INVOICES_CUSTOMER__;
             	echo form_label("Klient", $title)."</br>";
             	echo form_dropdown($title, $fromController,'width="100%"   ')."</br>";
             	

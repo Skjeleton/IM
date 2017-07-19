@@ -1,24 +1,46 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
-
+    
     class Invoice_model extends CI_Model{
         function __construct(){
             parent::__construct();
         }
         
+        //Getters
+        public function get($id = null){
+            $toReturn = array();
+            if($id === null){
+                $columns = implode(",", array(
+                    __DB_INVOICES__.".*",
+                    __DB_CUSTOMERS_NAME__
+                ));
+                $this->db->select($columns);
+            }
+            
+            $this->db->from(__DB_INVOICES__);
+            $this->db->join(__DB_CUSTOMERS__, __DB_INVOICES__.".".__DB_INVOICES_CUSTOMER__." = ".__DB_CUSTOMERS__.".".__DB_CUSTOMERS_CUSTOMERID__);
+            
+            $toReturn = $this->db->get()->result_array();
+            if($id !== null){
+                $toReturn = $toReturn[0];
+                $toReturn[__DB_TRANSACTIONS__] = $this->db->get_where(__DB_TRANSACTIONS__, __DB_TRANSACTIONS_INVOICE__."=".$id)->result_array();
+            }
+            return $toReturn;
+        }
+        
+        //Setters
         public function add($data){
             if($this->db->insert(__DB_INVOICES__, $data))
                 return true;
         }
         
         public function remove($id){
-            if($this->db->delete(__DB_INVOICES__, __DB_INVOICES_INVOICEID__." = ".$id))
+            if($this->db->delete(__DB_INVOICES__, array(__DB_INVOICES_INVOICEID__ => $id)))
                 return true;
         }
         
-        public function update($data, $id){
-            $this->db->set($data);
-            $this->db->where(__DB_INVOICES_INVOICEID__, $id);
-            $this->db->update(__DB_INVOICES__, $data);
+        public function update($data){
+            $this->db->update(__DB_INVOICES__, $data, __DB_INVOICES_INVOICEID__);
+            return true;
         }
     }

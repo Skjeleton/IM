@@ -86,30 +86,37 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 // Database structure
 define("__DB_NAME__", "Invoice Manager");
-define("__DB_CUSTOMERS__", "Customers");
-define("__DB_CUSTOMERS_CUSTOMERID__", "CustomerID");
-define("__DB_CUSTOMERS_NAME__", "Name");
-define("__DB_CUSTOMERS_COUNTRY__", "Country");
-define("__DB_CUSTOMERS_CITY__", "City");
-define("__DB_CUSTOMERS_POSTALCODE__", "PostalCode");
-define("__DB_CUSTOMERS_STREET__", "Street");
-define("__DB_CUSTOMERS_HOUSENUMBER__", "HouseNo");
-define("__DB_CUSTOMERS_APARTMENTNUMBER__", "ApartmentNo");
-define("__DB_CUSTOMERS_NIP__", "NIP");
-
-define("__DB_INVOICES__", "Invoices");
-define("__DB_INVOICES_INVOICEID__", "InvoiceID");
-define("__DB_INVOICES_CUSTOMERID__", __DB_CUSTOMERS_CUSTOMERID__);
-define("__DB_INVOICES_INVOICENUMBER__", "InvoiceNumber");
-define("__DB_INVOICES_DATE__", "Date");
-define("__DB_INVOICES_PAYMENTDEADLINE__", "PaymentDeadline");
-define("__DB_INVOICES_PAYMENTMETHOD__", "PaymentMethod");
-
-define("__DB_TRANSACTIONS__", "Transactions");
-define("__DB_TRANSACTIONS_TRANSACTIONID__", "TransactionID");
-define("__DB_TRANSACTIONS_INVOICEID__", __DB_INVOICES_INVOICEID__);
-define("__DB_TRANSACTIONS_NAME__", "Name");
-define("__DB_TRANSACTIONS_MEASUREUNIT__", "MeasureUnit");
-define("__DB_TRANSACTIONS_COUNT__", "Count");
-define("__DB_TRANSACTIONS_NETUNITPRICE__", "NetUnitPrice");
-
+    define("__DB_CUSTOMERS__", "Customers");
+        define("__DB_CUSTOMERS_CUSTOMERID__", "CustomerID");
+        define("__DB_CUSTOMERS_NAME__", "Name");
+        define("__DB_CUSTOMERS_COUNTRY__", "Country");
+        define("__DB_CUSTOMERS_CITY__", "City");
+        define("__DB_CUSTOMERS_POSTALCODE__", "PostalCode");
+        define("__DB_CUSTOMERS_STREET__", "Street");
+        define("__DB_CUSTOMERS_HOUSENUMBER__", "HouseNo");
+        define("__DB_CUSTOMERS_APARTMENTNUMBER__", "ApartmentNo");
+        define("__DB_CUSTOMERS_NIP__", "NIP");
+        define("__DB_CUSTOMERS_OTHERS__", "CustomerOthers");
+    
+    define("__DB_INVOICES__", "Invoices");
+        define("__DB_INVOICES_INVOICEID__", "InvoiceID");
+        define("__DB_INVOICES_CUSTOMER__", "CustomerID");
+        define("__DB_INVOICES_INVOICENUMBER__", "InvoiceNumber");
+        define("__DB_INVOICES_DATE__", "Date");
+        define("__DB_INVOICES_PAYMENTDEADLINE__", "PaymentDeadline");
+        define("__DB_INVOICES_PAYMENTMETHOD__", "PaymentMethod");
+        define("__DB_INVOICES_OTHERS__", "InvoiceOthers");
+        define("__DB_INVOICES_NETVALUE__", "FullNetValue");
+        define("__DB_INVOICES_VATVALUE__", "FullVatValue");
+        define("__DB_INVOICES_GROSSVALUE__", "FullGrossValue");
+        
+    define("__DB_TRANSACTIONS__", "Transactions");
+        define("__DB_TRANSACTIONS_TRANSACTIONID__", "TransactionID");
+        define("__DB_TRANSACTIONS_INVOICE__", "InvoiceID");
+        define("__DB_TRANSACTIONS_NAME__", "Name");
+        define("__DB_TRANSACTIONS_MEASUREUNIT__", "MeasureUnit");
+        define("__DB_TRANSACTIONS_COUNT__", "Count");
+        define("__DB_TRANSACTIONS_NETUNITPRICE__", "NetUnitPrice");
+        define("__DB_TRANSACTIONS_NETVALUE__", "NetValue");
+        define("__DB_TRANSACTIONS_VATVALUE__", "VatValue");
+        define("__DB_TRANSACTIONS_GROSSVALUE__", "GrossValue");
