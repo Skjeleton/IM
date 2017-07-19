@@ -10,17 +10,14 @@
 .abastra{
 	background: url("abastra1.png");
 	padding-right: 35px;
-<<<<<<< HEAD
-	width: 490px;
 	height: 230px;
-=======
+
 	width: 50%;
->>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
 }
 label{
-	margin: auto;
+	
     width: 100%;
-    padding: 5px;
+	padding: 5px;
     text-align: center;
 }
 input{
@@ -29,6 +26,7 @@ input{
 }
 input[type=text]:focus{
 	background-color: lightblue;
+	text-align: center;
 }
 Dropdown{
     width: 100%;
@@ -53,4 +51,17 @@ Dropdown{
 .mainContainer{
 	margin: 0 auto;
 	width: 1000px;
+}
+.Numbers{
+	width: 45px;
+	margin-left: 5px;
+}
+.Street{
+width: 480px;	
+}
+.TextArea{
+	width: 100%;
+}
+.dataId{
+	width: 291px;
 }

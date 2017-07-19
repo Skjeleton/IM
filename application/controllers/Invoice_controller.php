@@ -296,6 +296,10 @@
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_pdf_show", $data);
             //$this->load->view("var_dump", $data);
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
             
         }
         

@@ -33,7 +33,15 @@
             	
             	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";
+<<<<<<< HEAD
             	echo form_input($title, $fromController[$title])."</br>";
+=======
+            	echo form_input($title, $fromController[__DB_INVOICES__][$title])."</br>";
+            	
+            	$title = __DB_INVOICES_OTHERS__;
+            	echo form_label("Inne",$title)."</br>";
+            	echo form_textarea($title,$fromController[__DB_INVOICES_OTHERS__][$title])."</br>";
+>>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
             ?>
             	
             <table border="1">
