@@ -87,9 +87,9 @@
                 echo form_label("NIP", $title);
                 echo form_input($title);
                 
-//                 $title = __DB_CUSTOMERS_OTHERS__;
-//                 echo form_label("Inne",$title);
-//                 echo form_textarea($title);
+                $title = __DB_CUSTOMERS_OTHERS__;
+                echo form_label("Inne",$title);
+                echo form_textarea($title);
                 
                 echo form_submit("Submit", "Dodaj!");
                 echo form_close();

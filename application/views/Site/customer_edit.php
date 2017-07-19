@@ -57,11 +57,12 @@
                 echo form_label("NIP", $title)."</br>";
                 echo form_input($title, $fromController[$title])."</br>";
                 
-                
-                
-//                 $title = __DB_CUSTOMERS_OTHERS__;
-//                 echo form_label("Inne",$title)."</br>";
-//                 echo form_textarea($title,$fromController[$title])."</br>";
+                $data = array(
+                    'title' => __DB_CUSTOMERS_OTHERS__,
+                    'class' => 'TextArea'
+                );
+                echo form_label("Inne")."</br>";
+                echo form_textarea($data,$fromController[__DB_CUSTOMERS_OTHERS__])."</br>";
                 
                 echo form_submit("Submit", "Dokonaj zmian")."</br>";
                 echo form_close();
