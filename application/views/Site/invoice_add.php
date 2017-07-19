@@ -20,25 +20,42 @@
             	echo form_label("Faktura VAT nr.", $title)."</br>";
             	echo form_input($title)."</br>";
             	
-            	$title = __DB_INVOICES_DATE__;
-            	echo form_label("Data faktury", $title)."</br>";
-            	echo form_input(array("name" => $title, "type" => "date"))."</br>";
+            	
+            	echo form_fieldset();
+
+            	echo form_label("Data");
+            	$data = array(
+            	    "name" => "__DB_INVOICES_DATE",
+            	    "type" => "date",
+            	    "class" => "dataId",
+            	    'style' => 'width: 291px'
+            	);
+            	echo form_input($data);
+            	
+            	$data = array(
+            	    "name" => "__DB_INVOICES_PAYMENTDEADLINE__",
+            	    "type" => "date",
+            	    "class" => "dataId",
+            	    'style' => 'width: 291px'
+            	);
+            	echo form_input($data);
+            	echo form_fieldset_close();
             	
             	$title = __DB_CUSTOMERS__;
             	echo form_label("Klient", $title)."</br>";
-            	echo form_dropdown($title, $fromController,'width="100%"   ')."</br>";
-            	
-            	$title = __DB_INVOICES_PAYMENTDEADLINE__;
-            	echo form_label("Termin płatności", $title)."</br>";
-            	echo form_input(array("name" => $title, "type" => "date"))."</br>";
+            	echo form_dropdown($title, $fromController)."</br>";
             	
             	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";
             	echo form_input($title)."</br>";
             	
-            	$title = __DB_INVOICES_OTHERS__;
-            	echo form_label("Inne",$title)."</br>";
-            	echo form_textarea($title)."</br>";
+            	$data = array(
+            	    'title' => '__DB_INVOICES_OTHERS__',
+            	    'class' => 'TextArea'
+            	);
+            	echo form_label("Inne")."</br>";
+            	echo form_textarea($data)."</br>";
+            	
             ?>
             	
             <table border="1" width="100%">
@@ -62,6 +79,7 @@
         	</div>
 <!--         	<div class="col-md-"></div> -->
 		 </div>
+		 <pre><?php var_dump();?></pre>
 		 <script src='<?php echo base_url()."js/tableController.js"; ?>'></script>
 	</body>
 </html>
