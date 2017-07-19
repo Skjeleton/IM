@@ -96,6 +96,7 @@
                 __DB_CUSTOMERS_STREET__, 
                 __DB_CUSTOMERS_HOUSENUMBER__, 
                 __DB_CUSTOMERS_APARTMENTNUMBER__, 
+                __DB_CUSTOMERS_NIP__,
                 __DB_CUSTOMERS_OTHERS__
             );
             
@@ -127,6 +128,7 @@
             $this->load->model("Customer_model");
             $data = $this->fetchInput_customer_edit();
             $this->Customer_model->add($data);
+            //$this->load->view("var_dump", $_POST);
             
             redirect("invoice_controller/customer_show_view");
         }
