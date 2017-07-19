@@ -138,7 +138,6 @@
             return $this->Invoice_model->get();
         }
         
-        
         public function invoice_show_view(){
             $data = array();
             $data["fromController"] = $this->getData_invoice_show_view();
@@ -146,7 +145,6 @@
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_view", $data);
         }
-        
         
         public function getData_invoice_add_view(){
             $this->load->model("Customer_model");
@@ -176,6 +174,7 @@
         
         private function fetchInput_invoice_add(){
             $columns = array(
+                __DB_INVOICES_INVOICEID__,
                 __DB_INVOICES_INVOICENUMBER__,
                 __DB_INVOICES_DATE__,
                 __DB_INVOICES_CUSTOMER__,
@@ -247,9 +246,24 @@
             $this->load->view("Site/invoice_edit", $data);
         }
 
+        private function updateTransactions($invoiceId, $transactions){
+            $this->load->model("Transaction_model");
+            
+            $this->db->trans_start();
+            $this->Transaction_model->removeInvoice($invoiceId);
+            $this->Transaction_model->add_batch($transactions);
+            $this->db->trans_complete();
+            
+            return $this->db->trans_status();
+        }
+        
+        
+        
         public function invoice_edit(){
             $data = array();
             $data = $this->fetchInput_invoice_add();
+            foreach($data[__DB_TRANSACTIONS__] as &$transaction)
+                unset($transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
             
             $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__] = $this->count_fullNetValue($data[__DB_TRANSACTIONS__]);
             $data[__DB_INVOICES__][__DB_INVOICES_VATVALUE__] = $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__] * 0.23;
@@ -257,8 +271,9 @@
             $this->load->model("Invoice_model");
             $this->Invoice_model->update($data[__DB_INVOICES__]);
             
-            $this->load->model("Transaction_model");
-            $this->Transaction_model->update_batch($data[__DB_TRANSACTIONS__]);
+            
+            if(!$this->updateTransactions($data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__], $data[__DB_TRANSACTIONS__]))
+                redirect("invoice_controller/error404");
 
             redirect("invoice_controller/invoice_show_view");
         }
@@ -297,11 +312,6 @@
             
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_pdf_show", $data);
-        }
-        
-        public function test(){
-            $data["fromController"] = $this->get_customer(3);
-            $this->load->view("var_dump", $data);
         }
         
         public function index(){

@@ -15,6 +15,8 @@
         	<?php
             	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES_INVOICEID__]);
             	
+            	echo form_hidden(__DB_INVOICES_INVOICEID__, $fromController[__DB_INVOICES_INVOICEID__]);
+            	
             	$title = __DB_INVOICES_INVOICENUMBER__;
             	echo form_label("Faktura VAT nr.", $title)."</br>";
             	echo form_input($title, $fromController[$title])."</br>";
@@ -34,11 +36,11 @@
             	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";
 
-            	echo form_input($title, $fromController[__DB_INVOICES__][$title])."</br>";
+            	echo form_input($title, $fromController[$title])."</br>";
             	
             	$title = __DB_INVOICES_OTHERS__;
             	echo form_label("Inne",$title)."</br>";
-            	echo form_textarea($title,$fromController[__DB_INVOICES_OTHERS__][$title])."</br>";
+            	echo form_textarea($title,$fromController[$title])."</br>";
             ?>
             	
             <table border="1">

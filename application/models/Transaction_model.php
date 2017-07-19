@@ -22,9 +22,16 @@
                 return true;
         }
         
+        public function removeInvoice($id){
+            if($this->db->delete(__DB_TRANSACTIONS__, __DB_TRANSACTIONS_INVOICE__." = ".$id))
+                return true;
+            return false;
+        }
+        
         public function remove($id){
             if($this->db->delete(__DB_TRANSACTIONS__, __DB_TRANSACTIONS_TRANSACTIONID__." = ".$id))
                 return true;
+            return false;
         }
         
         public function update($data, $id){
