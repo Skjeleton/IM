@@ -38,21 +38,18 @@
                 echo form_label("Ulica / Numer domu / Numer mieszkania");
                 echo form_fieldset();
                 $data= array(
-                    'id' => '__DB_CUSTOMERS_STREET__',
-                    'name' => '__DB_CUSTOMERS_STREET__',
+                    'name' => __DB_CUSTOMERS_STREET__,
                     'class' => 'Street'
                 );
                 echo form_input($data);
                 $data= array(
-                    'id' => '__DB_CUSTOMERS_HOUSENUMBER__',
-                    'name' => '__DB_CUSTOMERS_HOUSENUMBER__',
+                    'name' => __DB_CUSTOMERS_HOUSENUMBER__,
                     'class' => 'Numbers'
                 );
                 echo form_input($data);
                 echo "/";
                 $data= array(
-                    'id' => '__DB_CUSTOMERS_APARTMENTNUMBER__',
-                    'name' => '__DB_CUSTOMERS_APARTMENTNUMBER__',
+                    'name' => __DB_CUSTOMERS_APARTMENTNUMBER__,
                     'class' => 'Numbers'
                 );
                 echo form_input($data);

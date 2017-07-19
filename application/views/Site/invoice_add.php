@@ -25,7 +25,7 @@
 
             	echo form_label("Data");
             	$data = array(
-            	    "name" => "__DB_INVOICES_DATE",
+            	    "name" => __DB_INVOICES_DATE,
             	    "type" => "date",
             	    "class" => "dataId",
             	    'style' => 'width: 291px'
@@ -33,7 +33,7 @@
             	echo form_input($data);
             	
             	$data = array(
-            	    "name" => "__DB_INVOICES_PAYMENTDEADLINE__",
+            	    "name" => __DB_INVOICES_PAYMENTDEADLINE__,
             	    "type" => "date",
             	    "class" => "dataId",
             	    'style' => 'width: 291px'
@@ -50,7 +50,7 @@
             	echo form_input($title)."</br>";
             	
             	$data = array(
-            	    'title' => '__DB_INVOICES_OTHERS__',
+            	    'title' => __DB_INVOICES_OTHERS__,
             	    'class' => 'TextArea'
             	);
             	echo form_label("Inne")."</br>";
