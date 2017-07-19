@@ -35,7 +35,6 @@
             	
             	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";
-
             	echo form_input($title, $fromController[$title])."</br>";
             	
             	$title = __DB_INVOICES_OTHERS__;
@@ -43,7 +42,7 @@
             	echo form_textarea($title,$fromController[$title])."</br>";
             ?>
             	
-            <table border="1">
+            <table border="1" width="100%">
             	<thead>
             		<th>Nazwa</th>
             		<th>J.M.</th>
