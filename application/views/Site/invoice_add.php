@@ -25,7 +25,7 @@
 
             	echo form_label("Data");
             	$data = array(
-            	    "name" => __DB_INVOICES_DATE,
+            	    "name" => __DB_INVOICES_DATE__,
             	    "type" => "date",
             	    "class" => "dataId",
             	    'style' => 'width: 291px'
@@ -79,7 +79,6 @@
         	</div>
 <!--         	<div class="col-md-"></div> -->
 		 </div>
-		 <pre><?php var_dump();?></pre>
 		 <script src='<?php echo base_url()."js/tableController.js"; ?>'></script>
 	</body>
 </html>
