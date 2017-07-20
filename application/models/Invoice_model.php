@@ -7,6 +7,16 @@
         }
         
         //Getters
+        public function getLastNumber(){
+            $match = "";
+            $match .= date("Y")."_";
+            $match .= date("m")."_";
+            $this->db->select("MAX(SUBSTRING_INDEX(".__DB_INVOICES_INVOICENUMBER__.", '_', -1)) as max");
+            $this->db->from(__DB_INVOICES__);
+            $this->db->like(__DB_INVOICES_INVOICENUMBER__, $match, "AFTER");
+            return $this->db->get()->result_array()[0]["max"]+1;
+        }
+        
         public function get($id = null){
             $toReturn = array();
             if($id === null){

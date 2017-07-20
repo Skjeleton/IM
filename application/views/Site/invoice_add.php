@@ -18,7 +18,7 @@
             	
             	$title = __DB_INVOICES_INVOICENUMBER__;
             	echo form_label("Faktura VAT nr.", $title)."</br>";
-            	echo form_input($title)."</br>";
+            	echo form_input($title, $fromController["LastNumber"])."</br>";
             	
             	
             	echo form_fieldset();
@@ -40,12 +40,18 @@
             	echo form_input($data);
             	echo form_fieldset_close();
             	
+<<<<<<< HEAD
             	$data = array(
             	    'name' => __DB_INVOICES_CUSTOMER__,
             	    'class' => 'dropDownCustomers'
             	    );
             	echo form_label("Klient");
             	echo form_dropdown($data, $fromController);
+=======
+            	$title = __DB_INVOICES_CUSTOMER__;
+            	echo form_label("Klient", $title)."</br>";
+            	echo form_dropdown($title, $fromController[__DB_CUSTOMERS__])."</br>";
+>>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
             	
             	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";

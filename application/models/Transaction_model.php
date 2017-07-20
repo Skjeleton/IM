@@ -20,6 +20,9 @@
         }
         
         public function add_batch($data){
+            if(empty($data))
+                return false;
+            
             foreach($data as $key => &$transaction)
                 if(array_key_exists(__DB_TRANSACTIONS_TRANSACTIONID__, $transaction))
                     unset($transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
