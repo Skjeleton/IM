@@ -15,7 +15,6 @@
 	width: 50%;
 }
 label{
-	
     width: 100%;
 	padding: 5px;
     text-align: center;
@@ -23,6 +22,7 @@ label{
 input{
 	width: 100%;
 	height: 4%;
+	text-align: center;
 }
 input[type=text]:focus{
 	background-color: lightblue;
@@ -38,8 +38,9 @@ Dropdown{
 #tContainer{
 	margin: auto;
     width: 100%;
-    padding: 5px;
+    padding: 8px;
     text-align: center;
+    
 }
 #input2{
 	width: 100%;
@@ -53,15 +54,31 @@ Dropdown{
 	width: 1000px;
 }
 .Numbers{
-	width: 44px;
+	width: 7%;
 	margin-left: 5px;
 }
 .Street{
-width: 480px;	
+	width: 69%;	
 }
 .TextArea{
 	width: 100%;
 }
 .dataId{
-	width: 291px;
+	width: 49%;
+}
+.AdresStyle{
+	width: 49%;
+}
+.PostalCodeStyle{
+	width: 12%;
+}
+.jsTable{
+	border: 1px;
+	width: 100%;
+}
+thead{
+	padding: 5px auto;
+}
+.jsclass{
+	width: 25%;
 }

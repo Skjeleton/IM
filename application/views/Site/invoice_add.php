@@ -58,14 +58,14 @@
             	
             ?>
             	
-            <table border="1" width="100%">
+            <table border="1px" width="100%">
             	<thead>
-            		<th>Nazwa</th>
-            		<th>J.M.</th>
-            		<th>Ilość</th>
-            		<th>Cena netto</th>
-            		<th><button type="button" id="addInvoice">+</button></th>
-            		<th><button type="button" id="removeInvoice">-</button></th>
+            		<th class="jsclass">Nazwa</th>
+            		<th class="jsclass">J.M.</th>
+            		<th class="jsclass">Ilość</th>
+            		<th class="jsclass">Cena netto</th>
+            		<th class="jsclass"><button type="button" id="addInvoice">+</button></th>
+            		<th class="jsclass"><button type="button" id="removeInvoice">-</button></th>
             	</thead>
             	<tbody id="tContainer">
             		
