@@ -67,7 +67,7 @@
                     'name' => __DB_CUSTOMERS_OTHERS__,
                     'class' => 'TextArea'
                 );
-                echo form_label("Inne")."</br>";
+                echo form_label("Inne")."</br> ";
                 echo form_textarea($data,$fromController[__DB_CUSTOMERS_OTHERS__])."</br>";
                 
                 echo form_submit("Submit", "Dokonaj zmian")."</br>";
