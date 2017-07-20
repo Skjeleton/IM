@@ -84,10 +84,10 @@
                     echo "<td>".$transaction[__DB_TRANSACTIONS_MEASUREUNIT__]."</td>";
                     echo "<td>".$transaction[__DB_TRANSACTIONS_COUNT__]."</td>";
                     echo "<td>".$transaction[__DB_TRANSACTIONS_NETUNITPRICE__]."</td>";
-                    echo "<td>".$transaction["netValue"]."</td>";
-                    echo "<td>".$transaction["vat"]."</td>";
-                    echo "<td>".$transaction["vatValue"]."</td>";
-                    echo "<td>".$transaction["grossValue"]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_NETVALUE__]."</td>";
+                    echo "<td> 23% </td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_VATVALUE__]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_GROSSVALUE__]."</td>";
      			echo "</tr>";
                 }
  			?>
@@ -106,38 +106,33 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <strong>Nazwa banku:</strong></br>
-<<<<<<< HEAD
-                                <strong>Adres:</strong></br>	
-=======
-                                <strong>Adres:</strong></br>
->>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
-                                <strong>BIC/SWIFT CODE:</strong></br>
-<<<<<<< HEAD
-                                </br>
-=======
->>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
-                                <strong>Numer rachunku:</strong></br>
-                                <strong>IBAN:</strong></br>
+								<table>
+									<tr>
+										<td><strong>Nazwa banku</strong></td>
+										<td><strong>Adres</strong></td>
+										<td><strong>BIC/SWIFT CODE</strong></td>
+										<td></td>
+										<td><strong>Numer rachunku</strong></td>
+										<td><strong>IBAN</strong></td>
+									</tr>
+									<tr>
+										<td>Alior Bank S.A.</td>
+										<td>Al.Jerozolimskie 94, 00-807 Warszawa</td>
+										<td>ALBPPLPW</td>
+										<td>ABASTRA sp. z o.o.</td>
+										<td>98 2490 0005 0000 4520 3585 2559</td>
+										<td>PL98249000050000452035852559</td>
+									</tr>
+								</table>
                             </div>
-                            
                             <div class="col-md-6">
-                                Alior Bank S.A.</br>
-                                Al.Jerozolimskie 94, 00-807 Warszawa</br>
-                                ALBPPLPW</br>
-                                ABASTRA sp. z o.o.</br>
-                                98 2490 0005 0000 4520 3585 2559</br>
-                                PL98249000050000452035852559</br>
                             </div>
                     	</div> 
                 	</div>
             </div>
         </div>
-<<<<<<< HEAD
         	<div class="col-xs-4">
-=======
         	<div class="col-xs-6">
->>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
             <div class="panel panel-info">
                 <div class="panel-body">
                 	<div class="row">
@@ -151,7 +146,7 @@
                 <div class="panel-heading">
                     <div class="row">
                     	<div class="col-xs-8"><h4 class="text-center"><strong>Do zaplaty</strong></h4></div>
-                    	<div class="col-xs-4">CENA</div>
+                    	<div class="col-xs-4"><?php echo __DB_INVOICES_GROSSVALUE__?></div>
                     </div>
                 </div>
             </div>
@@ -160,9 +155,9 @@
 <!-- Panel info end -->
 
 <!-- Total -->
-    <div class="row">
+<!--     <div class="row"> -->
         
-    </div>
+<!--     </div> -->
     
 <!-- END Total -->
 
