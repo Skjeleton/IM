@@ -19,21 +19,20 @@
                 echo form_label("Nazwa", $title)."</br>";
                 echo form_input($title, $fromController[$title])."</br>";
                 
-                $title = __DB_CUSTOMERS_COUNTRY__;
-                echo form_label("Państwo", $title)."</br>";
-                echo form_input($title, $fromController[$title])."</br>";
+                $data= array(
+                    'name' => __DB_CUSTOMERS_COUNTRY__,
+                    'class' => 'AdresStyle'
+                );
+                echo form_label("Państwo / Miasto");
+                echo form_input($data, $fromController[__DB_CUSTOMERS_COUNTRY__]);
                 
-                $title = __DB_CUSTOMERS_CITY__;
-                echo form_label("Miasto", $title)."</br>";
-                echo form_input($title, $fromController[$title])."</br>";
+                $data= array(
+                    'name' => __DB_CUSTOMERS_CITY__,
+                    'class' => 'AdresStyle'
+                );
+                echo form_input($data, $fromController[__DB_CUSTOMERS_CITY__]);
                 
-                $title = __DB_CUSTOMERS_POSTALCODE__;
-                echo form_label("Kod pocztowy", $title)."</br>";
-                echo form_input($title, $fromController[$title])."</br>";
-                
-                
-                
-                echo form_label("Ulica / Numer domu / Numer mieszkania");
+                echo form_label("Ulica / Numer domu / Numer mieszkania / Kod pocztowy");
                 echo form_fieldset();
                 $data= array(
                     'name' => __DB_CUSTOMERS_STREET__,
@@ -51,11 +50,18 @@
                     'class' => 'Numbers'
                 );
                 echo form_input($data,$fromController[__DB_CUSTOMERS_APARTMENTNUMBER__] );
+                
+                $data= array(
+                    'name' => __DB_CUSTOMERS_POSTALCODE__,
+                    'class' => 'PostalCodeStyle'
+                );
+                echo form_input($data, $fromController[__DB_CUSTOMERS_POSTALCODE__])."</br>";
+                
                 echo form_fieldset_close();
                 
                 $title = __DB_CUSTOMERS_NIP__;
                 echo form_label("NIP", $title)."</br>";
-                echo form_input($title, $fromController[$title])."</br>";
+                echo form_input($title, $fromController[__DB_CUSTOMERS_NIP__])."</br>";
                 
                 $data = array(
                     'title' => __DB_CUSTOMERS_OTHERS__,

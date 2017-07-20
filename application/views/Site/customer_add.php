@@ -20,68 +20,50 @@
                 $title = __DB_CUSTOMERS_NAME__;
                 echo form_label("Nazwa", $title);
                 echo form_input($title);
-                
-                $title = __DB_CUSTOMERS_COUNTRY__;
-                echo form_label("Państwo", $title);
-                echo form_input($title);
-                
+
+                $data= array(
+                    'name' => __DB_CUSTOMERS_COUNTRY__,
+                    'class' => 'AdresStyle'
+                );
+                echo form_label("Państwo / Miasto");
+                echo form_input($data);
+                $data= array(
+                    'name' => __DB_CUSTOMERS_CITY__,
+                    'class' => 'AdresStyle'
+                );
                 $title = __DB_CUSTOMERS_CITY__;
-                echo form_label("Miasto", $title);
-                echo form_input($title);
+                echo form_input($data);
                 
-                $title = __DB_CUSTOMERS_POSTALCODE__;
-                echo form_label("Kod pocztowy", $title);
-                echo form_input($title);
-                //
-                
-                //
-                echo form_label("Ulica / Numer domu / Numer mieszkania");
+                echo form_label("Ulica / Numer domu / Numer mieszkania / Kod pocztowy");
                 echo form_fieldset();
                 $data= array(
                     'name' => __DB_CUSTOMERS_STREET__,
                     'class' => 'Street'
                 );
                 echo form_input($data);
+                
                 $data= array(
                     'name' => __DB_CUSTOMERS_HOUSENUMBER__,
                     'class' => 'Numbers'
                 );
                 echo form_input($data);
+                
                 echo "/";
+                
                 $data= array(
                     'name' => __DB_CUSTOMERS_APARTMENTNUMBER__,
                     'class' => 'Numbers'
                 );
                 echo form_input($data);
+                
+                $data= array(
+                    'name' => __DB_CUSTOMERS_POSTALCODE__,
+                    'class' => 'PostalCodeStyle'
+                );
+                echo form_input($data);
+                
+                
                 echo form_fieldset_close();
-                
-//                 Editable forms Street/HouseNumber/ApartmentNumber
-                
-//                 $title = __DB_CUSTOMERS_STREET__;
-//                 $data= array(
-//                     'title' => '__DB_CUSTOMERS_STREET__',
-//                     'class' => 'Street'
-//                 );
-//                 echo form_label("Ulica", $title);
-//                 echo form_input($data);
-                
-//                 $title = __DB_CUSTOMERS_HOUSENUMBER__;
-//                 $data= array(
-//                     'title' => '__DB_CUSTOMERS_HOUSENUMBER__',
-//                     'class' => 'Numbers'
-//                     );
-//                 echo form_label("Numer domu", $title);
-//                 echo form_input($data);
-                
-//                 $title = __DB_CUSTOMERS_APARTMENTNUMBER__;
-//                 $data= array(
-//                     'title' => '__DB_CUSTOMERS_APARTMENTNUMBER__',
-//                     'class' => 'Numbers'
-//                 );
-//                 echo form_label("Numer lokalu", $title);
-//                 echo form_input($data);
-                
-//                 End editable forms
                 
                 $title = __DB_CUSTOMERS_NIP__;
                 echo form_label("NIP", $title);
@@ -92,7 +74,7 @@
                     'class' => 'TextArea'
                 );
                 echo form_label("Inne")."</br>";
-                echo form_textarea($title);
+                echo form_textarea($data);
                 
                 echo form_submit("Submit", "Dodaj!");
                 echo form_close();

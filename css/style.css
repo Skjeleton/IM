@@ -15,7 +15,6 @@
 	width: 50%;
 }
 label{
-	
     width: 100%;
 	padding: 5px;
     text-align: center;
@@ -23,6 +22,7 @@ label{
 input{
 	width: 100%;
 	height: 4%;
+	text-align: center;
 }
 input[type=text]:focus{
 	background-color: lightblue;
@@ -53,15 +53,21 @@ Dropdown{
 	width: 1000px;
 }
 .Numbers{
-	width: 44px;
+	width: 43px;
 	margin-left: 5px;
 }
 .Street{
-width: 480px;	
+width: 400px;	
 }
 .TextArea{
 	width: 100%;
 }
 .dataId{
 	width: 291px;
+}
+.AdresStyle{
+	width: 49%;
+}
+.PostalCodeStyle{
+	width: 75px;
 }
