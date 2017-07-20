@@ -25,7 +25,7 @@
                     'name' => __DB_CUSTOMERS_COUNTRY__,
                     'class' => 'AdresStyle'
                 );
-                echo form_label("Państwo / Miasto");
+                echo form_label("Państwo Miasto");
                 echo form_input($data);
                 $data= array(
                     'name' => __DB_CUSTOMERS_CITY__,
