@@ -15,8 +15,6 @@
                 $address .= "/".$data[__DB_CUSTOMERS_APARTMENTNUMBER__];
             
             return $address;
-            
-           // return var_export($data);
         }
         
         //COUNTING METHODS
@@ -70,6 +68,9 @@
             if($data[__DB_CUSTOMERS_NIP__] == NULL OR $data[__DB_CUSTOMERS_NIP__] == 0)
                 $data[__DB_CUSTOMERS_NIP__] = NULL;
             
+            if($data[__DB_CUSTOMERS_OTHERS__] == NULL OR $data[__DB_CUSTOMERS_OTHERS__] == 0)
+                $data[__DB_CUSTOMERS_OTHERS__] = NULL;
+                    
             return $data;
         }
         
@@ -140,7 +141,11 @@
         
         private function getData_invoice_add_view(){
             $this->load->model("Customer_model");
-            return $this->Customer_model->get();
+            $data = $this->Customer_model->get();
+            
+            $this->load->model("Invoice_model");
+            $data["LastNumber"] = date("Y")."_".date("m")."_".$this->Invoice_model->getLastNumber();
+            return $data;
         }
         
         //--DATACOLLECTING
@@ -208,8 +213,11 @@
             $data["fromController"] = array();
             
             $answer = $this->getData_invoice_add_view();
+            
+            $data["fromController"]["LastNumber"] = $answer["LastNumber"];
+            unset($answer["LastNumber"]);
             foreach($answer as $customer){
-                $data["fromController"][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_customer_address($customer);
+                $data["fromController"][__DB_CUSTOMERS__][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_customer_address($customer);
             }
             
             $this->load->helper("form");
