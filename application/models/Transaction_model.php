@@ -13,11 +13,16 @@
         
         //Setters
         public function add($data){
+            if(isset($data[__DB_TRANSACTIONS_TRANSACTIONID__]))
+                unset($data[__DB_TRANSACTIONS_TRANSACTIONID__]);
             if($this->db->insert(__DB_TRANSACTIONS__, $data))
                 return true;
         }
         
         public function add_batch($data){
+            foreach($data as &$transaction)
+                if(isset($transaction[__DB_TRANSACTIONS_TRANSACTIONID__]))
+                    unset($transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
             if($this->db->insert_batch(__DB_TRANSACTIONS__, $data))
                 return true;
         }
@@ -35,6 +40,8 @@
         }
         
         public function update($data, $id){
+            if(isset($data[__DB_TRANSACTIONS_TRANSACTIONID__]))
+                unset($data[__DB_TRANSACTIONS_TRANSACTIONID__]);
             $this->db->set($data);
             $this->db->where(__DB_TRANSACTIONS_TRANSACTIONID__, $id);
             $this->db->update(__DB_TRANSACTIONS__, $data);

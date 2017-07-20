@@ -20,6 +20,9 @@
         
         //Setters and Updaters
         public function add($data){
+            if(isset($data[__DB_CUSTOMERS_CUSTOMERID__]))
+                unset($data[__DB_CUSTOMERS_CUSTOMERID__]);
+            
             if($this->db->insert(__DB_CUSTOMERS__, $data))
                 return true;
         }

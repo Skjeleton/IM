@@ -4,7 +4,6 @@
     class Invoice_controller extends CI_Controller{
        //PRIVATE METHODS --------------------------------------------------------------------------------------------------------------------------------------------
         
-        // Merges the address in the $data table 
         private function fetch_customer_address($data){
             $address = $data[__DB_CUSTOMERS_CITY__].
                         ", ul. ".
@@ -20,6 +19,7 @@
            // return var_export($data);
         }
         
+        //COUNTING METHODS
         private function count_netValue($count, $netValue){
             return $count * $netValue;
         }
@@ -40,62 +40,24 @@
             return $value;
         }
         
-        //PUBLIC METHODS --------------------------------------------------------------------------------------------------------------------------------------------
-        function __construct(){
-            parent::__construct();
-            $this->load->database();
-            $this->load->helper("url");
+        private function addPrecalculations(&$transaction){
+            $transaction[__DB_TRANSACTIONS_NETVALUE__] = $this->count_netValue($transaction[__DB_TRANSACTIONS_COUNT__], $transaction[__DB_TRANSACTIONS_NETUNITPRICE__]);
+            $transaction[__DB_TRANSACTIONS_VATVALUE__] = $this->count_vatValue($transaction[__DB_TRANSACTIONS_COUNT__], $transaction[__DB_TRANSACTIONS_NETUNITPRICE__]);
+            $transaction[__DB_TRANSACTIONS_GROSSVALUE__] = $this->count_grossValue($transaction[__DB_TRANSACTIONS_COUNT__], $transaction[__DB_TRANSACTIONS_NETUNITPRICE__]);
+            return true;
         }
+        //--COUNTING METHODS
         
-        private function getData_customer_show_view(){
-            $toReturn = array();
-            
-            $this->load->model("Customer_model");
-            
-            $customers = $this->Customer_model->get();
-            foreach($customers as $customer){
-                $row = array(
-                    __DB_CUSTOMERS_NAME__       => $customer[__DB_CUSTOMERS_NAME__],
-                    __DB_CUSTOMERS_CUSTOMERID__ => $customer[__DB_CUSTOMERS_CUSTOMERID__],
-                    "Address"                   => $this->fetch_customer_address($customer)
-                );
-                array_push($toReturn, $row);
-            }
-            return $toReturn;
-        }
-        
-        public function customer_show_view(){
-            $data["fromController"] = $this->getData_customer_show_view();
-            
-            $this->load->view("Site/header");
-            $this->load->view("Site/customer_view", $data);
-        }
-
-        private function getData_customer_edit_view($id){
-            $this->load->model("Customer_model");
-            return  $this->Customer_model->get($id);
-        }
-        
-        public function customer_edit_view(){
-            $this->load->helper("form");
-            $customerId = $this->uri->segment(3);
-            
-            $data = array();
-            $data["fromController"] = $this->getData_customer_edit_view($customerId);
-            
-            $this->load->view("Site/header");
-            $this->load->view("Site/customer_edit", $data);
-        }
-        
+        //INPUTFETCH
         private function fetchInput_customer_edit(){
             $columns = array(
-                __DB_CUSTOMERS_NAME__, 
-                __DB_CUSTOMERS_COUNTRY__, 
-                __DB_CUSTOMERS_CITY__, 
-                __DB_CUSTOMERS_POSTALCODE__, 
-                __DB_CUSTOMERS_STREET__, 
-                __DB_CUSTOMERS_HOUSENUMBER__, 
-                __DB_CUSTOMERS_APARTMENTNUMBER__, 
+                __DB_CUSTOMERS_NAME__,
+                __DB_CUSTOMERS_COUNTRY__,
+                __DB_CUSTOMERS_CITY__,
+                __DB_CUSTOMERS_POSTALCODE__,
+                __DB_CUSTOMERS_STREET__,
+                __DB_CUSTOMERS_HOUSENUMBER__,
+                __DB_CUSTOMERS_APARTMENTNUMBER__,
                 __DB_CUSTOMERS_NIP__,
                 __DB_CUSTOMERS_OTHERS__
             );
@@ -104,72 +66,11 @@
             foreach($columns as $column){
                 $data[$column] = $this->input->post($column);
             }
-
+            
+            if($data[__DB_CUSTOMERS_NIP__] == NULL OR $data[__DB_CUSTOMERS_NIP__] == 0)
+                $data[__DB_CUSTOMERS_NIP__] = NULL;
+            
             return $data;
-        }
-        
-        public function customer_edit(){
-            $this->load->model("Customer_model");
-            
-            $customerId = $this->input->post(__DB_CUSTOMERS_CUSTOMERID__);
-            $data = $this->fetchInput_customer_edit();
-            $this->Customer_model->update($data, $customerId);
-            
-            redirect("invoice_controller/customer_show_view");
-        }
-        
-        public function customer_add_view(){
-            $this->load->helper("form");
-            $this->load->view("Site/header");
-            $this->load->view("Site/customer_add");
-        }
- 
-        public function customer_add(){
-            $this->load->model("Customer_model");
-            $data = $this->fetchInput_customer_edit();
-            $this->Customer_model->add($data);
-            //$this->load->view("var_dump", $_POST);
-            
-            redirect("invoice_controller/customer_show_view");
-        }
-        
-        private function getData_invoice_show_view(){
-            $this->load->model("Invoice_model");
-            return $this->Invoice_model->get();
-        }
-        
-        public function invoice_show_view(){
-            $data = array();
-            $data["fromController"] = $this->getData_invoice_show_view();
-            
-            $this->load->view("Site/header");
-            $this->load->view("Site/invoice_view", $data);
-        }
-        
-        public function getData_invoice_add_view(){
-            $this->load->model("Customer_model");
-            return $this->Customer_model->get();
-        }
-        
-        public function invoice_add_view(){
-            $data = array();
-            $data["fromController"] = array();
-            
-            $answer = $this->getData_invoice_add_view();
-            foreach($answer as $customer){
-                $data["fromController"][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_customer_address($customer);
-            }
-            
-            $this->load->helper("form");
-            $this->load->view("Site/header");
-            $this->load->view("Site/invoice_add", $data);
-        }
-        
-        private function addPrecalculations(&$transaction){
-            $transaction[__DB_TRANSACTIONS_NETVALUE__] = $this->count_netValue($transaction[__DB_TRANSACTIONS_COUNT__], $transaction[__DB_TRANSACTIONS_NETUNITPRICE__]);
-            $transaction[__DB_TRANSACTIONS_VATVALUE__] = $this->count_vatValue($transaction[__DB_TRANSACTIONS_COUNT__], $transaction[__DB_TRANSACTIONS_NETUNITPRICE__]);
-            $transaction[__DB_TRANSACTIONS_GROSSVALUE__] = $this->count_grossValue($transaction[__DB_TRANSACTIONS_COUNT__], $transaction[__DB_TRANSACTIONS_NETUNITPRICE__]);
-            return true;
         }
         
         private function fetchInput_invoice_add(){
@@ -207,6 +108,115 @@
             }
             return $data;
         }
+        //--INPUTFETCH
+        
+        //DATACOLLECTING
+        private function getData_customer_show_view(){
+            $toReturn = array();
+            
+            $this->load->model("Customer_model");
+            
+            $customers = $this->Customer_model->get();
+            foreach($customers as $customer){
+                $row = array(
+                    __DB_CUSTOMERS_NAME__       => $customer[__DB_CUSTOMERS_NAME__],
+                    __DB_CUSTOMERS_CUSTOMERID__ => $customer[__DB_CUSTOMERS_CUSTOMERID__],
+                    "Address"                   => $this->fetch_customer_address($customer)
+                );
+                array_push($toReturn, $row);
+            }
+            return $toReturn;
+        }
+        
+        private function getData_customer_edit_view($id){
+            $this->load->model("Customer_model");
+            return  $this->Customer_model->get($id);
+        }
+        
+        private function getData_invoice_show_view(){
+            $this->load->model("Invoice_model");
+            return $this->Invoice_model->get();
+        }
+        
+        private function getData_invoice_add_view(){
+            $this->load->model("Customer_model");
+            return $this->Customer_model->get();
+        }
+        
+        //--DATACOLLECTING
+        
+        //PUBLIC METHODS --------------------------------------------------------------------------------------------------------------------------------------------
+        function __construct(){
+            parent::__construct();
+            $this->load->database();
+            $this->load->helper("url");
+        }
+        
+        public function customer_show_view(){
+            $data["fromController"] = $this->getData_customer_show_view();
+            
+            $this->load->view("Site/header");
+            $this->load->view("Site/customer_view", $data);
+        }
+
+        public function customer_edit_view(){
+            $this->load->helper("form");
+            $customerId = $this->uri->segment(3);
+            
+            $data = array();
+            $data["fromController"] = $this->getData_customer_edit_view($customerId);
+            
+            $this->load->view("Site/header");
+            $this->load->view("Site/customer_edit", $data);
+        }
+        
+        public function customer_edit(){
+            $this->load->model("Customer_model");
+            
+            $customerId = $this->input->post(__DB_CUSTOMERS_CUSTOMERID__);
+            $data = $this->fetchInput_customer_edit();
+            $this->Customer_model->update($data, $customerId);
+            
+            redirect("invoice_controller/customer_show_view");
+        }
+        
+        public function customer_add_view(){
+            $this->load->helper("form");
+            $this->load->view("Site/header");
+            $this->load->view("Site/customer_add");
+        }
+ 
+        public function customer_add(){
+            $this->load->model("Customer_model");
+            $data = $this->fetchInput_customer_edit();
+            $this->Customer_model->add($data);
+            
+            redirect("invoice_controller/customer_show_view");
+        }
+        
+        public function invoice_show_view(){
+            $data = array();
+            $data["fromController"] = $this->getData_invoice_show_view();
+            
+            $this->load->view("Site/header");
+            $this->load->view("Site/invoice_view", $data);
+        }
+        
+        
+        public function invoice_add_view(){
+            $data = array();
+            $data["fromController"] = array();
+            
+            $answer = $this->getData_invoice_add_view();
+            foreach($answer as $customer){
+                $data["fromController"][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_customer_address($customer);
+            }
+            
+            $this->load->helper("form");
+            $this->load->view("Site/header");
+            $this->load->view("Site/invoice_add", $data);
+        }
+        
         
         public function invoice_add(){
             $data = array();
@@ -257,19 +267,20 @@
             return $this->db->trans_status();
         }
         
-        
-        
         public function invoice_edit(){
             $data = array();
             $data = $this->fetchInput_invoice_add();
-            foreach($data[__DB_TRANSACTIONS__] as &$transaction)
-                unset($transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
             
             $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__] = $this->count_fullNetValue($data[__DB_TRANSACTIONS__]);
             $data[__DB_INVOICES__][__DB_INVOICES_VATVALUE__] = $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__] * 0.23;
             $data[__DB_INVOICES__][__DB_INVOICES_GROSSVALUE__] = $data[__DB_INVOICES__][__DB_INVOICES_VATVALUE__] + $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__];
             $this->load->model("Invoice_model");
             $this->Invoice_model->update($data[__DB_INVOICES__]);
+            
+            foreach($data[__DB_TRANSACTIONS__] as &$transaction){
+                unset($transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
+                $transaction[__DB_TRANSACTIONS_INVOICE__] = $data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__];
+            }
             
             
             if(!$this->updateTransactions($data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__], $data[__DB_TRANSACTIONS__]))

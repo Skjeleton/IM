@@ -30,6 +30,8 @@
         
         //Setters
         public function add($data){
+            if(isset($data[__DB_INVOICES_INVOICEID__]))
+                unset($data[__DB_INVOICES_INVOICEID__]);
             if($this->db->insert(__DB_INVOICES__, $data))
                 return true;
         }
