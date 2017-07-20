@@ -21,17 +21,29 @@
             	echo form_label("Faktura VAT nr.", $title)."</br>";
             	echo form_input($title, $fromController[$title])."</br>";
             	
-            	$title = __DB_INVOICES_DATE__;
-            	echo form_label("Data faktury", $title)."</br>";
-            	echo form_input(array("name" => $title, "type" => "date"), $fromController[$title])."</br>";
+            	$data = array(
+            	    'name' => __DB_INVOICES_DATE__,
+            	    'type' => 'date',
+            	    'class' => 'dataId'
+            	);
+            	echo form_label("Data faktury / Termin płatności");
+            	echo form_input($data,$fromController[__DB_INVOICES_DATE__]);
             	
-            	$title = __DB_INVOICES_CUSTOMER__;
-            	echo form_label("Klient", $title)."</br>";
-            	echo form_dropdown($title, $fromController[__DB_CUSTOMERS__], $fromController[__DB_INVOICES_CUSTOMER__])."</br>";
+            	$data = array(
+            	    'name' => __DB_INVOICES_PAYMENTDEADLINE__,
+            	    'type' => 'date',
+            	    'class' => 'dataId'
+            	);
+            	echo form_input($data, $fromController[__DB_INVOICES_PAYMENTDEADLINE__]);
             	
-            	$title = __DB_INVOICES_PAYMENTDEADLINE__;
-            	echo form_label("Termin płatności", $title)."</br>";
-            	echo form_input(array("name" => $title, "type" => "date"), $fromController[$title])."</br>";
+            	$data = array(
+            	    'name' => __DB_INVOICES_CUSTOMER__,
+            	    'class' => 'dropDownCustomers'
+            	);
+            	echo form_label("Klient")."</br>";
+            	echo form_dropdown($data, $fromController[__DB_CUSTOMERS__], $fromController[__DB_INVOICES_CUSTOMER__])."</br>";
+            	
+            	
             	
             	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";
@@ -44,12 +56,12 @@
             	
             <table border="1" width="100%">
             	<thead>
-            		<th>Nazwa</th>
-            		<th>J.M.</th>
-            		<th>Ilość</th>
-            		<th>Cena netto</th>
-            		<th><button type="button" id="addInvoice">+</button></th>
-            		<th><button type="button" id="removeInvoice">-</button></th>
+            		<th class="jsclass">Nazwa</th>
+            		<th class="jsclass">J.M.</th>
+            		<th class="jsclass">Ilość</th>
+            		<th class="jsclass">Cena netto</th>
+            		<th class="jsclass"><button type="button" id="addInvoice">+</button></th>
+            		<th class="jsclass"><button type="button" id="removeInvoice">-</button></th>
             	</thead>
             	<tbody id="tContainer">
             		<?php

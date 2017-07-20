@@ -27,8 +27,7 @@
             	$data = array(
             	    "name" => __DB_INVOICES_DATE__,
             	    "type" => "date",
-            	    "class" => "dataId",
-            	    'style' => 'width: 291px'
+            	    "class" => "dataId"
             	);
             	echo form_input($data);
             	
@@ -41,9 +40,12 @@
             	echo form_input($data);
             	echo form_fieldset_close();
             	
-            	$title = __DB_INVOICES_CUSTOMER__;
-            	echo form_label("Klient", $title)."</br>";
-            	echo form_dropdown($title, $fromController)."</br>";
+            	$data = array(
+            	    'name' => __DB_INVOICES_CUSTOMER__,
+            	    'class' => 'dropDownCustomers'
+            	    );
+            	echo form_label("Klient");
+            	echo form_dropdown($data, $fromController);
             	
             	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";
