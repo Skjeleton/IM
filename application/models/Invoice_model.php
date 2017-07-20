@@ -30,7 +30,7 @@
         
         //Setters
         public function add($data){
-            if(isset($data[__DB_INVOICES_INVOICEID__]))
+            if(array_key_exists(__DB_INVOICES_INVOICEID__, $data))
                 unset($data[__DB_INVOICES_INVOICEID__]);
             if($this->db->insert(__DB_INVOICES__, $data))
                 return true;
@@ -42,7 +42,9 @@
         }
         
         public function update($data){
-            $this->db->update(__DB_INVOICES__, $data, __DB_INVOICES_INVOICEID__);
+            $id = $data[__DB_INVOICES_INVOICEID__];
+            unset($data[__DB_INVOICES_INVOICEID__]);
+            $this->db->update(__DB_INVOICES__, $data, array(__DB_INVOICES_INVOICEID__ => $id));
             return true;
         }
     }

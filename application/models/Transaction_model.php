@@ -20,9 +20,10 @@
         }
         
         public function add_batch($data){
-            foreach($data as &$transaction)
-                if(isset($transaction[__DB_TRANSACTIONS_TRANSACTIONID__]))
+            foreach($data as $key => &$transaction)
+                if(array_key_exists(__DB_TRANSACTIONS_TRANSACTIONID__, $transaction))
                     unset($transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
+            //echo "<pre>";show_error(var_export($data), 2, "Error");
             if($this->db->insert_batch(__DB_TRANSACTIONS__, $data))
                 return true;
         }

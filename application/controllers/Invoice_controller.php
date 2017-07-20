@@ -275,18 +275,17 @@
             $data[__DB_INVOICES__][__DB_INVOICES_VATVALUE__] = $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__] * 0.23;
             $data[__DB_INVOICES__][__DB_INVOICES_GROSSVALUE__] = $data[__DB_INVOICES__][__DB_INVOICES_VATVALUE__] + $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__];
             $this->load->model("Invoice_model");
+            //$this->load->view("var_dump", $data[__DB_INVOICES__]);
+            
             $this->Invoice_model->update($data[__DB_INVOICES__]);
             
             foreach($data[__DB_TRANSACTIONS__] as &$transaction){
-                unset($transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
                 $transaction[__DB_TRANSACTIONS_INVOICE__] = $data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__];
             }
-            
-            
             if(!$this->updateTransactions($data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__], $data[__DB_TRANSACTIONS__]))
                 redirect("invoice_controller/error404");
 
-            redirect("invoice_controller/invoice_show_view");
+            redirect("invoice_controller/invoice_show_view");/**/
         }
         
         public function invoice_pdf_view(){
