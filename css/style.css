@@ -53,11 +53,11 @@ Dropdown{
 	width: 1000px;
 }
 .Numbers{
-	width: 43px;
+	width: 5%;
 	margin-left: 5px;
 }
 .Street{
-width: 400px;	
+width: 50%;	
 }
 .TextArea{
 	width: 100%;
@@ -69,5 +69,5 @@ width: 400px;
 	width: 49%;
 }
 .PostalCodeStyle{
-	width: 75px;
+	width: 10%;
 }

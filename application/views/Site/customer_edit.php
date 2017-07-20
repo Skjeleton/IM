@@ -64,7 +64,7 @@
                 echo form_input($title, $fromController[__DB_CUSTOMERS_NIP__])."</br>";
                 
                 $data = array(
-                    'title' => __DB_CUSTOMERS_OTHERS__,
+                    'name' => __DB_CUSTOMERS_OTHERS__,
                     'class' => 'TextArea'
                 );
                 echo form_label("Inne")."</br>";

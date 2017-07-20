@@ -70,7 +70,7 @@
                 echo form_input($title);
                 
                 $data = array(
-                    'title' => __DB_CUSTOMERS_OTHERS__,
+                    'name' => __DB_CUSTOMERS_OTHERS__,
                     'class' => 'TextArea'
                 );
                 echo form_label("Inne")."</br>";
