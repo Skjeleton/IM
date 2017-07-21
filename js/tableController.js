@@ -1,7 +1,6 @@
 function countRows(){
 	return $("#tContainer tr").length;
 }
-
 function append(content){
 	$("#tContainer").append(content);
 }

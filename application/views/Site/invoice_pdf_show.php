@@ -14,8 +14,8 @@
              	<div class="panel panel-default">
              		<div class="panel-heading"><h4>FAKTURA VAT</h4></div>
              		<div class="panel-body">
-                 		<h4>Faktura VAT nr</h4> <div class="text-right"><?php echo $fromController[__DB_INVOICES__][__DB_INVOICES_INVOICENUMBER__]; ?></div>
-                 		<h4>Data</h4> <div class="text-right"><?php echo $fromController[__DB_INVOICES__][__DB_INVOICES_DATE__]; ?>
+                 		<h4>Faktura VAT nr</h4> <div class="text-right"><?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></div>
+                 		<h4>Data</h4> <div class="text-right"><?php echo $fromController[__DB_INVOICES_DATE__]; ?>
                  		</div>
     				</div>
 				</div>
@@ -29,11 +29,11 @@
              	<div class="panel panel-default">
              		<div class="panel-heading"><H4>NABYWCA</H4></div>
              		<div class="panel-body">
-             		<h4><strong><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_NAME__]; ?></strong></h4> 
-             		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_STREET__]; ?></h4>
-             		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_POSTALCODE__]; echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_CITY__]; ?></h4> 
-             		<h4><?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_COUNTRY__]; ?></h4></br>
-             		<h4><strong>NIP <?php echo $fromController[__DB_CUSTOMERS__][__DB_CUSTOMERS_NIP__]; ?></strong></h4>
+             		<h4><strong><?php echo $fromController[__DB_CUSTOMERS_NAME__]; ?></strong></h4> 
+             		<h4><?php echo $fromController[__DB_CUSTOMERS_STREET__]; ?></h4>
+             		<h4><?php echo $fromController[__DB_CUSTOMERS_POSTALCODE__]; echo $fromController[__DB_CUSTOMERS_CITY__]; ?></h4> 
+             		<h4><?php echo $fromController[__DB_CUSTOMERS_COUNTRY__]; ?></h4></br>
+             		<h4><strong>NIP <?php echo $fromController[__DB_CUSTOMERS_NIP__]; ?></strong></h4>
 <!--              			Content -->
              		</div>
     			</div>
@@ -107,16 +107,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <strong>Nazwa banku:</strong></br>
-<<<<<<< HEAD
                                 <strong>Adres:</strong></br>	
-=======
-                                <strong>Adres:</strong></br>
->>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
                                 <strong>BIC/SWIFT CODE:</strong></br>
-<<<<<<< HEAD
-                                </br>
-=======
->>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
                                 <strong>Numer rachunku:</strong></br>
                                 <strong>IBAN:</strong></br>
                             </div>
@@ -133,11 +125,7 @@
                 	</div>
             </div>
         </div>
-<<<<<<< HEAD
-        	<div class="col-xs-4">
-=======
         	<div class="col-xs-6">
->>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
             <div class="panel panel-info">
                 <div class="panel-body">
                 	<div class="row">
@@ -181,8 +169,8 @@
             			</tr>
             				<tbody>
            						 <tr>
-                					<td><?php echo $fromController[__DB_INVOICES__][__DB_INVOICES_PAYMENTDEADLINE__]; ?></td>
-                					<td><?php echo $fromController[__DB_INVOICES__][__DB_INVOICES_PAYMENTMETHOD__]; ?></td>
+                					<td><?php echo $fromController[__DB_INVOICES_PAYMENTDEADLINE__]; ?></td>
+                					<td><?php echo $fromController[__DB_INVOICES_PAYMENTMETHOD__]; ?></td>
                 				 </tr>
                 			</tbody>
             		</table>

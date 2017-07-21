@@ -11,7 +11,7 @@
             $match = "";
             $match .= date("Y")."_";
             $match .= date("m")."_";
-            $this->db->select("MAX(SUBSTRING_INDEX(".__DB_INVOICES_INVOICENUMBER__.", '_', -1)) as max");
+            $this->db->select("MAX(CAST(SUBSTRING_INDEX(".__DB_INVOICES_INVOICENUMBER__.", '_', -1)AS UNSIGNED)) as max");
             $this->db->from(__DB_INVOICES__);
             $this->db->like(__DB_INVOICES_INVOICENUMBER__, $match, "AFTER");
             return $this->db->get()->result_array()[0]["max"]+1;
@@ -25,6 +25,7 @@
                     __DB_CUSTOMERS_NAME__
                 ));
                 $this->db->select($columns);
+               // return $id;
             }
             
             $this->db->from(__DB_INVOICES__);
@@ -33,7 +34,7 @@
             $toReturn = $this->db->get()->result_array();
             if($id !== null){
                 $toReturn = $toReturn[0];
-                $toReturn[__DB_TRANSACTIONS__] = $this->db->get_where(__DB_TRANSACTIONS__, __DB_TRANSACTIONS_INVOICE__."=".$id)->result_array();
+                $toReturn[__DB_TRANSACTIONS__] = $this->db->get_where(__DB_TRANSACTIONS__, __DB_TRANSACTIONS_INVOICE__."=".$id)->result_array(); 
             }
             return $toReturn;
         }

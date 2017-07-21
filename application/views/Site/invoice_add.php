@@ -26,6 +26,7 @@
             	echo form_label("Data");
             	$data = array(
             	    "name" => __DB_INVOICES_DATE__,
+            	    "id" => __DB_INVOICES_DATE__,
             	    "type" => "date",
             	    "class" => "dataId"
             	);
@@ -33,6 +34,7 @@
             	
             	$data = array(
             	    "name" => __DB_INVOICES_PAYMENTDEADLINE__,
+            	    "id" => __DB_INVOICES_PAYMENTDEADLINE__,
             	    "type" => "date",
             	    "class" => "dataId",
             	    'style' => 'width: 291px'
@@ -45,7 +47,7 @@
             	    'class' => 'dropDownCustomers'
             	    );
             	echo form_label("Klient");
-            	echo form_dropdown($data, $fromController);
+            	echo form_dropdown($data, $fromController[__DB_CUSTOMERS__]);
             	
             	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";
@@ -82,5 +84,29 @@
 <!--         	<div class="col-md-"></div> -->
 		 </div>
 		 <script src='<?php echo base_url()."js/tableController.js"; ?>'></script>
+		 <script type="text/javascript">
+			var dateId = "#<?php echo __DB_INVOICES_DATE__; ?>";
+			var deadlineId = "#<?php echo __DB_INVOICES_PAYMENTDEADLINE__; ?>";
+
+			Date.prototype.toDateInputValue = (function() {
+			    var local = new Date(this);
+			    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+			    return local.toJSON().slice(0,10);
+			});
+			
+			function setDate(){
+				$(dateId).val(new Date().toDateInputValue());
+			}
+
+			function setDeadline(){
+				$(deadlineId).val(new Date(+new Date + 12096e5).toDateInputValue());
+			}
+			
+			$(document).ready(function(){
+				setDate();
+				setDeadline();
+			});
+		 </script>
+		
 	</body>
 </html>

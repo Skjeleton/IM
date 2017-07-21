@@ -300,36 +300,30 @@
             $this->load->helper("form");
             $data = array();
             $data["fromController"] = array();
-            $data["fromController"][__DB_INVOICES__] = array();
-            $data["fromController"][__DB_INVOICES__][__DB_CUSTOMERS__] = array();
             
             $invoiceId = $this->uri->segment(3);
-            $this->db->select(array(__DB_INVOICES_INVOICEID__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_INVOICENUMBER__,  __DB_INVOICES_DATE__, __DB_INVOICES_CUSTOMERID__,__DB_INVOICES_PAYMENTDEADLINE__, __DB_INVOICES_PAYMENTMETHOD__));
-            $this->db->where(__DB_INVOICES_INVOICEID__." = ".$invoiceId);
-            $data["fromController"][__DB_INVOICES__] = $this->db->get(__DB_INVOICES__)->result_array()[0];
+            $this->load->model("Invoice_model");
+            $data["fromController"] = $this->Invoice_model->get($invoiceId);
             
-            $this->db->select(array(__DB_TRANSACTIONS_TRANSACTIONID__, __DB_TRANSACTIONS_NAME__, __DB_TRANSACTIONS_MEASUREUNIT__, __DB_TRANSACTIONS_NETUNITPRICE__, __DB_TRANSACTIONS_COUNT__));
-            $this->db->from(__DB_TRANSACTIONS__);
-            $this->db->where(__DB_TRANSACTIONS_INVOICEID__." = ".$invoiceId);
+            //load the view and saved it into $html variable
+            $html=$this->load->view('Site/invoice_pdf_show', $data, true);
             
-            $transactions = $this->db->get()->result_array();
-            foreach($transactions as $transaction){
-                $transaction["netValue"] = $transaction[__DB_TRANSACTIONS_COUNT__] * $transaction[__DB_TRANSACTIONS_NETUNITPRICE__];
-                $transaction["vatValue"] = $this->count_vat($transaction["netValue"]);
-                $transaction["grossValue"] = $transaction["netValue"] + $transaction["vatValue"];
-            }
-            $data["fromController"][__DB_TRANSACTIONS__] = $transactions;
+            //this the the PDF filename that user will get to download
+            $pdfFilePath = "output_pdf_name.pdf";
             
-            $this->db->select(array(__DB_CUSTOMERS_CUSTOMERID__, __DB_CUSTOMERS_NAME__, __DB_CUSTOMERS_COUNTRY__, __DB_CUSTOMERS_CITY__, __DB_CUSTOMERS_STREET__, __DB_CUSTOMERS_HOUSENUMBER__, __DB_CUSTOMERS_APARTMENTNUMBER__));
-            $data["fromController"][__DB_CUSTOMERS__] = $this->db->get_where(__DB_CUSTOMERS__,  $data["fromController"][__DB_INVOICES__][__DB_INVOICES_CUSTOMERID__])->result_array()[0];
+            //load mPDF library
+            $this->load->library('m_pdf');
             
+            //generate the PDF from the given html
+            $this->m_pdf->pdf->WriteHTML($html);
             
-            $data["fromController"][__DB_INVOICES__]["netValue"] = $this->count_whole_net_value($transactions);
-            $data["fromController"][__DB_INVOICES__]["vatValue"] = $this->count_vat($data["fromController"][__DB_INVOICES__]["netValue"]);
-            $data["fromController"][__DB_INVOICES__]["grossValue"] = $this->count_whole_gross_value($transactions);
+            //download it.
+            $this->m_pdf->pdf->Output($pdfFilePath, "D"); 
+            
             
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_pdf_show", $data);
+            $this->load->view("var_dump", $data);
         }
         
         public function index(){

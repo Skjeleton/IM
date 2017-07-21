@@ -105,7 +105,7 @@
 		 <script src='<?php echo base_url()."js/tableController.js"; ?>'></script>
 		 <script>
 		 	function redirectPDF(){
-		 		window.location.replace('<?php echo base_url()."index.php/invoice_controller/invoice_pdf_view/".$fromController[__DB_INVOICES__][__DB_INVOICES_INVOICEID__] ?>');
+		 		window.location.replace('<?php echo base_url()."index.php/invoice_controller/invoice_pdf_view/".$fromController[__DB_INVOICES_INVOICEID__]; ?>');
 		 	}
 		 </script>
 	</body>
