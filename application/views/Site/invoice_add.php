@@ -37,12 +37,11 @@
             	    "id" => __DB_INVOICES_PAYMENTDEADLINE__,
             	    "type" => "date",
             	    "class" => "dataId",
-            	    'style' => 'width: 291px'
             	);
             	echo form_input($data);
             	echo form_fieldset_close();
             	
-            	$data = array(
+                $data = array(
             	    'name' => __DB_INVOICES_CUSTOMER__,
             	    'class' => 'dropDownCustomers'
             	    );

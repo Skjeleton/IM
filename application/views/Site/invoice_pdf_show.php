@@ -105,21 +105,27 @@
                 </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-6">
-                                <strong>Nazwa banku:</strong></br>
-                                <strong>Adres:</strong></br>	
-                                <strong>BIC/SWIFT CODE:</strong></br>
-                                <strong>Numer rachunku:</strong></br>
-                                <strong>IBAN:</strong></br>
+                             <div class="col-md-6">
+								<table>
+									<tr>
+										<td><strong>Nazwa banku</strong></td>
+										<td><strong>Adres</strong></td>
+										<td><strong>BIC/SWIFT CODE</strong></td>
+										<td></td>
+										<td><strong>Numer rachunku</strong></td>
+										<td><strong>IBAN</strong></td>
+									</tr>
+									<tr>
+										<td>Alior Bank S.A.</td>
+										<td>Al.Jerozolimskie 94, 00-807 Warszawa</td>
+										<td>ALBPPLPW</td>
+										<td>ABASTRA sp. z o.o.</td>
+										<td>98 2490 0005 0000 4520 3585 2559</td>
+										<td>PL98249000050000452035852559</td>
+									</tr>
+								</table>
                             </div>
-                            
                             <div class="col-md-6">
-                                Alior Bank S.A.</br>
-                                Al.Jerozolimskie 94, 00-807 Warszawa</br>
-                                ALBPPLPW</br>
-                                ABASTRA sp. z o.o.</br>
-                                98 2490 0005 0000 4520 3585 2559</br>
-                                PL98249000050000452035852559</br>
                             </div>
                     	</div> 
                 	</div>
