@@ -26,8 +26,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Klienci <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<?php echo base_url()."index.php/invoice_controller/customer_show_view"; ?>">Lista klientów</a></li>
-            <li><a href="<?php echo base_url()."index.php/invoice_controller/customer_add_view"; ?>">Dodaj klienta</a></li>
+            <li><a href="<?php echo base_url()."index.php/customer_controller/customer_show_view"; ?>">Lista klientów</a></li>
+            <li><a href="<?php echo base_url()."index.php/customer_controller/customer_add_view"; ?>">Dodaj klienta</a></li>
           </ul>          
         </li>
       </ul>
