@@ -234,7 +234,7 @@
             $data["fromController"] = $this->Invoice_model->get($invoiceId);
             
             //load the view and saved it into $html variable
-            $this->invoice_pdf_download();
+            //$this->invoice_pdf_download();
             
             
             $this->load->view("Site/header");
