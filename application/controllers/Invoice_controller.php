@@ -212,8 +212,10 @@
             $this->load->model("Invoice_model");
             $data["fromController"] = $this->Invoice_model->get($invoiceId);
             
-            $html = $this->load->view("Site/invoice_pdf_show", $data, true);
+            $html = $this->load->view("foo", null, true);
+           // $html = htmlspecialchars($html);
             
+            //$this->load->view("var_dump", array($html));
             //this the the PDF filename that user will get to download
             $pdfFilePath = "faktura".".pdf";
             
