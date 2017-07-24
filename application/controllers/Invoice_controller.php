@@ -212,21 +212,27 @@
             $this->load->model("Invoice_model");
             $data["fromController"] = $this->Invoice_model->get($invoiceId);
             
+<<<<<<< HEAD
             $html = $this->load->view("foo", null, true);
            // $html = htmlspecialchars($html);
+=======
+            $html = $this->load->view("welcome_message", $data, true);
+           // $html = htmlspecialchars($html);
+           // $this->load->view("var_dump", array($html));
+>>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
             
             //$this->load->view("var_dump", array($html));
             //this the the PDF filename that user will get to download
-            $pdfFilePath = "faktura".".pdf";
+            $pdfFilePath = "/home/mpdf/faktura.pdf";
             
             //load mPDF library
             $this->load->library('m_pdf');
             
             //generate the PDF from the given html
-            $this->m_pdf->pdf->WriteHTML($html);
+            $this->m_pdf->pdf->WriteHTML("<html>Hello</html>");
             
             //download it.
-            $this->m_pdf->pdf->Output($pdfFilePath, "D");
+            $this->m_pdf->pdf->Output();
         }
         
         public function invoice_pdf_view($invoiceId){
