@@ -8,7 +8,7 @@
 <body>
 <div class="mainContainer">
 	<div class="row">
-		<div class="col-lg-6"><img src="<?php echo base_url(); ?>css/abastra.jpg>"></img></div>
+		<div class="col-lg-6"><img alt="Image_failt_to_look_or_download" src="<?php echo base_url(); ?>css/abastra.jpg" width="120%" height="200px" left="0px"></img></div>
 		<div class="col-lg-6">
     		 <div class="panel-group">
              	<div class="panel panel-default">
@@ -21,7 +21,6 @@
 			</div>
 		</div>
 		</div>
-
 <!-- 	Start Buyer -->
 	<div class="row">
 		<div class="col-lg-6">
@@ -184,8 +183,6 @@
         </div>
 	</div>
 	
-	<input type="button" onclick="$.ajax(...generate_pdf)
-<!-- END Method payment and expirient date -->
 </div>
 </body>
 </html>

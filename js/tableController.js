@@ -33,7 +33,9 @@ function addTransaction(){
 	
 	toAppend = addRow(toAppend);
 	append(toAppend);
-	$("#row" + index).click();
+	$("#button" + index).click(function(){
+		removeTransaction(index);
+	});
 	index++;
 }
 
@@ -41,7 +43,7 @@ function removeTransaction(rowNo = 0){
 	if(rowNo == 0)
 		$("#tContainer tr:nth-child("+(countRows())+")").remove();
 	else
-		$("#tContainer tr:nth-child("+rowNo+")").remove();
+		$("#row"+rowNo).remove();
 }
 
 $(document).ready(function(){
