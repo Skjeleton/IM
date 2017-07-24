@@ -208,8 +208,11 @@
             redirect("invoice_controller/invoice_show_view");/**/
         }
         
-        public function invoice_pdf_download($data){
-            $html=$this->load->view('Site/invoice_pdf_show', $data, true);
+        public function invoice_pdf_download($invoiceId){
+            $this->load->model("Invoice_model");
+            $data["fromController"] = $this->Invoice_model->get($invoiceId);
+            
+            $html = $this->load->view("Site/invoice_pdf_show", $data, true);
             
             //this the the PDF filename that user will get to download
             $pdfFilePath = "faktura".".pdf";
@@ -224,12 +227,11 @@
             $this->m_pdf->pdf->Output($pdfFilePath, "D");
         }
         
-        public function invoice_pdf_view(){
+        public function invoice_pdf_view($invoiceId){
             $this->load->helper("form");
             $data = array();
             $data["fromController"] = array();
             
-            $invoiceId = $this->uri->segment(3);
             $this->load->model("Invoice_model");
             $data["fromController"] = $this->Invoice_model->get($invoiceId);
             
@@ -239,8 +241,7 @@
             
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_pdf_show", $data);
-            //$this->load->view("Site/invoice_pdf_download_footer");
-            //$this->load->view("var_dump", $data);
+            $this->load->view("Site/invoice_pdf_download_footer", $data["fromController"][__DB_INVOICES_INVOICEID__] = $invoiceId);
         }
         
         public function index(){

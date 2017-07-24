@@ -183,8 +183,6 @@
             </div>
         </div>
 	</div>
-	
-	<input type="button" onclick="$.ajax(...generate_pdf)
 <!-- END Method payment and expirient date -->
 </div>
 </body>
