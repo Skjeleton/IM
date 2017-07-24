@@ -212,9 +212,7 @@
             $this->load->model("Invoice_model");
             $data["fromController"] = $this->Invoice_model->get($invoiceId);
             
-            $html = $this->load->view("welcome_message", $data, true);
-           // $html = htmlspecialchars($html);
-           // $this->load->view("var_dump", array($html));
+            $html = $this->load->view("Site/invoice_pdf_show", $data, true);
             
             //this the the PDF filename that user will get to download
             $pdfFilePath = "/home/mpdf/faktura.pdf";
@@ -223,7 +221,7 @@
             $this->load->library('m_pdf');
             
             //generate the PDF from the given html
-            $this->m_pdf->pdf->WriteHTML("<html>Hello</html>");
+            $this->m_pdf->pdf->WriteHTML($html, 0);
             
             //download it.
             $this->m_pdf->pdf->Output();
