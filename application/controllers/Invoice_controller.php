@@ -213,7 +213,7 @@
             $data["fromController"] = $this->Invoice_model->get($invoiceId);
             
             $html = $this->load->view("Site/invoice_pdf_show", $data, true);
-            $html = $this->load->view("welcome_message", $data, true);
+            //$html = $this->load->view("welcome_message", $data, true);
 
             
             //$this->load->view("var_dump", array($html));
