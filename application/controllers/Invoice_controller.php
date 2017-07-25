@@ -23,7 +23,7 @@
         }
         
         private function count_vatValue($count, $netValue, $vat = 0.23){
-            return $this->count_netValue($count, $netValue) * $vat;
+            return floor(($this->count_netValue($count, $netValue) * $vat) + 0.005);
         }
         
         private function count_grossValue($count, $netValue){
@@ -56,7 +56,8 @@
                 __DB_INVOICES_DATE__,
                 __DB_INVOICES_CUSTOMER__,
                 __DB_INVOICES_PAYMENTDEADLINE__,
-                __DB_INVOICES_PAYMENTMETHOD__
+                __DB_INVOICES_PAYMENTMETHOD__,
+                __DB_INVOICES_OTHERS__
             );
             
             $data = array();

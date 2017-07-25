@@ -45,7 +45,7 @@ function addTableInputId(){
 		$(this).find("input:hidden").attr("name", "tData_"+indexi+"_id");
 	});
 	return true;
-	return false;
+	//return false;
 }
 
 $(document).ready(function(){
