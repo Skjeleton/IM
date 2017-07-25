@@ -23,7 +23,8 @@
 
                 $data= array(
                     'name' => __DB_CUSTOMERS_COUNTRY__,
-                    'class' => 'AdresStyle'
+                    'class' => 'AdresStyle',
+                    'value' => 'Polska'
                 );
                 echo form_label("Państwo Miasto");
                 echo form_input($data);

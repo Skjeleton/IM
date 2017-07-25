@@ -14,7 +14,7 @@
 		 <div class="col-md-4"></div>
 		 <div class="col-md-4">
         	<?php
-            	echo form_open("invoice_controller/invoice_add");
+            	echo form_open("invoice_controller/invoice_add", array("id" => "mainForm"));
             	
             	$title = __DB_INVOICES_INVOICENUMBER__;
             	echo form_label("Faktura VAT nr.", $title)."</br>";
@@ -48,9 +48,12 @@
             	echo form_label("Klient");
             	echo form_dropdown($data, $fromController[__DB_CUSTOMERS__]);
             	
-            	$title = __DB_INVOICES_PAYMENTMETHOD__;
             	echo form_label("Forma płatności", $title)."</br>";
-            	echo form_input($title)."</br>";
+            	$data = array(
+            	    "name"=> __DB_INVOICES_PAYMENTMETHOD__,
+            	    "value" => "przelew"  
+            	);
+            	echo form_input($data)."</br>";
             	
             	$data = array(
             	    'title' => __DB_INVOICES_OTHERS__,
