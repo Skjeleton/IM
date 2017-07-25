@@ -20,11 +20,12 @@ function addCells(rowNo){
 	
 	var content = "";
 	for( i = 0; i < 4; i++){
-		content = "<input type='text' name='tData_"+rowNo+"_"+i+"' />";
+		content = "<input type='text' />";
 		toAppend += addCell(content);
 	}
 	toAppend += addCell("");
-	toAppend += addCell("<button type='button' id='button"+index+"'>-</button>");
+	toAppend += addCell("<button type='button'>-</button>");
+	toAppend += "<input type='hidden'/>";
 	return toAppend;
 }
 
@@ -33,21 +34,27 @@ function addTransaction(){
 	
 	toAppend = addRow(toAppend);
 	append(toAppend);
-	$("#button" + index).click(function(){
-		removeTransaction(index);
-	});
-	index++;
 }
 
-function removeTransaction(rowNo = 0){
-	if(rowNo == 0)
-		$("#tContainer tr:nth-child("+(countRows())+")").remove();
-	else
-		$("#row"+rowNo).remove();
+function addTableInputId(){
+	$("#tContainer tr").each(function(indexi){
+		$(this).find("input").each(function(indexj){
+			//alert();
+			$(this).attr("name", "tData_"+indexi+"_"+indexj);
+		});
+		$(this).find("input:hidden").attr("name", "tData_"+indexi+"_id");
+	});
+	return true;
+	return false;
 }
 
 $(document).ready(function(){
 	index = countRows();
 	$("#addInvoice").click(addTransaction);
-	$("#removeInvoice").click(removeTransaction);
+	
+	$("#tContainer").on("click", "button", function(){
+		$(this).parent().parent().remove();
+	});
+	
+	$("#mainForm").submit(addTableInputId);
 });

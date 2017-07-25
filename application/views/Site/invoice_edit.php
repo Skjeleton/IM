@@ -13,7 +13,7 @@
 		 <div class="col-md-4"></div>
 		 <div class="col-md-4">
         	<?php
-            	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES_INVOICEID__]);
+            	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES_INVOICEID__], array("id" => "mainForm"));
             	
             	echo form_hidden(__DB_INVOICES_INVOICEID__, $fromController[__DB_INVOICES_INVOICEID__]);
             	
@@ -76,7 +76,7 @@
             		          echo "<input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
             		      }
             		      echo "<td></td>";
-                          echo "<td><button type='button' id='button".$key."'>-</button></td>"; 
+                          echo "<td><button type='button' id='button".$key."' onclick='removeTransaction(".$key.")'>-</button></td>"; 
             		      echo form_hidden("tData_".$key."_id", $transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
             		      
             		      echo "</tr>";
