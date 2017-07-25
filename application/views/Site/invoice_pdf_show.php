@@ -9,15 +9,9 @@
 <body>
 <div class="mainContainer">
 	<div class="row">
-<<<<<<< HEAD
 		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><img alt="Image_failt_to_look_or_download" src="<?php echo base_url(); ?>css/abastra.jpg" width="120%" height="200px" left="0px"></img></div>
 		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
     		 <div class="panel-group prawo">
-=======
-		<div class="col-lg-6"><img alt="Image_failt_to_look_or_download" src="<?php echo base_url(); ?>css/abastra.jpg" width="120%" height="200px" left="0px"></img></div>
-		<div class="col-lg-6">
-    		 <div class="panel-group">
->>>>>>> branch 'master' of https://github.com/Skjeleton/IM
              	<div class="panel panel-default">
              		<div class="panel-heading"><h4>FAKTURA VAT</h4></div>
              			<div class="panel-body">
@@ -31,7 +25,7 @@
 
 <!-- 	Start Buyer -->
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 			<div class="panel-group">
              	<div class="panel panel-default">
              		<div class="panel-heading"><H4>NABYWCA:</H4></div>
@@ -48,7 +42,7 @@
 		</div>
 <!-- 		End Buyer -->
 <!-- 	Start Seller -->
-		<div class="col-lg-6">
+		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 			<div class="panel-group">
              	<div class="panel panel-default">
              		<div class="panel-heading"><H4>SPRZEDAWCA:</H4></div>
@@ -71,15 +65,15 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th><h4>L.p</h4></th>
-                <th><h4>Nazwa</h4></th>
-                <th><h4>J.M</h4></th>
-                <th><h4>Ilość</h4></th>
-                <th><h4>Cena jed. netto</h4></th>
-                <th><h4>Wartość netto</h4></th>
-                <th><h4>VAT%</h4></th>
-                <th><h4>Wartość VAT</h4></th>
-                <th><h4>Wartość brutto</h4></th>
+                <th><h5>L.p</h5></th>
+                <th><h5>Nazwa</h5></th>
+                <th><h5>J.M</h5></th>
+                <th><h5>Ilość</h5></th>
+                <th><h5>Cena jed. netto</h5></th>
+                <th><h5>Wartość netto</h5></th>
+                <th><h5>VAT%</h5></th>
+                <th><h5>Wartość VAT</h5></th>
+                <th><h5>Wartość brutto</h5></th>
             </tr>
         </thead>
         <tbody>
@@ -105,42 +99,12 @@
 
 <!-- Panel info start -->
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+		</div>
+       	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 prawo">
             <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h4>Konto</h4>
-                </div>
-                    <div class="panel-body">
-                        <div class="row">
-                             <div class="col-md-6">
-								<table class="table table-bordered tableDuing">
-									<tr>
-										<td><strong>Nazwa banku</strong></td><td>Alior Bank S.A.</td>
-									</tr>
-									<tr>
-										<td><strong>Adres</strong></td><td>Al.Jerozolimskie 94, 00-807 Warszawa</td>
-									</tr>
-									<tr>
-										<td><strong>BIC/SWIFT CODE</strong></td><td>ALBPPLPW</br>
-										ABASTRA sp. z o.o.</td>
-									</tr>
-										<td><strong>Numer rachunku</strong></td><td>98 2490 0005 0000 4520 3585 2559</td>
-									<tr>
-									</tr>
-										<td><strong>IBAN</strong></td><td>PL98249000050000452035852559</td>
-									</tr>
-								
-								</table>
-                            </div>
-                            <div class="col-md-5">
-                            </div>
-                    	</div> 
-                	</div>
-            </div>
-        </div>
-        	<div class="col-xs-6">
-            <div class="panel panel-info">
-            	<table class="table">
+            	<table class="table table-bordered">
             		<tr>
             			<td><strong>Razem</strong></td><td><?php echo $fromController[__DB_INVOICES_NETVALUE__]?></td><td>23%</td><td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></td>
             		</tr>
@@ -148,30 +112,47 @@
             			<td><strong>Z czego</strong></td><td><?php echo $fromController[__DB_INVOICES_NETVALUE__]?></td><td>23%</td><td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></td>
             		</tr>
             	</table>
-                <div class="panel-heading">
-                    <div class="row">
-                    	<div class="col-xs-8"><h4 class="text-center"><strong>Do zaplaty</strong></h4></div>
-                    	<div class="col-xs-4"><h4><strong><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></strong></h4></div>
-                    </div>
+            <div class="panel-heading">
+                <div class="row">
+                	<div class="col-xs-4"><strong>Do zaplaty</strong></div>
+                	<div class="col-xs-4"><strong><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></strong></div>
                 </div>
+            </div>
             </div>
     	</div>
     </div>
-<!-- Panel info end -->
 
-<!-- Total -->
-    <div class="row">
-        
-    </div>
-    
-<!-- END Total -->
-
+<div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+				<table class="table table-bordered tableDuing">
+					<tr>
+						<td><strong>Nazwa banku</strong></td> 
+						<td>Alior Bank S.A.</td>
+					</tr>
+					<tr>
+						<td><strong>Adres</strong></td> 
+						<td>Al.Jerozolimskie 94, 00-807 Warszawa</td>
+					</tr>
+					<tr>
+						<td><strong>BIC/SWIFT CODE</strong></td> 
+						<td>ALBPPLPW</br>
+						ABASTRA sp. z o.o.</td>
+					</tr>
+					<tr>
+						<td><strong>Numer rachunku</strong></td> 
+						<td>98 2490 0005 0000 4520 3585 2559</td>
+					</tr>
+					<tr>
+						<td><strong>IBAN</strong></td> 
+						<td>PL98249000050000452035852559</td>
+					</tr>
+				</table>
+	</div>
+</div>
 
 <!-- Method payment and expirient date -->
     <div class="row">
-        <div class="col-xs-4">
-            <div class="panel panel-info">
-            	<div class="panel-body">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             		<table class="table table-bordered">
             			<tr>
             				<thead>
@@ -186,8 +167,6 @@
                 				 </tr>
                 			</tbody>
             		</table>
-            	</div>
-            </div>
         </div>
 	</div>
 <!-- END Method payment and expirient date -->
