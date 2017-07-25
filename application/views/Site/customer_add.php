@@ -15,7 +15,7 @@
         <div class="col-md-4"></div>
 		<div class="col-md-4">
         	<?php
-                echo form_open("invoice_controller/customer_add");
+                echo form_open("customer_controller/customer_add");
                 
                 $title = __DB_CUSTOMERS_NAME__;
                 echo form_label("Nazwa", $title);

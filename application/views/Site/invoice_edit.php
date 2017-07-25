@@ -13,13 +13,13 @@
 		 <div class="col-md-4"></div>
 		 <div class="col-md-4">
         	<?php
-            	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES_INVOICEID__]);
+            	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES_INVOICEID__], array("id" => "mainForm"));
             	
             	echo form_hidden(__DB_INVOICES_INVOICEID__, $fromController[__DB_INVOICES_INVOICEID__]);
             	
             	$title = __DB_INVOICES_INVOICENUMBER__;
             	echo form_label("Faktura VAT nr.", $title)."</br>";
-            	echo form_input($title, $fromController[$title])."</br>";
+            	echo form_input($title, $fromController[__DB_INVOICES_INVOICENUMBER__])."</br>";
             	
             	$data = array(
             	    'name' => __DB_INVOICES_DATE__,
@@ -66,7 +66,7 @@
             	<tbody id="tContainer">
             		<?php
             		  foreach($fromController[__DB_TRANSACTIONS__] as $key => $transaction){
-            		      echo "<tr id='tRow_".$key."'>";
+            		      echo "<tr id='row".$key."'>";
             		      for($i = 0; $i < 4 ; $i++ ){
             		          $i == 0 AND $title = __DB_TRANSACTIONS_NAME__;
             		          $i == 1 AND $title = __DB_TRANSACTIONS_MEASUREUNIT__;
@@ -75,10 +75,10 @@
             		          echo "<td>";
             		          echo "<input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
             		      }
+            		      echo "<td></td>";
+                          echo "<td><button type='button' id='button".$key."' onclick='removeTransaction(".$key.")'>-</button></td>"; 
             		      echo form_hidden("tData_".$key."_id", $transaction[__DB_TRANSACTIONS_TRANSACTIONID__]);
-            		      for($i = 0; $i < 4 ; $i++){
-            		          echo "<td></td>";
-            		      }
+            		      
             		      echo "</tr>";
             		  }
             		?>

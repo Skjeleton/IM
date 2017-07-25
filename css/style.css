@@ -8,11 +8,8 @@
 	display: inline;
 }
 .abastra{
-	background: url("abastra1.png");
-	padding-right: 35px;
-	height: 230px;
-
-	width: 50%;
+	height: 200px;
+	width: 120%;
 }
 label{
     width: 100%;
@@ -44,7 +41,7 @@ Dropdown{
 }
 #input2{
 	width: 100%;
-	border: 1px solid black
+	border-style: 1px solid black;
 }
 #addInvoice,#removeInvoice{
 	width: 100%;
@@ -52,6 +49,7 @@ Dropdown{
 .mainContainer{
 	margin: 0 auto;
 	width: 1000px;
+	border: 1px solid black
 }
 .Numbers{
 	width: 7%;
@@ -86,4 +84,8 @@ thead{
 	width: 100%;
 	height: 35px;
 	text-align: center;
+}
+.tableDuing{
+	width: 100%;
+	heigth: 50%;
 }

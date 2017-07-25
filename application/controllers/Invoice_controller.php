@@ -47,32 +47,7 @@
         //--COUNTING METHODS
         
         //INPUTFETCH
-        private function fetchInput_customer_edit(){
-            $columns = array(
-                __DB_CUSTOMERS_NAME__,
-                __DB_CUSTOMERS_COUNTRY__,
-                __DB_CUSTOMERS_CITY__,
-                __DB_CUSTOMERS_POSTALCODE__,
-                __DB_CUSTOMERS_STREET__,
-                __DB_CUSTOMERS_HOUSENUMBER__,
-                __DB_CUSTOMERS_APARTMENTNUMBER__,
-                __DB_CUSTOMERS_NIP__,
-                __DB_CUSTOMERS_OTHERS__
-            );
-            
-            $data = array();
-            foreach($columns as $column){
-                $data[$column] = $this->input->post($column);
-            }
-            
-            if($data[__DB_CUSTOMERS_NIP__] == NULL OR $data[__DB_CUSTOMERS_NIP__] == 0)
-                $data[__DB_CUSTOMERS_NIP__] = NULL;
-            
-            if($data[__DB_CUSTOMERS_OTHERS__] == NULL OR $data[__DB_CUSTOMERS_OTHERS__] == 0)
-                $data[__DB_CUSTOMERS_OTHERS__] = NULL;
-                    
-            return $data;
-        }
+        
         
         private function fetchInput_invoice_add(){
             $columns = array(
@@ -112,27 +87,7 @@
         //--INPUTFETCH
         
         //DATACOLLECTING
-        private function getData_customer_show_view(){
-            $toReturn = array();
-            
-            $this->load->model("Customer_model");
-            
-            $customers = $this->Customer_model->get();
-            foreach($customers as $customer){
-                $row = array(
-                    __DB_CUSTOMERS_NAME__       => $customer[__DB_CUSTOMERS_NAME__],
-                    __DB_CUSTOMERS_CUSTOMERID__ => $customer[__DB_CUSTOMERS_CUSTOMERID__],
-                    "Address"                   => $this->fetch_customer_address($customer)
-                );
-                array_push($toReturn, $row);
-            }
-            return $toReturn;
-        }
         
-        private function getData_customer_edit_view($id){
-            $this->load->model("Customer_model");
-            return  $this->Customer_model->get($id);
-        }
         
         private function getData_invoice_show_view(){
             $this->load->model("Invoice_model");
@@ -157,48 +112,6 @@
             $this->load->helper("url");
         }
         
-        public function customer_show_view(){
-            $data["fromController"] = $this->getData_customer_show_view();
-            
-            $this->load->view("Site/header");
-            $this->load->view("Site/customer_view", $data);
-        }
-
-        public function customer_edit_view(){
-            $this->load->helper("form");
-            $customerId = $this->uri->segment(3);
-            
-            $data = array();
-            $data["fromController"] = $this->getData_customer_edit_view($customerId);
-            
-            $this->load->view("Site/header");
-            $this->load->view("Site/customer_edit", $data);
-        }
-        
-        public function customer_edit(){
-            $this->load->model("Customer_model");
-            
-            $customerId = $this->input->post(__DB_CUSTOMERS_CUSTOMERID__);
-            $data = $this->fetchInput_customer_edit();
-            $this->Customer_model->update($data, $customerId);
-            
-            redirect("invoice_controller/customer_show_view");
-        }
-        
-        public function customer_add_view(){
-            $this->load->helper("form");
-            $this->load->view("Site/header");
-            $this->load->view("Site/customer_add");
-        }
- 
-        public function customer_add(){
-            $this->load->model("Customer_model");
-            $data = $this->fetchInput_customer_edit();
-            $this->Customer_model->add($data);
-            
-            redirect("invoice_controller/customer_show_view");
-        }
-        
         public function invoice_show_view(){
             $data = array();
             $data["fromController"] = $this->getData_invoice_show_view();
@@ -206,7 +119,6 @@
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_view", $data);
         }
-        
         
         public function invoice_add_view(){
             $data = array();
@@ -296,38 +208,47 @@
             redirect("invoice_controller/invoice_show_view");/**/
         }
         
-        public function invoice_pdf_view(){
-            $this->load->helper("form");
-            $data = array();
-            $data["fromController"] = array();
-            
-            $invoiceId = $this->uri->segment(3);
+        public function invoice_pdf_download($invoiceId){
             $this->load->model("Invoice_model");
             $data["fromController"] = $this->Invoice_model->get($invoiceId);
             
-            //load the view and saved it into $html variable
-            $html=$this->load->view('Site/invoice_pdf_show', $data, true);
+            $html = $this->load->view("Site/invoice_pdf_show", $data, true);
+            $html = $this->load->view("welcome_message", $data, true);
+
             
+            //$this->load->view("var_dump", array($html));
             //this the the PDF filename that user will get to download
-            $pdfFilePath = "output_pdf_name.pdf";
+            $pdfFilePath = "/home/mpdf/faktura.pdf";
             
             //load mPDF library
             $this->load->library('m_pdf');
             
             //generate the PDF from the given html
-            $this->m_pdf->pdf->WriteHTML($html);
+            $this->m_pdf->pdf->WriteHTML($html, 0);
             
             //download it.
-            $this->m_pdf->pdf->Output($pdfFilePath, "D"); 
+            $this->m_pdf->pdf->Output();
+        }
+        
+        public function invoice_pdf_view($invoiceId){
+            $this->load->helper("form");
+            $data = array();
+            $data["fromController"] = array();
+            
+            $this->load->model("Invoice_model");
+            $data["fromController"] = $this->Invoice_model->get($invoiceId);
+            
+            //load the view and saved it into $html variable
+            //$this->invoice_pdf_download();
             
             
             $this->load->view("Site/header");
             $this->load->view("Site/invoice_pdf_show", $data);
-            $this->load->view("var_dump", $data);
+            $this->load->view("Site/invoice_pdf_download_footer", $data["fromController"][__DB_INVOICES_INVOICEID__] = $invoiceId);
         }
         
         public function index(){
-            $this->customer_show_view();
+            $this->invoice_show_view();
         }
         
         

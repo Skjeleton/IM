@@ -25,7 +25,7 @@
                 
                 echo "<td>".$customer[__DB_CUSTOMERS_NAME__]."</td>";
                 echo "<td>".$customer["Address"]."</td>";
-                echo "<td><a class='button' href='".base_url()."index.php/invoice_controller/customer_edit_view/".$customer[__DB_CUSTOMERS_CUSTOMERID__]."'>Edytuj</a>";
+                echo "<td><a class='button' href='".base_url()."index.php/customer_controller/customer_edit_view/".$customer[__DB_CUSTOMERS_CUSTOMERID__]."'>Edytuj</a>";
                 
                 echo "</tr>";
             

@@ -8,20 +8,20 @@
 <body>
 <div class="mainContainer">
 	<div class="row">
-		<div class="col-lg-6"><img src="<?php echo base_url(); ?>css/abastra.jpg>"></img></div>
+		<div class="col-lg-6"><img alt="Image_failt_to_look_or_download" src="<?php echo base_url(); ?>css/abastra.jpg" width="120%" height="200px" left="0px"></img></div>
 		<div class="col-lg-6">
     		 <div class="panel-group">
              	<div class="panel panel-default">
              		<div class="panel-heading"><h4>FAKTURA VAT</h4></div>
              		<div class="panel-body">
-                 		<h4>Faktura VAT nr</h4> <div class="text-right"><?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></div>
-                 		<h4>Data</h4> <div class="text-right"><?php echo $fromController[__DB_INVOICES_DATE__]; ?>
-                 		</div>
+                 		<h4>Faktura VAT nr <div class="text-right"><?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></div></h4>
+                 		<h4>Data <div class="text-right"><?php echo $fromController[__DB_INVOICES_DATE__]; ?> </div></h4>
+                 	</div>
     				</div>
-				</div>
 			</div>
 		</div>
-	</div>
+		</div>
+
 <!-- 	Start Buyer -->
 	<div class="row">
 		<div class="col-lg-6">
@@ -31,7 +31,7 @@
              		<div class="panel-body">
              		<h4><strong><?php echo $fromController[__DB_CUSTOMERS_NAME__]; ?></strong></h4> 
              		<h4><?php echo $fromController[__DB_CUSTOMERS_STREET__]; ?></h4>
-             		<h4><?php echo $fromController[__DB_CUSTOMERS_POSTALCODE__]; echo $fromController[__DB_CUSTOMERS_CITY__]; ?></h4> 
+             		<h4><?php echo $fromController[__DB_CUSTOMERS_POSTALCODE__];?> <?php echo $fromController[__DB_CUSTOMERS_CITY__]; ?></h4> 
              		<h4><?php echo $fromController[__DB_CUSTOMERS_COUNTRY__]; ?></h4></br>
              		<h4><strong>NIP <?php echo $fromController[__DB_CUSTOMERS_NIP__]; ?></strong></h4>
 <!--              			Content -->
@@ -84,10 +84,10 @@
                     echo "<td>".$transaction[__DB_TRANSACTIONS_MEASUREUNIT__]."</td>";
                     echo "<td>".$transaction[__DB_TRANSACTIONS_COUNT__]."</td>";
                     echo "<td>".$transaction[__DB_TRANSACTIONS_NETUNITPRICE__]."</td>";
-                    echo "<td>".$transaction["netValue"]."</td>";
-                    echo "<td>".$transaction["vat"]."</td>";
-                    echo "<td>".$transaction["vatValue"]."</td>";
-                    echo "<td>".$transaction["grossValue"]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_NETVALUE__]."</td>";
+                    echo "<td> 23%</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_VATVALUE__]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_GROSSVALUE__]."</td>";
      			echo "</tr>";
                 }
  			?>
@@ -98,7 +98,7 @@
 
 <!-- Panel info start -->
     <div class="row">
-        <div class="col-xs-8">
+        <div class="col-xs-6">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4>Konto</h4>
@@ -106,26 +106,26 @@
                     <div class="panel-body">
                         <div class="row">
                              <div class="col-md-6">
-								<table>
+								<table class="table table-bordered tableDuing">
 									<tr>
-										<td><strong>Nazwa banku</strong></td>
-										<td><strong>Adres</strong></td>
-										<td><strong>BIC/SWIFT CODE</strong></td>
-										<td></td>
-										<td><strong>Numer rachunku</strong></td>
-										<td><strong>IBAN</strong></td>
+										<td><strong>Nazwa banku</strong></td><td>Alior Bank S.A.</td>
 									</tr>
 									<tr>
-										<td>Alior Bank S.A.</td>
-										<td>Al.Jerozolimskie 94, 00-807 Warszawa</td>
-										<td>ALBPPLPW</td>
-										<td>ABASTRA sp. z o.o.</td>
-										<td>98 2490 0005 0000 4520 3585 2559</td>
-										<td>PL98249000050000452035852559</td>
+										<td><strong>Adres</strong></td><td>Al.Jerozolimskie 94, 00-807 Warszawa</td>
 									</tr>
+									<tr>
+										<td><strong>BIC/SWIFT CODE</strong></td><td>ALBPPLPW</br>
+										ABASTRA sp. z o.o.</td>
+									</tr>
+										<td><strong>Numer rachunku</strong></td><td>98 2490 0005 0000 4520 3585 2559</td>
+									<tr>
+									</tr>
+										<td><strong>IBAN</strong></td><td>PL98249000050000452035852559</td>
+									</tr>
+								
 								</table>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                             </div>
                     	</div> 
                 	</div>
@@ -133,19 +133,18 @@
         </div>
         	<div class="col-xs-6">
             <div class="panel panel-info">
-                <div class="panel-body">
-                	<div class="row">
-                    	<div class="col-xs-3"><h4>Razem</h4></div>
-                    	<div class="col-xs-2"></div>
-                    	<div class="col-xs-2"></div>
-                    	<div class="col-xs-2"></div>
-                    	<div class="col-xs-3"></div>
-                	</div>
-                </div>
+            	<table class="table">
+            		<tr>
+            			<td><strong>Razem</strong></td><td><?php echo $fromController[__DB_INVOICES_NETVALUE__]?></td><td>23%</td><td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></td>
+            		</tr>
+            		<tr>
+            			<td><strong>Z czego</strong></td><td><?php echo $fromController[__DB_INVOICES_NETVALUE__]?></td><td>23%</td><td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></td>
+            		</tr>
+            	</table>
                 <div class="panel-heading">
                     <div class="row">
                     	<div class="col-xs-8"><h4 class="text-center"><strong>Do zaplaty</strong></h4></div>
-                    	<div class="col-xs-4">CENA</div>
+                    	<div class="col-xs-4"><h4><strong><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></strong></h4></div>
                     </div>
                 </div>
             </div>

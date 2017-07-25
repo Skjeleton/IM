@@ -1,3 +1,5 @@
+var index = 0;
+
 function countRows(){
 	return $("#tContainer tr").length;
 }
@@ -6,7 +8,7 @@ function append(content){
 }
 
 function addRow(content){
-	return "<tr>" + content + "</tr>";
+	return "<tr id='row"+index+"' >" + content + "</tr>";
 }
 
 function addCell(content = ""){
@@ -18,13 +20,12 @@ function addCells(rowNo){
 	
 	var content = "";
 	for( i = 0; i < 4; i++){
-		content = "<input type='text' name='tData_"+rowNo+"_"+i+"' />";
+		content = "<input type='text' />";
 		toAppend += addCell(content);
 	}
-	for( i = 0; i < 2; i++){
-		content = "";
-		toAppend += addCell(content);
-	}
+	toAppend += addCell("");
+	toAppend += addCell("<button type='button'>-</button>");
+	toAppend += "<input type='hidden'/>";
 	return toAppend;
 }
 
@@ -35,12 +36,25 @@ function addTransaction(){
 	append(toAppend);
 }
 
-function removeTransaction(){
-	$("#tContainer tr:nth-child("+(countRows())+")").remove();
-	alert(t);
+function addTableInputId(){
+	$("#tContainer tr").each(function(indexi){
+		$(this).find("input").each(function(indexj){
+			//alert();
+			$(this).attr("name", "tData_"+indexi+"_"+indexj);
+		});
+		$(this).find("input:hidden").attr("name", "tData_"+indexi+"_id");
+	});
+	return true;
+	return false;
 }
 
 $(document).ready(function(){
+	index = countRows();
 	$("#addInvoice").click(addTransaction);
-	$("#removeInvoice").click(removeTransaction);
+	
+	$("#tContainer").on("click", "button", function(){
+		$(this).parent().parent().remove();
+	});
+	
+	$("#mainForm").submit(addTableInputId);
 });

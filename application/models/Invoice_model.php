@@ -31,6 +31,9 @@
             $this->db->from(__DB_INVOICES__);
             $this->db->join(__DB_CUSTOMERS__, __DB_INVOICES__.".".__DB_INVOICES_CUSTOMER__." = ".__DB_CUSTOMERS__.".".__DB_CUSTOMERS_CUSTOMERID__);
             
+            if($id !== null)
+                $this->db->where(array(__DB_INVOICES_INVOICEID__ => $id));
+            
             $toReturn = $this->db->get()->result_array();
             if($id !== null){
                 $toReturn = $toReturn[0];
