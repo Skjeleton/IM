@@ -5,7 +5,7 @@
 	color: FF5500;
 }
 .panel{
-	display: inline;
+	display: inline-block;
 }
 .abastra{
 	height: 200px;
@@ -48,8 +48,7 @@ Dropdown{
 }
 .mainContainer{
 	margin: 0 auto;
-	width: 1000px;
-	border: 1px solid black
+	width: 100%
 }
 .Numbers{
 	width: 7%;
@@ -81,11 +80,10 @@ thead{
 	width: 25%;
 }
 .dropDownCustomers{
-	width: 100%;
+	width: 80%;
 	height: 35px;
 	text-align: center;
 }
 .tableDuing{
 	width: 100%;
-	heigth: 50%;
 }
