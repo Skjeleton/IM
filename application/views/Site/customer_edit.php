@@ -15,7 +15,9 @@
                 echo form_open("customer_controller/customer_edit");
                 echo form_hidden(__DB_CUSTOMERS_CUSTOMERID__, $fromController[__DB_CUSTOMERS_CUSTOMERID__]);
                 
-                $title = __DB_CUSTOMERS_NAME__;
+                require "parts/customer_form.php";
+                
+               /* $title = __DB_CUSTOMERS_NAME__;
                 echo form_label("Nazwa", $title)."</br>";
                 echo form_input($title, $fromController[$title])."</br>";
                 
@@ -68,7 +70,7 @@
                     'class' => 'TextArea'
                 );
                 echo form_label("Inne")."</br> ";
-                echo form_textarea($data,$fromController[__DB_CUSTOMERS_OTHERS__])."</br>";
+                echo form_textarea($data,$fromController[__DB_CUSTOMERS_OTHERS__])."</br>";*/
                 
                 echo form_submit("Submit", "Dokonaj zmian")."</br>";
                 echo form_close();

@@ -16,7 +16,7 @@
             	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES_INVOICEID__], array("id" => "mainForm"));
             	echo form_hidden(__DB_INVOICES_INVOICEID__, $fromController[__DB_INVOICES_INVOICEID__]);
             	
-            	require "invoice_form.php";
+            	require "parts/invoice_form.php";
             ?>
             	
             <table border="1" width="100%">

@@ -16,7 +16,7 @@
         	<?php
             	echo form_open("invoice_controller/invoice_add", array("id" => "mainForm"));
             	
-            	require "invoice_form.php";
+            	require "parts/invoice_form.php";
             ?>
             	
             <table border="1px" width="100%">

@@ -7,9 +7,6 @@
     	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.css">
 	</head>
-
-  
-
     <body>
         <div class="row margines-top panel">
         <div class="col-md-4"></div>
@@ -17,6 +14,9 @@
         	<?php
                 echo form_open("customer_controller/customer_add");
                 
+                require "parts/customer_form.php";
+                
+                /*
                 $title = __DB_CUSTOMERS_NAME__;
                 echo form_label("Nazwa", $title);
                 echo form_input($title);
@@ -76,6 +76,7 @@
                 );
                 echo form_label("Inne")."</br>";
                 echo form_textarea($data);
+                */
                 
                 echo form_submit("Submit", "Dodaj!");
                 echo form_close();
