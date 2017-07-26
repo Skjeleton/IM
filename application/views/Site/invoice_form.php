@@ -33,8 +33,10 @@
     );
     echo form_label("Klient")."</br>";
     echo form_dropdown($data, $fromController[__DB_CUSTOMERS__], $fromController[__DB_INVOICES_CUSTOMER__])."</br>";
+    echo form_button(array("onclick" => "addCustomer()"), "+");
     
-    
+    echo form_fieldset("Customer Adding", array("id" => "customerAdd"));
+    echo form_fieldset_close();
     
     $title = __DB_INVOICES_PAYMENTMETHOD__;
     echo form_label("Forma płatności", $title)."</br>";
