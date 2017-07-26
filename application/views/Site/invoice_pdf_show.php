@@ -16,7 +16,7 @@
              		<div class="panel-heading"><h4>FAKTURA VAT</h4></div>
              			<div class="panel-body">
                      		<h4>Faktura VAT nr <?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></h4>
-                     		<h4>Data <div class="text-right"><?php echo $fromController[__DB_INVOICES_DATE__]; ?> </div></h4>
+                     		<h4>Data <?php echo $fromController[__DB_INVOICES_DATE__]; ?> </h4>
                  		</div>
     				</div>
 			</div>
@@ -152,7 +152,7 @@
 
 <!-- Method payment and expirient date -->
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
             		<table class="table table-bordered">
             			<tr>
             				<thead>
