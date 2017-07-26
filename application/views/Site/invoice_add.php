@@ -64,6 +64,26 @@
 				setDeadline();
 			});
 		 </script>
-		
+		 <script>
+			function removeCustomer(){
+				alert("rm");
+				$("#customerAdd").addClass("HiddenElement");
+				$("#bCustomer").html("Dodaj");
+				$("#bCustomer").off("click");
+				$("#bCustomer").click(addCustomer);
+			}
+		 
+			function addCustomer(){
+				alert("add");
+				$("#customerAdd").removeClass("HiddenElement");
+				$("#bCustomer").html("Ukryj");
+				$("#bCustomer").off("click");
+				$("#bCustomer").click(removeCustomer);
+			}
+
+			$(document).ready(function(){
+				$("#bCustomer").click(addCustomer);
+			});
+		 </script>
 	</body>
 </html>

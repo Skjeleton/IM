@@ -13,17 +13,25 @@
 	<div class="row">
 		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><img alt="Image_failt_to_look_or_download" src="<?php echo base_url(); ?>css/abastra.jpg" width="120%" height="200px" left="0px"></img></div>
 		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-    		 <div class="panel-group prawo">
+    		 <div class="panel-group">
              	<div class="panel panel-default">
              		<div class="panel-heading"><h4>FAKTURA VAT</h4></div>
+<<<<<<< HEAD
              			<div class="panel-body">
                      		<h4>Faktura VAT nr		<?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></h4>
                      		<h4>Data		<?php echo $fromController[__DB_INVOICES_DATE__]; ?> </h4>
                  		</div>
     				</div>
+=======
+         			<div class="panel-body">
+                 		<h4>Faktura VAT nr <?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></h4>
+                 		<h4>Data <?php echo $fromController[__DB_INVOICES_DATE__]; ?> </h4>
+             		</div>
+				</div>
+>>>>>>> branch 'master' of https://github.com/Skjeleton/IM
 			</div>
 		</div>
-		</div>
+	</div>
 
 <!-- 	Start Buyer -->
 	<div class="row">

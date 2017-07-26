@@ -75,5 +75,26 @@
 		 		window.location.replace('<?php echo base_url()."index.php/invoice_controller/invoice_pdf_view/".$fromController[__DB_INVOICES_INVOICEID__]; ?>');
 		 	}
 		 </script>
+		 <script>
+			function removeCustomer(){
+				alert("rm");
+				$("#customerAdd").addClass("HiddenElement");
+				$("#bCustomer").html("Dodaj");
+				$("#bCustomer").off("click");
+				$("#bCustomer").click(addCustomer);
+			}
+		 
+			function addCustomer(){
+				alert("add");
+				$("#customerAdd").removeClass("HiddenElement");
+				$("#bCustomer").html("Ukryj");
+				$("#bCustomer").off("click");
+				$("#bCustomer").click(removeCustomer);
+			}
+
+			$(document).ready(function(){
+				$("#bCustomer").click(addCustomer);
+			});
+		 </script>
 	</body>
 </html>
