@@ -93,3 +93,6 @@ thead{
 .HiddenElement{
 	display: none;
 }
+fieldset{
+	border: 1px solid black;
+}
