@@ -1,6 +1,8 @@
 <html>
-<head>	
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<head>	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
     	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.css">
         <meta charset="UTF-8">
@@ -15,8 +17,8 @@
              	<div class="panel panel-default">
              		<div class="panel-heading"><h4>FAKTURA VAT</h4></div>
              			<div class="panel-body">
-                     		<h4>Faktura VAT nr <?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></h4>
-                     		<h4>Data <?php echo $fromController[__DB_INVOICES_DATE__]; ?> </h4>
+                     		<h4>Faktura VAT nr		<?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></h4>
+                     		<h4>Data		<?php echo $fromController[__DB_INVOICES_DATE__]; ?> </h4>
                  		</div>
     				</div>
 			</div>
