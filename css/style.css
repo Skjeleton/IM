@@ -90,3 +90,6 @@ thead{
 .prawo{
 	float: right;
 }
+.HiddenElement{
+	display: none;
+}
