@@ -93,6 +93,8 @@ thead{
 .HiddenElement{
 	display: none;
 }
-fieldset{
+
+.field-set{
+	padding: 10px;
 	border: 1px solid black;
 }

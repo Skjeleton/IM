@@ -48,8 +48,9 @@
     echo form_dropdown($data, $fromController[__DB_CUSTOMERS__], $fromController[__DB_INVOICES_CUSTOMER__]);
     
     //Adding own customer
-    echo form_button(array("onclick" => "addCustomer()"), "+");
-    echo form_fieldset("Customer Adding", array("id" => "customerAdd"));
+    echo form_button(array("id" => "bCustomer"), "+");
+    echo form_fieldset("Dodaj klienta", array("id" => "customerAdd", "class" => "HiddenElement field-set"));
+    include "customer_form.php";
     echo form_fieldset_close();
     
     //Echo field containing invoice's payment method  
@@ -61,3 +62,5 @@
     $title = __DB_INVOICES_OTHERS__;
     echo form_label("Inne",$title);
     echo form_textarea($title,$fromController[$title]);
+    
+    

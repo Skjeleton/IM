@@ -24,7 +24,8 @@
                 unset($data[__DB_CUSTOMERS_CUSTOMERID__]);
             
             if($this->db->insert(__DB_CUSTOMERS__, $data))
-                return true;
+                return $this->db->insert_id();
+            return false;
         }
         
         public function remove($id){

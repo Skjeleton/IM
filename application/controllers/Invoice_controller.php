@@ -127,7 +127,7 @@
             
             $answer = $this->getData_invoice_add_view();
             
-            $data["fromController"]["LastNumber"] = $answer["LastNumber"];
+            $data["fromController"][__DB_INVOICES_INVOICENUMBER__] = $answer["LastNumber"];
             unset($answer["LastNumber"]);
             foreach($answer as $customer){
                 $data["fromController"][__DB_CUSTOMERS__][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_customer_address($customer);
@@ -159,10 +159,8 @@
             redirect("invoice_controller/invoice_show_view");
         }
         
-        public function invoice_edit_view(){
+        public function invoice_edit_view($invoiceId){
             $this->load->helper("form");
-            
-            $invoiceId = $this->uri->segment(3);
             
             $this->load->model("Invoice_model");
             $data["fromController"] = $this->Invoice_model->get($invoiceId);
