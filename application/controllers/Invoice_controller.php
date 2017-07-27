@@ -66,6 +66,8 @@
                 $data[__DB_INVOICES__][$column] = $this->input->post($column);
             }
             
+            
+            
             $columns = array(
                 __DB_TRANSACTIONS_NAME__,
                 __DB_TRANSACTIONS_MEASUREUNIT__,
@@ -117,8 +119,10 @@
             $data = array();
             $data["fromController"] = $this->getData_invoice_show_view();
             
-            $this->load->view("Site/header");
+            $this->load->view("Site/parts/header");
+            $this->load->view("Site/parts/navbar");
             $this->load->view("Site/invoice_view", $data);
+            $this->load->view("Site/parts/footer");
         }
         
         public function invoice_add_view(){
@@ -134,8 +138,10 @@
             }
             
             $this->load->helper("form");
-            $this->load->view("Site/header");
+            $this->load->view("Site/parts/header");
+            $this->load->view("Site/parts/navbar");
             $this->load->view("Site/invoice_add", $data);
+            $this->load->view("Site/parts/footer");
         }
         
         
@@ -171,8 +177,10 @@
                 $data["fromController"][__DB_CUSTOMERS__][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_customer_address($customer);
             }
             
-            $this->load->view("Site/header");
+            $this->load->view("Site/parts/header");
+            $this->load->view("Site/parts/navbar");
             $this->load->view("Site/invoice_edit", $data);
+            $this->load->view("Site/parts/footer");
         }
 
         private function updateTransactions($invoiceId, $transactions){
@@ -241,9 +249,11 @@
             //$this->invoice_pdf_download();
             
             
-            $this->load->view("Site/header");
-            $this->load->view("Site/invoice_pdf_show", $data);
+            $this->load->view("Site/parts/header");
+            $this->load->view("Site/parts/navbar");
+            $this->load->view("Site/invoice_pdf_template", $data);
             $this->load->view("Site/invoice_pdf_download_footer", $data["fromController"][__DB_INVOICES_INVOICEID__] = $invoiceId);
+            $this->load->view("Site/parts/footer");
         }
         
         public function index(){

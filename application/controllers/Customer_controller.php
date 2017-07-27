@@ -70,10 +70,12 @@
         public function customer_show_view(){
             $data["fromController"] = $this->getData_customer_show_view();
             
-            $this->load->view("Site/header");
+            $this->load->view("Site/parts/header");
+            $this->load->view("Site/parts/navbar");
             $this->load->view("Site/customer_view", $data);
+            $this->load->view("Site/parts/footer");
         }
-        
+            
         public function customer_edit_view(){
             $this->load->helper("form");
             $customerId = $this->uri->segment(3);
@@ -81,8 +83,10 @@
             $data = array();
             $data["fromController"] = $this->getData_customer_edit_view($customerId);
             
-            $this->load->view("Site/header");
+            $this->load->view("Site/parts/header");
+            $this->load->view("Site/parts/navbar");
             $this->load->view("Site/customer_edit", $data);
+            $this->load->view("Site/parts/footer");
         }
         
         public function customer_edit(){
@@ -97,14 +101,36 @@
         
         public function customer_add_view(){
             $this->load->helper("form");
-            $this->load->view("Site/header");
+            $this->load->view("Site/parts/header");
+            $this->load->view("Site/parts/navbar");
             $this->load->view("Site/customer_add");
+            $this->load->view("Site/parts/footer");
         }
         
-        public function customer_add(){
+        public function customer_add($ajax = false){
+            if($ajax){
+                $ajaxData = $_POST['data'];
+                $data = array();
+                
+                foreach($ajaxData as $obj){
+                    reset($obj);
+                    $key = key($obj);
+                    $_POST[$key] = $obj[$key];
+                }
+                //echo "<pre>".var_export($_POST, true)."</pre>";
+            }
+            
             $this->load->model("Customer_model");
             $data = $this->fetchInput_customer_edit();
-            $this->Customer_model->add($data);
+            $customerId = $this->Customer_model->add($data);
+            
+            if($ajax) {
+                $customer["id"] = $customerId;
+                $customer["name"] = $_POST[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_customer_address($_POST);
+                log_message("debug", json_encode($customer));
+                echo json_encode($customer);
+                return true;
+            }
             
             redirect("customer_controller/customer_show_view");
         }
