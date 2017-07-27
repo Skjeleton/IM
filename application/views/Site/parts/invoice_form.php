@@ -24,6 +24,7 @@
     
     //Echo field containing invoice's date  
     $data = array(
+        'id' => __DB_INVOICES_DATE__,
         'name' => __DB_INVOICES_DATE__,
         'type' => 'date',
         'class' => 'dataId'
@@ -33,6 +34,7 @@
     
     //Echo field containing invoice's payment deadline  
     $data = array(
+        'id' => __DB_INVOICES_PAYMENTDEADLINE__,
         'name' => __DB_INVOICES_PAYMENTDEADLINE__,
         'type' => 'date',
         'class' => 'dataId'
@@ -46,19 +48,17 @@
     );
     echo form_label("Klient");
     echo form_dropdown($data, $fromController[__DB_CUSTOMERS__], $fromController[__DB_INVOICES_CUSTOMER__]);
-    ?>
- <button id="bCustomer" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Dodaj</button>
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-        <?php 
-        include "parts/customer_form.php";
-        echo form_submit("Submit", "Dokonaj zmian")."</br>";
-        ?>
-        </div>
-      </div>
- 	</div>	
-    <?php 
+    
+    //Echo button which will serve as a way to add customer through a modal.
+    $data= array(
+        'type' => 'button',
+        'id' => 'bCustomer',
+        'class' => 'btn btn-primary',
+        'data-toggle' => 'modal',
+        'data-target' => '#customerAddModal'
+    );
+    echo form_button($data, "Dodaj");
+    
     //Echo field containing invoice's payment method  
     $title = __DB_INVOICES_PAYMENTMETHOD__;
     echo form_label("Forma płatności", $title);

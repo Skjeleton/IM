@@ -1,14 +1,3 @@
-<html>
-<head>	
-    	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.css">
-        <meta charset="UTF-8">
-        
-        <style type="text/css">
-        
-        </style>
-</head>
-<body>
 <div class="mainContainer">
 	<div class="row">
 		<div class="col-lg-6"><img src="<?php echo base_url(); ?>css/abastra.jpg>"></img></div>
@@ -191,5 +180,3 @@
 	<input type="button" onclick="$.ajax(...generate_pdf)
 <!-- END Method payment and expirient date -->
 </div>
-</body>
-</html>
