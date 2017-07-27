@@ -66,6 +66,7 @@
 				setDeadline();
 			});
 		 </script>
+<<<<<<< HEAD
 		 <script>
 			function removeCustomer(){
 				$("#customerAdd").addClass("HiddenElement");
@@ -116,5 +117,8 @@
 	            });
 			}
 		 </script>
+=======
+		
+>>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
 	</body>
 </html>

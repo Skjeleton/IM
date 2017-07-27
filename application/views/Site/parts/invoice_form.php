@@ -46,13 +46,19 @@
     );
     echo form_label("Klient");
     echo form_dropdown($data, $fromController[__DB_CUSTOMERS__], $fromController[__DB_INVOICES_CUSTOMER__]);
-    
-    //Adding own customer
-    echo form_button(array("id" => "bCustomer"), "Dodaj");
-    echo form_fieldset("Dodaj klienta", array("id" => "customerAdd", "class" => "HiddenElement field-set"));
-    include "customer_form.php";
-    echo form_fieldset_close();
-    
+    ?>
+ <button id="bCustomer" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Dodaj</button>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <?php 
+        include "parts/customer_form.php";
+        echo form_submit("Submit", "Dokonaj zmian")."</br>";
+        ?>
+        </div>
+      </div>
+ 	</div>	
+    <?php 
     //Echo field containing invoice's payment method  
     $title = __DB_INVOICES_PAYMENTMETHOD__;
     echo form_label("Forma płatności", $title);

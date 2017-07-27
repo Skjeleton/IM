@@ -30,7 +30,7 @@
         'name' => __DB_CUSTOMERS_COUNTRY__,
         'class' => 'AdresStyle'
     );
-    echo form_label("Państwo", $data["name"]);
+    echo form_label("Państwo / Miasto", $data["name"]);
     echo form_input($data, $fromController[$data["name"]]);
     
     //Echo field containing customer's city
@@ -38,7 +38,6 @@
         'name' => __DB_CUSTOMERS_CITY__,
         'class' => 'AdresStyle'
     );
-    echo form_label("Miasto", $data["name"]);
     echo form_input($data, $fromController[$data["name"]]);
     
     //Echo field containing customer's street
@@ -46,7 +45,7 @@
         'name' => __DB_CUSTOMERS_STREET__,
         'class' => 'Street'
     );
-    echo form_label("Ulica");
+    echo form_label("Ulica / Numer domu / Numer mieszkania / Kod pocztowy");
     echo form_input($data, $fromController[$data["name"]]);
     
     //Echo field containing customer's house number
@@ -54,7 +53,6 @@
         'name' => __DB_CUSTOMERS_HOUSENUMBER__,
         'class' => 'Numbers'
     );
-    echo form_label("Numer domu / lokalu", $data["name"]);
     echo form_input($data, $fromController[$data["name"]])."/";
     
     //Echo field containing customer's apartment number
@@ -69,7 +67,6 @@
         'name' => __DB_CUSTOMERS_POSTALCODE__,
         'class' => 'PostalCodeStyle'
     );
-    echo form_label("Kod pocztowy", $data["name"]);
     echo form_input($data, $fromController[$data["name"]]);
     
     //Echo field containing customer's nip
