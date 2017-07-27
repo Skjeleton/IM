@@ -47,13 +47,15 @@
     echo form_label("Klient");
     echo form_dropdown($data, $fromController[__DB_CUSTOMERS__], $fromController[__DB_INVOICES_CUSTOMER__]);
     ?>
- <button id="bCustomer" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Dodaj</button>
+ <button type="button" id="bCustomer" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Dodaj</button>
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <?php 
-        include "parts/customer_form.php";
+        echo form_open("customer_controller/customer_add");
+        include "customer_form.php";
         echo form_submit("Submit", "Dokonaj zmian")."</br>";
+        echo form_close();
         ?>
         </div>
       </div>

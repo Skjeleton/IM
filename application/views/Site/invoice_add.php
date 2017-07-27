@@ -64,6 +64,5 @@
 				setDeadline();
 			});
 		 </script>
-		
 	</body>
 </html>
