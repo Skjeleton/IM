@@ -40,6 +40,8 @@
         	</div>
 <!--         	<div class="col-md-"></div> -->
 		 </div>
+		 <button type="button" onclick="phpAddCustomer()">ajax</button>
+		 <p id="ajaxReturn">halo</p>
 		 <script src='<?php echo base_url()."js/tableController.js"; ?>'></script>
 		 <script type="text/javascript">
 			var dateId = "#<?php echo __DB_INVOICES_DATE__; ?>";
@@ -66,7 +68,6 @@
 		 </script>
 		 <script>
 			function removeCustomer(){
-				alert("rm");
 				$("#customerAdd").addClass("HiddenElement");
 				$("#bCustomer").html("Dodaj");
 				$("#bCustomer").off("click");
@@ -74,7 +75,6 @@
 			}
 		 
 			function addCustomer(){
-				alert("add");
 				$("#customerAdd").removeClass("HiddenElement");
 				$("#bCustomer").html("Ukryj");
 				$("#bCustomer").off("click");
@@ -84,6 +84,37 @@
 			$(document).ready(function(){
 				$("#bCustomer").click(addCustomer);
 			});
+		 </script>
+		 <script>
+			function fetchCustomerForm(){
+				var data[];
+				var inputs = $("#customerAdd").find("input");
+				console.log(inputs);
+				inputs.forEach(function(){
+					var name = $(this).attrib("name");
+					var value = $(this).attrib("value");
+					alert(name + " " + value);
+					data[name] = value;
+				});
+				return data;
+			}
+		 
+			function phpAddCustomer(){
+				var formData = fetchCustomerForm();
+				$.ajax({
+		            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+		            url         : "<?php echo base_url(); ?>index.php/customer_controller/customer_add/1",
+		            data        : formData, // our data object
+		            dataType    : 'json', // what type of data do we expect back from the server
+		            encode          : true
+		        }).done(function(data) {
+
+	                // log data to the console so we can see
+	                console.log(data); 
+
+	                // here we will handle errors and validation messages
+	            });
+			}
 		 </script>
 	</body>
 </html>

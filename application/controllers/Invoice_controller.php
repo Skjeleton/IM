@@ -66,6 +66,8 @@
                 $data[__DB_INVOICES__][$column] = $this->input->post($column);
             }
             
+            
+            
             $columns = array(
                 __DB_TRANSACTIONS_NAME__,
                 __DB_TRANSACTIONS_MEASUREUNIT__,

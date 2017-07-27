@@ -77,7 +77,6 @@
 		 </script>
 		 <script>
 			function removeCustomer(){
-				alert("rm");
 				$("#customerAdd").addClass("HiddenElement");
 				$("#bCustomer").html("Dodaj");
 				$("#bCustomer").off("click");
@@ -85,7 +84,6 @@
 			}
 		 
 			function addCustomer(){
-				alert("add");
 				$("#customerAdd").removeClass("HiddenElement");
 				$("#bCustomer").html("Ukryj");
 				$("#bCustomer").off("click");

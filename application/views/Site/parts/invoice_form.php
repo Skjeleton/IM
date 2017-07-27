@@ -48,7 +48,7 @@
     echo form_dropdown($data, $fromController[__DB_CUSTOMERS__], $fromController[__DB_INVOICES_CUSTOMER__]);
     
     //Adding own customer
-    echo form_button(array("id" => "bCustomer"), "+");
+    echo form_button(array("id" => "bCustomer"), "Dodaj");
     echo form_fieldset("Dodaj klienta", array("id" => "customerAdd", "class" => "HiddenElement field-set"));
     include "customer_form.php";
     echo form_fieldset_close();

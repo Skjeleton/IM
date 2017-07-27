@@ -101,10 +101,15 @@
             $this->load->view("Site/customer_add");
         }
         
-        public function customer_add(){
-            $this->load->model("Customer_model");
+        public function customer_add($ajax = false){
+            /*$this->load->model("Customer_model");
             $data = $this->fetchInput_customer_edit();
-            $this->Customer_model->add($data);
+            $customerId = $this->Customer_model->add($data);
+            */
+            if($ajax){
+                echo "<pre>".var_export($_POST)."</pre>";
+                return true;
+            }
             
             redirect("customer_controller/customer_show_view");
         }
