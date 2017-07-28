@@ -6,30 +6,43 @@
         	
         	require "parts/invoice_form.php";
         ?>
-        	
-        <table border="1px" width="100%">
-        	<thead>
-        		<th class="jsclass">Nazwa</th>
-        		<th class="jsclass">J.M.</th>
-        		<th class="jsclass">Ilość</th>
-        		<th class="jsclass">Cena netto</th>
-        		<th class="jsclass"><button type="button" id="addInvoice">+</button></th>
-        		<th class="jsclass"><button type="button" id="removeInvoice">-</button></th>
-        	</thead>
-        	<tbody id="tContainer">
-        		
-        	</tbody>
-        </table>
-        	
-        <?php	
-        	echo form_submit("Submit", "Dodaj fakturę")."</br>";
-        	echo form_close();
-        	
-        	include "parts/customer_add_modal.php";
-        ?>
+   </div>
+   <div class="col-md-4"></div>
+ </div>
+   
+   <div class="row">
+       <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <table border="1px" width="100%">
+                	<thead>
+                		<th class="jsclass2">Nazwa</th>
+                		<th class="jsclass3">J.M.</th>
+                		<th class="jsclass3">Ilość</th>
+                		<th class="jsclass4">Cena netto</th>
+                		<th class="jsclass"><button type="button" id="addInvoice">+</button></th>
+                		<th class="jsclass"><button type="button" id="removeInvoice">-</button></th>
+                	</thead>
+                	<tbody id="tContainer">
+                		
+                	</tbody>
+                </table>
+            </div>	
+        <div class="col-md-3"></div>    
+    </div>	
+    
+    <div class="row">
+        <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <?php	
+                	echo form_submit("Submit", "Dodaj fakturę")."</br>";
+                	echo form_close();
+                	
+                	include "parts/customer_add_modal.php";
+                ?>
+            </div>
+            <div class="col-md-4"></div>
     </div>
     <!--         	<div class="col-md-"></div> -->
-</div>
 <script>
 	var rootLocation = "<?php echo base_url(); ?>";
 </script>
