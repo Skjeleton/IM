@@ -80,7 +80,7 @@ thead{
 	width: 25%;
 }
 .dropDownCustomers{
-	width: 80%;
+	width: 87%;
 	height: 35px;
 	text-align: center;
 }
@@ -93,8 +93,6 @@ thead{
 .HiddenElement{
 	display: none;
 }
-
-.field-set{
-	padding: 10px;
+fieldset{
 	border: 1px solid black;
 }
