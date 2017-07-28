@@ -1,22 +1,28 @@
  <div class="row margines-top panel">
- <div class="col-md-4"></div>
- <div class="col-md-4">
-	<?php
-    	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES_INVOICEID__], array("id" => "mainForm"));
-    	echo form_hidden(__DB_INVOICES_INVOICEID__, $fromController[__DB_INVOICES_INVOICEID__]);
+     <div class="col-md-4"></div>
+     <div class="col-md-4">
+    	<?php
+        	echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES_INVOICEID__], array("id" => "mainForm"));
+        	echo form_hidden(__DB_INVOICES_INVOICEID__, $fromController[__DB_INVOICES_INVOICEID__]);
+        	
+        	require "parts/invoice_form.php";
+        ?>
+    </div>
+    <div class="col-md-4"></div>  	
+</div>
     	
-    	require "parts/invoice_form.php";
-    ?>
-    	
-    <table border="1" width="100%">
-    	<thead>
-    		<th class="jsclass">Nazwa</th>
-    		<th class="jsclass">J.M.</th>
-    		<th class="jsclass">Ilość</th>
-    		<th class="jsclass">Cena netto</th>
-    		<th class="jsclass"><button type="button" id="addInvoice">+</button></th>
-    		<th class="jsclass"><button type="button" id="removeInvoice">-</button></th>
-    	</thead>
+    <div class="row">
+       <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <table border="1px" width="100%">
+                	<thead>
+                		<th class="jsclass2">Nazwa</th>
+                		<th class="jsclass3">J.M.</th>
+                		<th class="jsclass3">Ilość</th>
+                		<th class="jsclass4">Cena netto</th>
+                		<th class="jsclass"><button type="button" id="addInvoice">+</button></th>
+                		<th class="jsclass"><button type="button" id="removeInvoice">-</button></th>
+                	</thead>
     	<tbody id="tContainer">
     		<?php
         		if(isset($fromController[__DB_TRANSACTIONS__])){
@@ -41,7 +47,13 @@
     	</tbody>
     </table>
     
-    <input type="text" name=""/>
+    		</div>	
+        <div class="col-md-3"></div>    
+    </div>	
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4">   
+   
     <?php	
         $data = array(
             'name'          => 'button',
@@ -57,9 +69,9 @@
     	
     	include "parts/customer_add_modal.php";
 	?>
-	</div>
-	<div class="col-md-4"></div>
- </div>
+</div>
+<div class="col-md-4"></div>
+</div>
  <script>
 	var rootLocation = "<?php echo base_url(); ?>";
  </script>
