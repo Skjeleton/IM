@@ -15,7 +15,7 @@
 <div class="row">
    <div class="col-md-3"></div>
         <div class="col-md-6">
-            <table border="1" width="100%">
+            <table class="TableStyle" border="1px solid black">
             	<thead>
             		<th class="jsclass2">Nazwa</th>
             		<th class="jsclass3">J.M.</th>
@@ -31,6 +31,7 @@
         </div>	
     <div class="col-md-3"></div>    
 </div>
+</br>
 	
 <?php
     echo form_submit("Submit", "Dodaj fakturę")."</br>";
