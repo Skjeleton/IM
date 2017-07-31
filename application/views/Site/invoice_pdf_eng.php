@@ -105,7 +105,7 @@
             			<td><strong>Total Net Euro</strong></td><td><?php echo $fromController[__DB_INVOICES_NETVALUE__]?></td><td>23%</td><td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></td>
             		</tr>
             		<tr>
-            			<td><strong></strong></td>Total VAT Euro wpisac<td><?php echo $fromController[__DB_INVOICES_NETVALUE__]?></td><td>23%</td><td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></td>
+            			<td><strong></strong></td>Total VAT Euro<td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td>23%</td><td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></td>
             		</tr>
             	</table>
             <div class="panel-heading">
