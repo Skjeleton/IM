@@ -3,12 +3,12 @@
 
     class Config_controller extends CI_Controller{
         private function getUserId(){
-            return 
+            return 0;
         }
         
-        private function getData_config_show_view(){
+        private function getData_config_show_view($userId){
             $this->load->model("Config_model");
-            $this->Config_model->get($id)
+            $this->Config_model->get($userId);
         }
         
         function __construct(){
@@ -18,7 +18,7 @@
         }
         
         public function config_show_view(){
-            $fromController = $this->getData_config_show_view();
+            $fromController = $this->getData_config_show_view($this->getUserId());
             
             $this->load->view("Site/parts/header");
             $this->load->view("Site/parts/navbar");

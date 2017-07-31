@@ -28,7 +28,7 @@
       <!--  popraw  -->
        <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="<?php echo base_url()."index.php/config_controller/view_config"; ?>">Ustawienia</a>         
+          <a href="<?php echo base_url()."index.php/config_controller/config_show_view"; ?>">Ustawienia</a>         
         </li>
       </ul>
       <!--  popraw  -->
