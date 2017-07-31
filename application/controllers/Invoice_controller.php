@@ -44,6 +44,30 @@
             $transaction[__DB_TRANSACTIONS_GROSSVALUE__] = $this->count_grossValue($transaction[__DB_TRANSACTIONS_COUNT__], $transaction[__DB_TRANSACTIONS_NETUNITPRICE__]);
             return true;
         }
+        
+        private function getLanguages(){
+            $toReturn = array(
+                "PL" => "Polski",
+                "ENG" => "Angielski"
+            );
+            return $toReturn;
+        }
+        
+        private function getCurrencies(){
+            $toReturn = array(
+                "PLN" => "Polski Złoty",
+                "EUR" => "Euro",
+                "GBP" => "Funt Brytyjski",
+                "USD" => "Dolar Amerykański",
+                "CAD" => "Dolar Kanadyjski"
+            );
+            
+            foreach($toReturn as $key => &$val)
+                $val .= " (".$key.")";
+            
+            return $toReturn;
+        }
+        
         //--COUNTING METHODS
         
         //INPUTFETCH
@@ -57,7 +81,9 @@
                 __DB_INVOICES_CUSTOMER__,
                 __DB_INVOICES_PAYMENTDEADLINE__,
                 __DB_INVOICES_PAYMENTMETHOD__,
-                __DB_INVOICES_OTHERS__
+                __DB_INVOICES_OTHERS__,
+                __DB_INVOICES_LANGUAGE__,
+                __DB_INVOICES_CURRENCY__
             );
             
             $data = array();
@@ -138,6 +164,9 @@
                 $data["fromController"][__DB_CUSTOMERS__][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_customer_address($customer);
             }
             
+            $data["fromController"]["Languages"] = $this->getLanguages();
+            $data["fromController"]["Currencies"] = $this->getCurrencies();
+            
             $this->load->helper("form");
             $this->load->view("Site/parts/header");
             $this->load->view("Site/parts/navbar");
@@ -178,6 +207,9 @@
                 $data["fromController"][__DB_CUSTOMERS__][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_customer_address($customer);
             }
             
+            $data["fromController"]["Languages"] = $this->getLanguages();
+            $data["fromController"]["Currencies"] = $this->getCurrencies();
+            
             $this->load->view("Site/parts/header");
             $this->load->view("Site/parts/navbar");
             $this->load->view("Site/invoice_edit", $data);
@@ -203,7 +235,6 @@
             $data[__DB_INVOICES__][__DB_INVOICES_VATVALUE__] = $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__] * 0.23;
             $data[__DB_INVOICES__][__DB_INVOICES_GROSSVALUE__] = $data[__DB_INVOICES__][__DB_INVOICES_VATVALUE__] + $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__];
             $this->load->model("Invoice_model");
-            //$this->load->view("var_dump", $data[__DB_INVOICES__]);
             
             $this->Invoice_model->update($data[__DB_INVOICES__]);
             
@@ -213,7 +244,7 @@
             if(!$this->updateTransactions($data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__], $data[__DB_TRANSACTIONS__]))
                 redirect("invoice_controller/error404");
 
-            redirect("invoice_controller/invoice_show_view");/**/
+            redirect("invoice_controller/invoice_show_view");
         }
         
         public function invoice_pdf_download($invoiceId){
