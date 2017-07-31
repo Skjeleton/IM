@@ -65,8 +65,11 @@
     echo form_input($title, $fromController[$title]);
     
     //Echo field containing invoice's other informations  
-    $title = __DB_INVOICES_OTHERS__;
-    echo form_label("Inne",$title);
-    echo form_textarea($title,$fromController[$title]);
+    $data = array(
+        'name' => __DB_INVOICES_OTHERS__,
+        'class' => 'TextArea'
+    );
+    echo form_label("Inne");
+    echo form_textarea($data,$fromController[__DB_INVOICES_OTHERS__]);
     
     

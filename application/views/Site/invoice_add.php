@@ -23,8 +23,8 @@
         <div class="row"></div>
         <div class="col-md-3"></div>
         <div class="col-md-6">
-        <div class="col-md-4"></div>    	
-            <table border="1px" width="100%">
+        <div class="col-md-3"></div>    	
+            <table border="1px" width="100%" padding="4%">
             	<thead>
             		<th class="jsclass2">Nazwa</th>
             		<th class="jsclass4">J.M.</th>
@@ -39,7 +39,8 @@
             </table>
        </div>
        <div class="col-md-3"></div>
-       </div>      	
+       </div>
+       <div class="row">      	
        <div class="col-md-4"></div>
 	   <div class="col-md-4">
        
@@ -95,5 +96,7 @@
 				$("#bCustomer").click(addCustomer);
 			});
 		 </script>
+		 </div>
+		 <div class="col-md-4"></div>
 	</body>
 </html>

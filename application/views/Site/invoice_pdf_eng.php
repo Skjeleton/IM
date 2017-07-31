@@ -15,10 +15,10 @@
 		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
     		 <div class="panel-group">
              	<div class="panel panel-default">
-             		<div class="panel-heading"><h4>FAKTURA VAT</h4></div>
+             		<div class="panel-heading"><h4>INVOICE</h4></div>
          			<div class="panel-body">
-                 		<h4>FAKTURA VAT Nr </h4><h4 class="text-right"><?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></h4>
-                 		<h4>DATA </h4><h4 class="text-right"><?php echo $fromController[__DB_INVOICES_DATE__]; ?> </h4>
+                 		<h4>INVOICE #</h4><h4 class="text-right"><?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></h4>
+                 		<h4>DATE </h4><h4 class="text-right"> <?php echo $fromController[__DB_INVOICES_DATE__]; ?> </h4>
              		</div>
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 			<div class="panel-group">
              	<div class="panel panel-default">
-             		<div class="panel-heading"><H4>NABYWCA:</H4></div>
+             		<div class="panel-heading"><H4>PURCHASER:</H4></div>
              		<div class="panel-body">
              		<h4><strong><?php echo $fromController[__DB_CUSTOMERS_NAME__]; ?></strong></h4> 
              		<h4><?php echo $fromController[__DB_CUSTOMERS_STREET__]; ?></h4>
@@ -47,11 +47,11 @@
 		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 			<div class="panel-group">
              	<div class="panel panel-default">
-             		<div class="panel-heading"><H4>SPRZEDAWCA:</H4></div>
+             		<div class="panel-heading"><H4>SELLER:</H4></div>
              		<div class="panel-body">
              		<h4><strong>ABASTRA Sp. z. o.o</strong></h4> 
              		<h4>ul. 11Listopada 79/28</h4>
-             		<h4>91-372 Łódź</h4> 
+             		<h4>91-372 Lodz</h4> 
              		<h4>Polska</h4></br>
              		<h4><strong>NIP		9471974189</strong></h4>
 <!--              			Content -->
@@ -67,29 +67,23 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th><h5>L.p</h5></th>
-                <th><h5>Nazwa</h5></th>
-                <th><h5>J.M</h5></th>
-                <th><h5>Ilość</h5></th>
-                <th><h5>Cena jed. netto</h5></th>
-                <th><h5>Wartość netto</h5></th>
+                <th><h5>Qty</h5></th>
+                <th><h5>Details</h5></th>
+                <th><h5>Unit Price Euro</h5></th>
+                <th><h5>Net Euro</h5></th>
                 <th><h5>VAT%</h5></th>
-                <th><h5>Wartość VAT</h5></th>
-                <th><h5>Wartość brutto</h5></th>
+                <th><h5>Totall Euro</h5></th>
             </tr>
         </thead>
         <tbody>
 			<?php
                 foreach($fromController[__DB_TRANSACTIONS__] as $key => $transaction){
                 echo "<tr>";
-                    echo "<td>".($key+1)."</td>";
-                    echo "<td>".$transaction[__DB_TRANSACTIONS_NAME__]."</td>";
-                    echo "<td>".$transaction[__DB_TRANSACTIONS_MEASUREUNIT__]."</td>";
                     echo "<td>".$transaction[__DB_TRANSACTIONS_COUNT__]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_NAME__]."</td>";
                     echo "<td>".$transaction[__DB_TRANSACTIONS_NETUNITPRICE__]."</td>";
                     echo "<td>".$transaction[__DB_TRANSACTIONS_NETVALUE__]."</td>";
                     echo "<td> 23%</td>";
-                    echo "<td>".$transaction[__DB_TRANSACTIONS_VATVALUE__]."</td>";
                     echo "<td>".$transaction[__DB_TRANSACTIONS_GROSSVALUE__]."</td>";
      			echo "</tr>";
                 }
@@ -108,15 +102,15 @@
             <div class="panel panel-info">
             	<table class="table table-bordered">
             		<tr>
-            			<td><strong>Razem</strong></td><td><?php echo $fromController[__DB_INVOICES_NETVALUE__]?></td><td>23%</td><td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></td>
+            			<td><strong>Total Net Euro</strong></td><td><?php echo $fromController[__DB_INVOICES_NETVALUE__]?></td><td>23%</td><td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></td>
             		</tr>
             		<tr>
-            			<td><strong>Z czego</strong></td><td><?php echo $fromController[__DB_INVOICES_NETVALUE__]?></td><td>23%</td><td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></td>
+            			<td><strong></strong></td>Total VAT Euro wpisac<td><?php echo $fromController[__DB_INVOICES_NETVALUE__]?></td><td>23%</td><td><?php echo $fromController[__DB_INVOICES_VATVALUE__]?></td><td><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></td>
             		</tr>
             	</table>
             <div class="panel-heading">
                 <div class="row">
-                	<div class="col-xs-4"><strong>Do zaplaty</strong></div>
+                	<div class="col-xs-4"><strong>Total Euro</strong></div>
                 	<div class="col-xs-4"><strong><?php echo $fromController[__DB_INVOICES_GROSSVALUE__]?></strong></div>
                 </div>
             </div>
@@ -128,20 +122,24 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 				<table class="table table-bordered tableDuing">
 					<tr>
-						<td><strong>Nazwa banku</strong></td> 
+						<td><strong>Name of bank</strong></td> 
 						<td>Alior Bank S.A.</td>
 					</tr>
 					<tr>
-						<td><strong>Adres</strong></td> 
+						<td><strong>Address</strong></td> 
 						<td>Al.Jerozolimskie 94, 00-807 Warszawa</td>
 					</tr>
 					<tr>
 						<td><strong>BIC/SWIFT CODE</strong></td> 
-						<td>ALBPPLPW</br>
+						<td>ALBPPLPW</td>
 						ABASTRA sp. z o.o.</td>
 					</tr>
 					<tr>
-						<td><strong>Numer rachunku</strong></td> 
+						<td><strong>Account Name</strong></td> 
+						<td>ABASTRA sp. z o.o.</td>
+					</tr>
+					<tr>
+						<td><strong>Account No.</strong></td> 
 						<td>98 2490 0005 0000 4520 3585 2559</td>
 					</tr>
 					<tr>
@@ -158,8 +156,8 @@
             		<table class="table table-bordered">
             			<tr>
             				<thead>
-                				<th><strong>Termin płatności</strong></th>
-                				<th><strong>Forma płatności</strong></th>
+                				<th><strong>Date of Payment</strong></th>
+                				<th><strong>Method Payment</strong></th>
                 			</thead>
             			</tr>
             				<tbody>
