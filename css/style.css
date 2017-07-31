@@ -77,7 +77,7 @@ thead{
 	padding: 5px auto;
 }
 .jsclass{
-	width: 2%;
+	width: 1%;
 }
 .jsclass2{
 	width: 38%;
@@ -104,4 +104,17 @@ thead{
 }
 fieldset{
 	border: 1px solid black;
+}
+TableStyle{
+	width: 100%;
+	margin-top: 4%;
+	margin-down: 4px;
+}
+EditandPDF{
+	width: 49%;
+	height: 5%
+}
+#button{
+	height: 39px;
+	width: 100%;
 }

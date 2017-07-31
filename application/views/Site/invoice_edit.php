@@ -18,7 +18,7 @@
 
 
     	
-    <table border="1" width="100%">
+    <table border="1" class="TableStyle">
     	<thead>
     		<th class="jsclass2">Nazwa</th>
     		<th class="jsclass4">J.M.</th>
@@ -55,7 +55,7 @@
     </div>
     
     <div class="col-md-4"></div>
-     <div class="col-md-4">
+     <div class="col-md-2">
       
                             <?php	
                                 $data = array(
@@ -64,14 +64,18 @@
                                     'value'         => 'true',
                                     'type'          => 'button',
                                     'content'       => 'PDF',
-                                    'onclick'       => 'redirectPDF()'
+                                    'onclick'       => 'redirectPDF()',
                                 );
-                                echo form_button($data);
+                                echo form_button($data); ?>
+	</div>
+    <div class="col-md-2">
+    						<?php
                             	echo form_submit("Submit", "Edytuj fakturę")."</br>";
                             	echo form_close();
                             	
                             	include "parts/customer_add_modal.php";
                         	?>
+    </div>
 	<div class="col-md-4"></div>
      </div>
  <script>
