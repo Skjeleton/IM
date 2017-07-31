@@ -13,8 +13,10 @@
             $this->db->where(__DB_CONFIG_USER__, $id);
             if($keys === null) $this->db->where_in(__DB_CONFIG_KEY__, $keys);
             
-            $answer = $this->db->get()->result_array();
-            return $answer;
+            $toReturn = array();
+            foreach($this->db->get()->result_array() as $key => $value)
+                $toReturn[$value[__DB_CONFIG_KEY__]] = $value[__DB_CONFIG_VALUE__];
+            return $toReturn;
         }
         
         //Setters and Updaters
@@ -30,7 +32,7 @@
             $this->db->where(__DB_CONFIG_USER__, $id);
             if($keys === null) $this->db->where_in(__DB_CONFIG_KEY__, $keys);
             
-            if($this->db->delete(__DB_CONFIG__);
+            if($this->db->delete(__DB_CONFIG__));
                 return true;
             return false;
         }

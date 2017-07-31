@@ -17,6 +17,29 @@
             return $address;
         }
         
+        private function getLanguages(){
+            $toReturn = array(
+                "PL" => "Polski",
+                "ENG" => "Angielski"
+            );
+            return $toReturn;
+        }
+        
+        private function getCurrencies(){
+            $toReturn = array(
+                "PLN" => "Polski Złoty",
+                "EUR" => "Euro",
+                "GBP" => "Funt Brytyjski",
+                "USD" => "Dolar Amerykański",
+                "CAD" => "Dolar Kanadyjski"
+            );
+            
+            foreach($toReturn as $key => &$val)
+                $val .= " (".$key.")";
+                
+                return $toReturn;
+        }
+        
         //COUNTING METHODS
         private function count_netValue($count, $netValue){
             return $count * $netValue;
@@ -43,29 +66,6 @@
             $transaction[__DB_TRANSACTIONS_VATVALUE__] = $this->count_vatValue($transaction[__DB_TRANSACTIONS_COUNT__], $transaction[__DB_TRANSACTIONS_NETUNITPRICE__]);
             $transaction[__DB_TRANSACTIONS_GROSSVALUE__] = $this->count_grossValue($transaction[__DB_TRANSACTIONS_COUNT__], $transaction[__DB_TRANSACTIONS_NETUNITPRICE__]);
             return true;
-        }
-        
-        private function getLanguages(){
-            $toReturn = array(
-                "PL" => "Polski",
-                "ENG" => "Angielski"
-            );
-            return $toReturn;
-        }
-        
-        private function getCurrencies(){
-            $toReturn = array(
-                "PLN" => "Polski Złoty",
-                "EUR" => "Euro",
-                "GBP" => "Funt Brytyjski",
-                "USD" => "Dolar Amerykański",
-                "CAD" => "Dolar Kanadyjski"
-            );
-            
-            foreach($toReturn as $key => &$val)
-                $val .= " (".$key.")";
-            
-            return $toReturn;
         }
         
         //--COUNTING METHODS
@@ -128,8 +128,9 @@
             $data = $this->Customer_model->get();
             
             $this->load->model("Invoice_model");
+            $lastNo = $this->Invoice_model->getLastNumber();
+            $lastNo > 10 OR $lastNo = "0".$lastNo;
             $data["LastNumber"] = date("Y")."_".date("m")."_".$this->Invoice_model->getLastNumber();
-            //$data[__DB_INVOICES_PAYMENTMETHOD__] = "przelew";
             return $data;
         }
         
