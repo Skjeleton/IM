@@ -14,6 +14,8 @@
     if(!isset($fromController[__DB_INVOICES_CUSTOMER__])) $fromController[__DB_INVOICES_CUSTOMER__] = "";
     if(!isset($fromController[__DB_INVOICES_PAYMENTMETHOD__])) $fromController[__DB_INVOICES_PAYMENTMETHOD__] = "";
     if(!isset($fromController[__DB_INVOICES_OTHERS__])) $fromController[__DB_INVOICES_OTHERS__] = "";
+    if(!isset($fromController[__DB_INVOICES_CURRENCY__])) $fromController[__DB_INVOICES_CURRENCY__] = "";
+    if(!isset($fromController[__DB_INVOICES_LANGUAGE__])) $fromController[__DB_INVOICES_LANGUAGE__] = "";
 
     //Echo field containing invoice's number    
     $data = array(
@@ -66,6 +68,22 @@
     );
     echo form_label("Forma płatności", $data["name"]);
     echo form_input($data, $fromController[$data["name"]]);
+    
+    //Echo field containing invoice's currency
+    $data = array(
+        'id' => __DB_INVOICES_CURRENCY__,
+        'name' => __DB_INVOICES_CURRENCY__
+    );
+    echo form_label("Waluta faktury");
+    echo form_dropdown($data, $fromController["Currencies"], $fromController[__DB_INVOICES_CURRENCY__]);
+    
+    //Echo field containing invoice's language
+    $data = array(
+        'id' => __DB_INVOICES_LANGUAGE__,
+        'name' => __DB_INVOICES_LANGUAGE__
+    );
+    echo form_label("Język faktury");
+    echo form_dropdown($data, $fromController["Languages"], $fromController[__DB_INVOICES_LANGUAGE__]);
     
     //Echo field containing invoice's other informations  
     $data = array(

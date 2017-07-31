@@ -109,6 +109,8 @@ define("__DB_NAME__", "Invoice Manager");
         define("__DB_INVOICES_NETVALUE__", "FullNetValue");
         define("__DB_INVOICES_VATVALUE__", "FullVatValue");
         define("__DB_INVOICES_GROSSVALUE__", "FullGrossValue");
+        define("__DB_INVOICES_CURRENCY__", "InvoiceCurrency");
+        define("__DB_INVOICES_LANGUAGE__", "InvoiceLanguage");
         
     define("__DB_TRANSACTIONS__", "Transactions");
         define("__DB_TRANSACTIONS_TRANSACTIONID__", "TransactionID");

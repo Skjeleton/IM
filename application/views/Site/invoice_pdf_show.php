@@ -71,11 +71,11 @@
                 <th><h5>Nazwa</h5></th>
                 <th><h5>J.M</h5></th>
                 <th><h5>Ilość</h5></th>
-                <th><h5>Cena jed. netto</h5></th>
-                <th><h5>Wartość netto</h5></th>
+                <th><h5>Cena jed. netto (<?php echo $fromController[__DB_INVOICES_CURRENCY__] ?>)</h5></th>
+                <th><h5>Wartość netto (<?php echo $fromController[__DB_INVOICES_CURRENCY__] ?>)</h5></th>
                 <th><h5>VAT%</h5></th>
-                <th><h5>Wartość VAT</h5></th>
-                <th><h5>Wartość brutto</h5></th>
+                <th><h5>Wartość VAT (<?php echo $fromController[__DB_INVOICES_CURRENCY__] ?>)</h5></th>
+                <th><h5>Wartość brutto (<?php echo $fromController[__DB_INVOICES_CURRENCY__] ?>)</h5></th>
             </tr>
         </thead>
         <tbody>

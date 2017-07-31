@@ -60,11 +60,11 @@
                 <th><h4>Nazwa</h4></th>
                 <th><h4>J.M</h4></th>
                 <th><h4>Ilość</h4></th>
-                <th><h4>Cena jed. netto</h4></th>
-                <th><h4>Wartość netto</h4></th>
+                <th><h4>Cena jed. netto (<?php echo $fromController[__DB_INVOICES_CURRENCY__] ?>)</h4></th>
+                <th><h4>Wartość netto (<?php echo $fromController[__DB_INVOICES_CURRENCY__] ?>)</h4></th>
                 <th><h4>VAT%</h4></th>
-                <th><h4>Wartość VAT</h4></th>
-                <th><h4>Wartość brutto</h4></th>
+                <th><h4>Wartość VAT (<?php echo $fromController[__DB_INVOICES_CURRENCY__] ?>)</h4></th>
+                <th><h4>Wartość brutto (<?php echo $fromController[__DB_INVOICES_CURRENCY__] ?>)</h4></th>
             </tr>
         </thead>
         <tbody>
