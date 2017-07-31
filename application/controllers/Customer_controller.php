@@ -33,8 +33,16 @@
                 $data[$column] = $this->input->post($column);
             }
             
+            if($data[__DB_CUSTOMERS_APARTMENTNUMBER__] == NULL OR $data[__DB_CUSTOMERS_APARTMENTNUMBER__] == 0)
+                $data[__DB_CUSTOMERS_APARTMENTNUMBER__] = NULL;
+                
+            
             if($data[__DB_CUSTOMERS_NIP__] == NULL OR $data[__DB_CUSTOMERS_NIP__] == 0)
                 $data[__DB_CUSTOMERS_NIP__] = NULL;
+                
+            if($data[__DB_CUSTOMERS_OTHERS__] == NULL OR $data[__DB_CUSTOMERS_OTHERS__] == 0)
+                $data[__DB_CUSTOMERS_OTHERS__] = NULL;
+                    
                 
             return $data;
         }

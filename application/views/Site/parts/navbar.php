@@ -5,7 +5,7 @@
         <img alt="ABASTRA" src="...">
       </a>
       
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar-left">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Faktury <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -15,7 +15,7 @@
         </li>
       </ul>
       
-       <ul class="nav navbar-nav navbar-right">
+       <ul class="nav navbar-nav navbar-middle">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Klienci <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -24,6 +24,15 @@
           </ul>          
         </li>
       </ul>
+      
+      <!--  popraw  -->
+       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="<?php echo base_url()."index.php/config_controller/view_config"; ?>">Ustawienia</a>         
+        </li>
+      </ul>
+      <!--  popraw  -->
+      
     </div>
   </div>
 </nav>
