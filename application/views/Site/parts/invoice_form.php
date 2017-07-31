@@ -72,7 +72,8 @@
     //Echo field containing invoice's currency
     $data = array(
         'id' => __DB_INVOICES_CURRENCY__,
-        'name' => __DB_INVOICES_CURRENCY__
+        'name' => __DB_INVOICES_CURRENCY__,
+        'style' => 'width: 100%'
     );
     echo form_label("Waluta faktury");
     echo form_dropdown($data, $fromController["Currencies"], $fromController[__DB_INVOICES_CURRENCY__]);
@@ -80,7 +81,8 @@
     //Echo field containing invoice's language
     $data = array(
         'id' => __DB_INVOICES_LANGUAGE__,
-        'name' => __DB_INVOICES_LANGUAGE__
+        'name' => __DB_INVOICES_LANGUAGE__,
+        'style' => 'width: 100%'
     );
     echo form_label("Język faktury");
     echo form_dropdown($data, $fromController["Languages"], $fromController[__DB_INVOICES_LANGUAGE__]);
