@@ -120,3 +120,11 @@ define("__DB_NAME__", "Invoice Manager");
         define("__DB_TRANSACTIONS_NETVALUE__", "NetValue");
         define("__DB_TRANSACTIONS_VATVALUE__", "VatValue");
         define("__DB_TRANSACTIONS_GROSSVALUE__", "GrossValue");
+
+    define("__DB_CONFIG__", "Configurations");
+        define("__DB_CONFIG_KEY__", "ConfigKey");
+        define("__DB_CONFIG_USER__", "UserID");
+        define("__DB_CONFIG_VALUE__", "Value");
+        
+        
+        

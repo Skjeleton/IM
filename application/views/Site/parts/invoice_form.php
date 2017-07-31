@@ -60,9 +60,12 @@
     echo form_button($data, "Dodaj");
     
     //Echo field containing invoice's payment method  
-    $title = __DB_INVOICES_PAYMENTMETHOD__;
-    echo form_label("Forma płatności", $title);
-    echo form_input($title, $fromController[$title]);
+    $data = array(
+        'id' => __DB_INVOICES_PAYMENTMETHOD__,
+        'name' => __DB_INVOICES_PAYMENTMETHOD__
+    );
+    echo form_label("Forma płatności", $data["name"]);
+    echo form_input($data, $fromController[$data["name"]]);
     
     //Echo field containing invoice's other informations  
     $title = __DB_INVOICES_OTHERS__;

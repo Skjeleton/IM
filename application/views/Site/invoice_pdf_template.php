@@ -76,10 +76,10 @@
                     echo "<td>".$transaction[__DB_TRANSACTIONS_MEASUREUNIT__]."</td>";
                     echo "<td>".$transaction[__DB_TRANSACTIONS_COUNT__]."</td>";
                     echo "<td>".$transaction[__DB_TRANSACTIONS_NETUNITPRICE__]."</td>";
-                    echo "<td>".$transaction["netValue"]."</td>";
-                    echo "<td>".$transaction["vat"]."</td>";
-                    echo "<td>".$transaction["vatValue"]."</td>";
-                    echo "<td>".$transaction["grossValue"]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_NETVALUE__]."</td>";
+                    echo "<td>23%</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_VATVALUE__]."</td>";
+                    echo "<td>".$transaction[__DB_TRANSACTIONS_GROSSVALUE__]."</td>";
      			echo "</tr>";
                 }
  			?>
@@ -177,6 +177,5 @@
         </div>
 	</div>
 	
-	<input type="button" onclick="$.ajax(...generate_pdf)
 <!-- END Method payment and expirient date -->
 </div>

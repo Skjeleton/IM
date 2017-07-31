@@ -103,6 +103,7 @@
             
             $this->load->model("Invoice_model");
             $data["LastNumber"] = date("Y")."_".date("m")."_".$this->Invoice_model->getLastNumber();
+            //$data[__DB_INVOICES_PAYMENTMETHOD__] = "przelew";
             return $data;
         }
         
@@ -259,6 +260,4 @@
         public function index(){
             $this->invoice_show_view();
         }
-        
-        
     }
