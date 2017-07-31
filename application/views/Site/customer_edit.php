@@ -7,7 +7,7 @@
             
             require "parts/customer_form.php";
             
-            echo form_submit("Submit", "Dokonaj zmian")."</br>";
+            echo form_submit("Submit", "Zapisz zmiany")."</br>";
             echo form_close();
     	?>
      </div>

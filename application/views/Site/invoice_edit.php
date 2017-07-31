@@ -71,7 +71,7 @@
 	</div>
     <div class="col-md-2">
     						<?php
-                            	echo form_submit("Submit", "Edytuj fakturę")."</br>";
+                            	echo form_submit("Submit", "Zapisz zmiany")."</br>";
                             	echo form_close();
                             	
                             	include "parts/customer_add_modal.php";

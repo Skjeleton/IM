@@ -122,3 +122,13 @@ EditandPDF{
 	height: 39px;
 	width: 100%;
 }
+.CenterTextInTable{
+	text-align: center;
+}
+.RightTextInTable{
+	text-align: right;
+}
+.RightTextInTable, .RightTextInTable{
+	margin: 1%;
+
+}

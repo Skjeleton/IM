@@ -6,6 +6,7 @@
                 <th>Data</th>
                 <th>Nazwa</th>
                 <th>Wartość brutto</th>
+                <th>Wartosc netto</th>
                 <th>Termin płatności</th>
                 <th></th>
             </tr>
@@ -22,6 +23,8 @@
                 echo "<td>".$invoice[__DB_CUSTOMERS_NAME__]."</td>";
                 
                 echo "<td>".$invoice[__DB_INVOICES_GROSSVALUE__]."</td>";
+                
+                echo "<td>".$invoice[__DB_INVOICES_NETVALUE__]."</td>";
                 
                 echo "<td>".$invoice[__DB_INVOICES_PAYMENTDEADLINE__]."</td>";
             
