@@ -17,8 +17,23 @@
              	<div class="panel panel-default">
              		<div class="panel-heading"><h4>FAKTURA VAT</h4></div>
          			<div class="panel-body">
-                 		<h4>FAKTURA VAT Nr </h4><h4 class="text-right"><?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></h4>
-                 		<h4>DATA </h4><h4 class="text-right"><?php echo $fromController[__DB_INVOICES_DATE__]; ?> </h4>
+         				<div class="row">
+             				<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                     			<h4>Faktura VAT nr </h4>
+                     		</div>
+                     		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                     			<h4><?php echo $fromController[__DB_INVOICES_INVOICENUMBER__]; ?></h4>
+                     		</div>
+                 		</div>
+                 		<div class="row">
+             				<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                 				<h4>DATA</h4>
+                 			</div>
+             				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+             					<h4><?php echo $fromController[__DB_INVOICES_DATE__]; ?></h4>
+             				</div>
+             			</div>
+             				
              		</div>
 				</div>
 			</div>
@@ -37,6 +52,7 @@
              		<h4><?php echo $fromController[__DB_CUSTOMERS_POSTALCODE__];?> <?php echo $fromController[__DB_CUSTOMERS_CITY__]; ?></h4> 
              		<h4><?php echo $fromController[__DB_CUSTOMERS_COUNTRY__]; ?></h4></br>
              		<h4><strong>NIP <?php echo $fromController[__DB_CUSTOMERS_NIP__]; ?></strong></h4>
+             		<h4><?php echo $fromController[__DB_INVOICES_OTHERS__]?></h4>
 <!--              			Content -->
              		</div>
     			</div>
@@ -82,15 +98,15 @@
 			<?php
                 foreach($fromController[__DB_TRANSACTIONS__] as $key => $transaction){
                 echo "<tr>";
-                    echo "<td>".($key+1)."</td>";
+                    echo "<td class='CenterTextInTable'>".($key+1)."</td>";
                     echo "<td>".$transaction[__DB_TRANSACTIONS_NAME__]."</td>";
-                    echo "<td>".$transaction[__DB_TRANSACTIONS_MEASUREUNIT__]."</td>";
-                    echo "<td>".$transaction[__DB_TRANSACTIONS_COUNT__]."</td>";
-                    echo "<td>".$transaction[__DB_TRANSACTIONS_NETUNITPRICE__]."</td>";
-                    echo "<td>".$transaction[__DB_TRANSACTIONS_NETVALUE__]."</td>";
-                    echo "<td> 23%</td>";
-                    echo "<td>".$transaction[__DB_TRANSACTIONS_VATVALUE__]."</td>";
-                    echo "<td>".$transaction[__DB_TRANSACTIONS_GROSSVALUE__]."</td>";
+                    echo "<td class='CenterTextInTable'>".$transaction[__DB_TRANSACTIONS_MEASUREUNIT__]."</td>";
+                    echo "<td class='CenterTextInTable'>".$transaction[__DB_TRANSACTIONS_COUNT__]."</td>";
+                    echo "<td class='RightTextInTable'>".$transaction[__DB_TRANSACTIONS_NETUNITPRICE__]."</td>";
+                    echo "<td class='RightTextInTable'>".$transaction[__DB_TRANSACTIONS_NETVALUE__]."</td>";
+                    echo "<td class='CenterTextInTable'> 23%</td>";
+                    echo "<td class='RightTextInTable'>".$transaction[__DB_TRANSACTIONS_VATVALUE__]."</td>";
+                    echo "<td class='RightTextInTable'>".$transaction[__DB_TRANSACTIONS_GROSSVALUE__]."</td>";
      			echo "</tr>";
                 }
  			?>
