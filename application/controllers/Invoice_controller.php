@@ -22,6 +22,10 @@
                 "PL" => "Polski",
                 "ENG" => "Angielski"
             );
+            
+            foreach($toReturn as $key => &$val)
+                $val .= " (".$key.")";
+            
             return $toReturn;
         }
         
@@ -37,7 +41,7 @@
             foreach($toReturn as $key => &$val)
                 $val .= " (".$key.")";
                 
-                return $toReturn;
+            return $toReturn;
         }
         
         //COUNTING METHODS
@@ -46,7 +50,7 @@
         }
         
         private function count_vatValue($count, $netValue, $vat = 0.23){
-            return floor(($this->count_netValue($count, $netValue) * $vat) + 0.005);
+            return $this->count_netValue($count, $netValue) * $vat;
         }
         
         private function count_grossValue($count, $netValue){
@@ -129,8 +133,8 @@
             
             $this->load->model("Invoice_model");
             $lastNo = $this->Invoice_model->getLastNumber();
-            $lastNo > 10 OR $lastNo = "0".$lastNo;
-            $data["LastNumber"] = date("Y")."_".date("m")."_".$this->Invoice_model->getLastNumber();
+            $lastNo > 9 OR $lastNo = "0".$lastNo;
+            $data["LastNumber"] = date("Y")."_".date("m")."_".$lastNo;
             return $data;
         }
         
@@ -246,6 +250,10 @@
                 redirect("invoice_controller/error404");
 
             redirect("invoice_controller/invoice_show_view");
+        }
+        
+        public function invoice_copy($invoiceId){
+            
         }
         
         public function invoice_pdf_download($invoiceId){

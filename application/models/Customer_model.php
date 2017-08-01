@@ -11,6 +11,7 @@
             $this->db->select("*");
             $this->db->from(__DB_CUSTOMERS__);
             if($id !== null) $this->db->where(array(__DB_CUSTOMERS_CUSTOMERID__  => $id));
+            $this->db->order_by(__DB_CUSTOMERS_NAME__);
             $answer = $this->db->get()->result_array();
             
             if($id === null) return $answer;

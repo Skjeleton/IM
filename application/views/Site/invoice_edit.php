@@ -32,8 +32,8 @@
         		if(isset($fromController[__DB_TRANSACTIONS__])){
         		    foreach($fromController[__DB_TRANSACTIONS__] as $key => $transaction){
         		        echo "<tr id='row".$key."'>";
-        		        for($i = 0; $i < 4 ; $i++ ){
-        		            $i == 0 AND $title = __DB_TRANSACTIONS_NAME__;
+        		        echo "<td><textarea class='TextArea'>".$transaction[__DB_TRANSACTIONS_NAME__]."</textarea></td>";
+        		        for($i = 1; $i < 4 ; $i++ ){
         		            $i == 1 AND $title = __DB_TRANSACTIONS_MEASUREUNIT__;
         		            $i == 2 AND $title = __DB_TRANSACTIONS_COUNT__;
         		            $i == 3 AND $title = __DB_TRANSACTIONS_NETUNITPRICE__;
@@ -67,7 +67,8 @@
                                     'content'       => 'PDF',
                                     'onclick'       => 'redirectPDF()',
                                 );
-                                echo form_button($data); ?>
+                                echo form_button($data); 
+                            ?>
 	</div>
     <div class="col-md-2">
     						<?php
