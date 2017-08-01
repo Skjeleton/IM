@@ -80,5 +80,7 @@
 		setDate();
 		setDeadline();
 		setPaymentMethod();
+
+		addTransaction();
 	});
 </script>

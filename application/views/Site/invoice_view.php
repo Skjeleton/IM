@@ -5,7 +5,7 @@
                 <th>Numer faktury</th>
                 <th>Data</th>
                 <th>Nazwa</th>
-                <th>Wartość brutto</th>
+                <th>Wartość netto</th>
                 <th>Termin płatności</th>
                 <th></th>
             </tr>
@@ -21,7 +21,7 @@
                 
                 echo "<td>".$invoice[__DB_CUSTOMERS_NAME__]."</td>";
                 
-                echo "<td>".$invoice[__DB_INVOICES_GROSSVALUE__]."</td>";
+                echo "<td>".$invoice[__DB_INVOICES_NETVALUE__]."</td>";
                 
                 echo "<td>".$invoice[__DB_INVOICES_PAYMENTDEADLINE__]."</td>";
             
@@ -30,6 +30,8 @@
                 echo "<td><a class='button' href='".base_url()."index.php/invoice_controller/invoice_pdf_view/".$invoice[__DB_INVOICES_INVOICEID__]."'>Podgląd</a></td>";
                 
                 echo "<td><a class='button' target='__blank' href='".base_url()."index.php/invoice_controller/invoice_pdf_download/".$invoice[__DB_INVOICES_INVOICEID__]."'>PDF</a></td></tr>";
+                
+                echo "<td><a class='button' target='__blank' href='".base_url()."index.php/invoice_controller/invoice_copy/".$invoice[__DB_INVOICES_INVOICEID__]."'>PDF</a></td></tr>";
             } 
         ?></tbody>
     </table>

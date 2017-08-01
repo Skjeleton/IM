@@ -19,7 +19,9 @@ function addCells(rowNo){
 	var toAppend = "";
 	
 	var content = "";
-	for( i = 0; i < 4; i++){
+	
+	toAppend += addCell("<textarea class='TextArea'></textarea>");
+	for( i = 1; i < 4; i++){
 		content = "<input type='text' />";
 		toAppend += addCell(content);
 	}
@@ -38,14 +40,14 @@ function addTransaction(){
 
 function addTableInputId(){
 	$("#tContainer tr").each(function(indexi){
-		$(this).find("input").each(function(indexj){
+		$(this).find("textarea, input").each(function(indexj){
 			//alert();
 			$(this).attr("name", "tData_"+indexi+"_"+indexj);
 		});
 		$(this).find("input:hidden").attr("name", "tData_"+indexi+"_id");
 	});
-	return true;
-	//return false;
+	//return true;
+	return false;
 }
 
 $(document).ready(function(){
