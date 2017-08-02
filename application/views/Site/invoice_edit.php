@@ -10,8 +10,7 @@
      <div class="col-md-4"></div>
      <div class="col-md-4">
 	<?php
-    	if(isset($fromController[__DB_INVOICES_INVOICEID__]))
-	       echo form_hidden(__DB_INVOICES_INVOICEID__, $fromController[__DB_INVOICES_INVOICEID__]);
+    	echo form_hidden(__DB_INVOICES_INVOICEID__, $fromController[__DB_INVOICES_INVOICEID__]);
     	
     	require "parts/invoice_form.php";
     ?>
@@ -22,9 +21,6 @@
     <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-    
-
-
     	
     <table border="1" class="TableStyle">
     	<thead>
@@ -45,7 +41,8 @@
         		            $i == 1 AND $title = __DB_TRANSACTIONS_MEASUREUNIT__;
         		            $i == 2 AND $title = __DB_TRANSACTIONS_COUNT__;
         		            $i == 3 AND $title = __DB_TRANSACTIONS_NETUNITPRICE__;
-        		            echo "<td><input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
+        		            echo "<td>";
+        		            echo "<input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
         		        }
         		        echo "<td></td>";
         		        echo "<td><button type='button' id='button".$key."' onclick='removeTransaction(".$key.")'>-</button></td>";
@@ -74,17 +71,11 @@
                                     'content'       => 'PDF',
                                     'onclick'       => 'redirectPDF()',
                                 );
-                                if(isset($fromController[__DB_INVOICES_INVOICEID__]))
-                                    echo form_button($data); 
-                            ?>
+                                echo form_button($data); ?>
 	</div>
     <div class="col-md-2">
     						<?php
-    						    if(isset($fromController[__DB_INVOICES_INVOICEID__]))
-                            	    echo form_submit("Submit", "Zapisz zmiany")."</br>";
-                            	else 
-                            	    echo form_submit("Submit", "Dodaj fakturę")."</br>";
-                            	   
+                            	echo form_submit("Submit", "Zapisz zmiany")."</br>";
                             	echo form_close();
                             	
                             	include "parts/customer_add_modal.php";
