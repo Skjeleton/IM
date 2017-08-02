@@ -19,14 +19,14 @@
         
         public function get($id = null){
             $toReturn = array();
-            if($id === null){
+            //if($id === null){
                 $columns = implode(",", array(
                     __DB_INVOICES__.".*",
                     __DB_CUSTOMERS_NAME__
                 ));
                 $this->db->select($columns);
                // return $id;
-            }
+           // }
             
             $this->db->from(__DB_INVOICES__);
             $this->db->join(__DB_CUSTOMERS__, __DB_INVOICES__.".".__DB_INVOICES_CUSTOMER__." = ".__DB_CUSTOMERS__.".".__DB_CUSTOMERS_CUSTOMERID__);

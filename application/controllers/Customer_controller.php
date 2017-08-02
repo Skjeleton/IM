@@ -1,7 +1,8 @@
 <?php 
     defined('BASEPATH') OR exit('No direct script access allowed');
-
-    class Customer_controller extends CI_Controller{
+    require_once("Main_controller.php");
+    
+    class Customer_controller extends Main_controller{
         //<PRIVATE METHODS> --------------------------------------------------------------------------------------------------------------------------------------------
         
         /*
@@ -91,6 +92,7 @@
                 );
                 array_push($toReturn, $row);
             }
+            
             return $toReturn;
         }
         
@@ -108,6 +110,16 @@
          */
         private function getData_customer_edit_view($id){
             $this->load->model("Customer_model");
+            $this->load->model("Config_model");
+            
+            $toReturn = $this->Customer_model->get($id);
+            
+            {
+                $keys = array(
+                    __CONFKEY_  
+                );
+                $toReturn[__DB_CONFIG__] = $this->Config_model->get($id, $keys);
+            }
             return  $this->Customer_model->get($id);
         }
         
