@@ -1,3 +1,21 @@
+<?php
+    /*
+     * $fromController[0-?][__DB_INVOICES_INVOICEID__]
+     *                     [__DB_INVOICES_CUSTOMER__]
+     *                     [__DB_INVOICES_INVOICENUMBER__]
+     *                     [__DB_INVOICES_DATE__]
+     *                     [__DB_INVOICES_PAYMENTDEADLINE__]
+     *                     [__DB_INVOICES_PAYMENTMETHOD__]
+     *                     [__DB_INVOICES_OTHERS__]
+     *                     [__DB_INVOICES_NETVALUE__]
+     *                     [__DB_INVOICES_VATVALUE__]
+     *                     [__DB_INVOICES_GROSSVALUE__]
+     *                     [__DB_INVOICES_CURRENCY__]
+     *                     [__DB_INVOICES_LANGUAGE__]
+     *                     [__DB_INVOICES_STATUS__]
+     *                     [__DB_CUSTOMERS_NAME__]
+     */
+?>
 <div class="container margines-top">
     <table class="table table-striped table-hover">
         <thead>

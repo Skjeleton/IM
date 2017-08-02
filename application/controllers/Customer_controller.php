@@ -113,40 +113,12 @@
         
         //</GET DATA> --------------------------------------------------------------------------------------------------------------------------------------------
         
-        //<PUBLIC METHODS> --------------------------------------------------------------------------------------------------------------------------------------------
+        //<PUBLIC METHODS - INSIDERS> --------------------------------------------------------------------------------------------------------------------------------------------
         
         function __construct(){
             parent::__construct();
             $this->load->database();
             $this->load->helper("url");
-        }
-        
-        /*
-         * Controls the view flow when user wants to list all customers.
-         */
-        public function customer_show_view(){
-            $data["fromController"] = $this->getData_customer_show_view();
-            
-            $this->load->view("Site/parts/header");
-            $this->load->view("Site/parts/navbar");
-            $this->load->view("Site/customer_view", $data);
-            $this->load->view("Site/parts/footer");
-        }
-        
-        /*
-         * Controls the view flow when user wants to edit a customer
-         */
-        public function customer_edit_view(){
-            $this->load->helper("form");
-            $customerId = $this->uri->segment(3);
-            
-            $data = array();
-            $data["fromController"] = $this->getData_customer_edit_view($customerId);
-            
-            $this->load->view("Site/parts/header");
-            $this->load->view("Site/parts/navbar");
-            $this->load->view("Site/customer_edit", $data);
-            $this->load->view("Site/parts/footer");
         }
         
         /*
@@ -160,17 +132,6 @@
             $this->Customer_model->update($data, $customerId);
             
             redirect("customer_controller/customer_show_view");
-        }
-        
-        /*
-         * Controls the view flow when user wants to add the customer.
-         */
-        public function customer_add_view(){
-            $this->load->helper("form");
-            $this->load->view("Site/parts/header");
-            $this->load->view("Site/parts/navbar");
-            $this->load->view("Site/customer_add");
-            $this->load->view("Site/parts/footer");
         }
         
         /*
@@ -206,6 +167,53 @@
             // ...or redirect user to the list of customers
             redirect("customer_controller/customer_show_view");
         }
-        //</PUBLIC METHODS> --------------------------------------------------------------------------------------------------------------------------------------------
         
+        public function index(){
+            redirect("customer_controller/customer_show_view");
+        }
+        
+        //</PUBLIC METHODS - INSIDERS> --------------------------------------------------------------------------------------------------------------------------------------------
+       
+        //<PUBLIC METHODS - OUTSIDERS> --------------------------------------------------------------------------------------------------------------------------------------------
+    
+        /*
+         * Controls the view flow when user wants to list all customers.
+         */
+        public function customer_show_view(){
+            $data["fromController"] = $this->getData_customer_show_view();
+            
+            $this->load->view("Site/parts/header");
+            $this->load->view("Site/parts/navbar");
+            $this->load->view("Site/customer_view", $data);
+            $this->load->view("Site/parts/footer");
+        }
+        
+        /*
+         * Controls the view flow when user wants to edit a customer
+         */
+        public function customer_edit_view(){
+            $this->load->helper("form");
+            $customerId = $this->uri->segment(3);
+            
+            $data = array();
+            $data["fromController"] = $this->getData_customer_edit_view($customerId);
+            
+            $this->load->view("Site/parts/header");
+            $this->load->view("Site/parts/navbar");
+            $this->load->view("Site/customer_edit", $data);
+            $this->load->view("Site/parts/footer");
+        }
+        
+        /*
+         * Controls the view flow when user wants to add the customer.
+         */
+        public function customer_add_view(){
+            $this->load->helper("form");
+            $this->load->view("Site/parts/header");
+            $this->load->view("Site/parts/navbar");
+            $this->load->view("Site/customer_add");
+            $this->load->view("Site/parts/footer");
+        }
+        
+        //</PUBLIC METHODS - OUTSIDERS> --------------------------------------------------------------------------------------------------------------------------------------------
     }

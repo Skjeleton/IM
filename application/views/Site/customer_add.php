@@ -1,4 +1,3 @@
-<pre><?php var_dump($fromController); ?></pre>
 <div class="row margines-top panel">
 <div class="col-md-4"></div>
 <div class="col-md-4">

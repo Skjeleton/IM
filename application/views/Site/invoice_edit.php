@@ -1,3 +1,4 @@
+ <pre><?php var_dump($fromController); ?></pre>
  <div class="Kontener"> 
  <?php
     if(isset($fromController[__DB_INVOICES_INVOICEID__]))

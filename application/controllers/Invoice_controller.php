@@ -285,6 +285,11 @@ class Invoice_controller extends CI_Controller
     // </PRIVATE METHODS> --------------------------------------------------------------------------------------------------------------------------------------------
     
     // <FETCH INPUT> --------------------------------------------------------------------------------------------------------------------------------------------
+    
+    /*
+     * Collects data about invoice and transactions from the form.
+     * @return array(mixed)     - Invoice's data in the array
+     */
     private function fetchInput_invoice_add()
     {
         $columns = array(
@@ -328,12 +333,36 @@ class Invoice_controller extends CI_Controller
     // </FETCH INPUT> --------------------------------------------------------------------------------------------------------------------------------------------
     
     // <GET DATA> --------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+     * Get Data functions collects data from the models and stores it in the array.
+     * There is a name of the function after "getData" which tells what is the data collected for.
+     * @returns array(mixed) - Collected data.
+     */
+    
+    
+    /*
+     * $fromController[0-?][__DB_INVOICES_INVOICEID__]
+     *                     [__DB_INVOICES_CUSTOMER__]
+     *                     [__DB_INVOICES_INVOICENUMBER__]
+     *                     [__DB_INVOICES_DATE__]
+     *                     [__DB_INVOICES_PAYMENTDEADLINE__]
+     *                     [__DB_INVOICES_PAYMENTMETHOD__]
+     *                     [__DB_INVOICES_OTHERS__]
+     *                     [__DB_INVOICES_NETVALUE__]
+     *                     [__DB_INVOICES_VATVALUE__]
+     *                     [__DB_INVOICES_GROSSVALUE__]
+     *                     [__DB_INVOICES_CURRENCY__]
+     *                     [__DB_INVOICES_LANGUAGE__]
+     *                     [__DB_INVOICES_STATUS__]
+     *                     [__DB_CUSTOMERS_NAME__]
+     */
     private function getData_invoice_show_view()
     {
         $this->load->model("Invoice_model");
         return $this->Invoice_model->get();
     }
 
+    
     private function getData_invoice_add_view()
     {
         $this->load->model("Customer_model");
@@ -348,46 +377,13 @@ class Invoice_controller extends CI_Controller
 
     // </GET DATA> --------------------------------------------------------------------------------------------------------------------------------------------
     
-    // <PUBLIC METHODS> --------------------------------------------------------------------------------------------------------------------------------------------
+    // <PUBLIC METHODS - INSIDERS> --------------------------------------------------------------------------------------------------------------------------------------------
+    
     function __construct()
     {
         parent::__construct();
         $this->load->database();
         $this->load->helper("url");
-    }
-
-    public function invoice_show_view()
-    {
-        $data = array();
-        $data["fromController"] = $this->getData_invoice_show_view();
-        
-        $this->load->view("Site/parts/header");
-        $this->load->view("Site/parts/navbar");
-        $this->load->view("Site/invoice_view", $data);
-        $this->load->view("Site/parts/footer");
-    }
-
-    public function invoice_add_view()
-    {
-        $data = array();
-        $data["fromController"] = array();
-        
-        $answer = $this->getData_invoice_add_view();
-        
-        $data["fromController"][__DB_INVOICES_INVOICENUMBER__] = $answer["LastNumber"];
-        unset($answer["LastNumber"]);
-        foreach ($answer as $customer) {
-            $data["fromController"][__DB_CUSTOMERS__][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__] . " - " . $this->fetch_customer_address($customer);
-        }
-        
-        $data["fromController"]["Languages"] = $this->getLanguages();
-        $data["fromController"]["Currencies"] = $this->getCurrencies();
-        
-        $this->load->helper("form");
-        $this->load->view("Site/parts/header");
-        $this->load->view("Site/parts/navbar");
-        $this->load->view("Site/invoice_add", $data);
-        $this->load->view("Site/parts/footer");
     }
 
     public function invoice_add()
@@ -411,6 +407,93 @@ class Invoice_controller extends CI_Controller
         redirect("invoice_controller/invoice_show_view");
     }
 
+    public function invoice_edit()
+    {
+        $data = array();
+        $data = $this->fetchInput_invoice_add();
+        
+        $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__] = $this->count_fullNetValue($data[__DB_TRANSACTIONS__]);
+        $data[__DB_INVOICES__][__DB_INVOICES_VATVALUE__] = $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__] * 0.23;
+        $data[__DB_INVOICES__][__DB_INVOICES_GROSSVALUE__] = $data[__DB_INVOICES__][__DB_INVOICES_VATVALUE__] + $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__];
+        $this->load->model("Invoice_model");
+        
+        $this->Invoice_model->update($data[__DB_INVOICES__]);
+        
+        foreach ($data[__DB_TRANSACTIONS__] as &$transaction) {
+            $transaction[__DB_TRANSACTIONS_INVOICE__] = $data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__];
+        }
+        if (! $this->updateTransactions($data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__], $data[__DB_TRANSACTIONS__]))
+            redirect("invoice_controller/error404");
+        
+        redirect("invoice_controller/invoice_show_view");
+    }
+    
+    public function invoice_pdf_download($invoiceId)
+    {
+        $this->load->model("Invoice_model");
+        $data["fromController"] = $this->Invoice_model->get($invoiceId);
+        
+        $html = $this->load->view("Site/invoice_pdf_show", $data, true);
+        // $html = $this->load->view("welcome_message", $data, true);
+        
+        // $this->load->view("var_dump", array($html));
+        // this the the PDF filename that user will get to download
+        $pdfFilePath = "/home/mpdf/faktura.pdf";
+        
+        // load mPDF library
+        $this->load->library('m_pdf');
+        
+        // generate the PDF from the given html
+        $this->m_pdf->pdf->WriteHTML($html, 0);
+        
+        // download it.
+        $this->m_pdf->pdf->Output();
+    }
+
+    public function index()
+    {
+        redirect("invoice_controller/invoice_show_view");
+    }
+    
+    // </PUBLIC METHODS - INSIDERS> --------------------------------------------------------------------------------------------------------------------------------------------
+    
+    // <PUBLIC METHODS - OUTSIDERS> --------------------------------------------------------------------------------------------------------------------------------------------
+
+    
+    public function invoice_show_view()
+    {
+        $data = array();
+        $data["fromController"] = $this->getData_invoice_show_view();
+        
+        $this->load->view("Site/parts/header");
+        $this->load->view("Site/parts/navbar");
+        $this->load->view("Site/invoice_view", $data);
+        $this->load->view("Site/parts/footer");
+    }
+    
+    public function invoice_add_view()
+    {
+        $data = array();
+        $data["fromController"] = array();
+        
+        $answer = $this->getData_invoice_add_view();
+        
+        $data["fromController"][__DB_INVOICES_INVOICENUMBER__] = $answer["LastNumber"];
+        unset($answer["LastNumber"]);
+        foreach ($answer as $customer) {
+            $data["fromController"][__DB_CUSTOMERS__][$customer[__DB_CUSTOMERS_CUSTOMERID__]] = $customer[__DB_CUSTOMERS_NAME__] . " - " . $this->fetch_customer_address($customer);
+        }
+        
+        $data["fromController"]["Languages"] = $this->getLanguages();
+        $data["fromController"]["Currencies"] = $this->getCurrencies();
+        
+        $this->load->helper("form");
+        $this->load->view("Site/parts/header");
+        $this->load->view("Site/parts/navbar");
+        $this->load->view("Site/invoice_add", $data);
+        $this->load->view("Site/parts/footer");
+    }
+    
     public function invoice_edit_view($invoiceId, $copyMode = false)
     {
         $this->load->helper("form");
@@ -438,53 +521,7 @@ class Invoice_controller extends CI_Controller
         $this->load->view("Site/invoice_edit", $data);
         $this->load->view("Site/parts/footer");
     }
-
-    public function invoice_edit()
-    {
-        $data = array();
-        $data = $this->fetchInput_invoice_add();
-        
-        $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__] = $this->count_fullNetValue($data[__DB_TRANSACTIONS__]);
-        $data[__DB_INVOICES__][__DB_INVOICES_VATVALUE__] = $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__] * 0.23;
-        $data[__DB_INVOICES__][__DB_INVOICES_GROSSVALUE__] = $data[__DB_INVOICES__][__DB_INVOICES_VATVALUE__] + $data[__DB_INVOICES__][__DB_INVOICES_NETVALUE__];
-        $this->load->model("Invoice_model");
-        
-        $this->Invoice_model->update($data[__DB_INVOICES__]);
-        
-        foreach ($data[__DB_TRANSACTIONS__] as &$transaction) {
-            $transaction[__DB_TRANSACTIONS_INVOICE__] = $data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__];
-        }
-        if (! $this->updateTransactions($data[__DB_INVOICES__][__DB_INVOICES_INVOICEID__], $data[__DB_TRANSACTIONS__]))
-            redirect("invoice_controller/error404");
-        
-        redirect("invoice_controller/invoice_show_view");
-    }
-
-    public function invoice_copy($invoiceId)
-    {}
-
-    public function invoice_pdf_download($invoiceId)
-    {
-        $this->load->model("Invoice_model");
-        $data["fromController"] = $this->Invoice_model->get($invoiceId);
-        
-        $html = $this->load->view("Site/invoice_pdf_show", $data, true);
-        // $html = $this->load->view("welcome_message", $data, true);
-        
-        // $this->load->view("var_dump", array($html));
-        // this the the PDF filename that user will get to download
-        $pdfFilePath = "/home/mpdf/faktura.pdf";
-        
-        // load mPDF library
-        $this->load->library('m_pdf');
-        
-        // generate the PDF from the given html
-        $this->m_pdf->pdf->WriteHTML($html, 0);
-        
-        // download it.
-        $this->m_pdf->pdf->Output();
-    }
-
+    
     public function invoice_pdf_view($invoiceId)
     {
         $this->load->helper("form");
@@ -501,11 +538,6 @@ class Invoice_controller extends CI_Controller
         $this->load->view("Site/invoice_pdf_download_footer", $data["fromController"][__DB_INVOICES_INVOICEID__] = $invoiceId);
         $this->load->view("Site/parts/footer");
     }
-
-    public function index()
-    {
-        $this->invoice_show_view();
-    }
     
-    // </PUBLIC METHODS> --------------------------------------------------------------------------------------------------------------------------------------------
+    // </PUBLIC METHODS - OUTSIDERS> --------------------------------------------------------------------------------------------------------------------------------------------
 }
