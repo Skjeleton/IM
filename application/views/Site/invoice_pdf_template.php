@@ -1,3 +1,5 @@
+<pre><?php var_dump($fromController);?></pre>
+
 <div class="mainContainerAuto">
 	<div class="row">
 		<div class="col-lg-6"><img alt="Image_failt_to_look_or_download" src="<?php echo base_url(); ?>css/abastra.jpg" width="120%" height="200px" left="0px"></img></div>

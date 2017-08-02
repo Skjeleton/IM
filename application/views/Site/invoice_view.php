@@ -5,12 +5,9 @@
                 <th>Numer faktury</th>
                 <th>Data</th>
                 <th>Nazwa</th>
-<<<<<<< HEAD
                 <th>Wartość netto</th>
-=======
                 <th>Wartość brutto</th>
                 <th>Wartosc netto</th>
->>>>>>> branch 'master' of https://github.com/Skjeleton/IM.git
                 <th>Termin płatności</th>
                 <th></th>
             </tr>
