@@ -85,7 +85,8 @@
  			?>
         </tbody>
     </table>
-
+    Słownie:
+	<?php echo $fromController["slownie"]; ?>
 <!-- 		End articles -->
 
 <!-- Panel info start -->

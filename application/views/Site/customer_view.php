@@ -1,3 +1,12 @@
+<?php
+    /*
+     *  $fromController[0-?][__DB_CUSTOMERS_NAME__]
+     *                      [__DB_CUSTOMERS_CUSTOMERID__]
+     *                      ["Address"]
+     */
+?>
+
+
 <div class="container margines-top">
     <table class="table table-striped table-hover">
         <thead>

@@ -130,5 +130,7 @@ define("__DB_NAME__", "Invoice Manager");
         
         define("__CONFKEY_DEFAULT_PAYMENTMETHOD__", "DefaultPaymentMethod");
         define("__CONFKEY_DEFAULT_PAYMENTDELAY__", "DefaultPaymentDelay");
+        define("__CONFKEY_DEFAULT_LANGUAGE__", "DefaultLanguage");
+        define("__CONFKEY_DEFAULT_CURRENCY__", "DefaultCurrency");
         
         

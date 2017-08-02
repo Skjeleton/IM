@@ -2,6 +2,13 @@
     defined('BASEPATH') OR exit('No direct script access allowed');
 
     class Customer_controller extends CI_Controller{
+        //<PRIVATE METHODS> --------------------------------------------------------------------------------------------------------------------------------------------
+        
+        /*
+         * Fetches desired data from $data and creates string containing customer's address
+         * @param array(mixed) $data    - Customer's data. 
+         * @return string               - Customer's address
+         */
         private function fetch_customer_address($data){
             $address = $data[__DB_CUSTOMERS_CITY__].
             ", ul. ".
@@ -15,6 +22,14 @@
                 return $address;
         }
         
+        //</PRIVATE METHODS> --------------------------------------------------------------------------------------------------------------------------------------------
+        
+        //<FETCH INPUT> --------------------------------------------------------------------------------------------------------------------------------------------
+        
+        /*
+         * Collects data about customer from the form.
+         * @return array(mixed)     - Customer's data in the array
+         */
         private function fetchInput_customer_edit(){
             $columns = array(
                 __DB_CUSTOMERS_NAME__,
@@ -47,6 +62,21 @@
             return $data;
         }
         
+        //</FETCH INPUT> --------------------------------------------------------------------------------------------------------------------------------------------
+        
+        //<GET DATA> --------------------------------------------------------------------------------------------------------------------------------------------
+        /*
+         * Get Data functions collects data from the models and stores it in the array.
+         * There is a name of the function after "getData" which tells what is the data collected for.
+         * @returns array(mixed) - Collected data.
+         */
+        
+        
+        /*
+         *  $fromController[0-?][__DB_CUSTOMERS_NAME__]
+         *                      [__DB_CUSTOMERS_CUSTOMERID__]
+         *                      ["Address"]
+         */
         private function getData_customer_show_view(){
             $toReturn = array();
             
@@ -64,10 +94,26 @@
             return $toReturn;
         }
         
+        /*
+         * $fromController[__DB_CUSTOMERS_CUSTOMERID__]
+         *                [__DB_CUSTOMERS_NAME__]
+         *                [__DB_CUSTOMERS_COUNTRY__]
+         *                [__DB_CUSTOMERS_CITY__]
+         *                [__DB_CUSTOMERS_POSTALCODE__]
+         *                [__DB_CUSTOMERS_STREET__]
+         *                [__DB_CUSTOMERS_HOUSENUMBER__]
+         *                [__DB_CUSTOMERS_APARTMENTNUMBER__]
+         *                [__DB_CUSTOMERS_NIP__]
+         *                [__DB_CUSTOMERS_OTHERS__]
+         */
         private function getData_customer_edit_view($id){
             $this->load->model("Customer_model");
             return  $this->Customer_model->get($id);
         }
+        
+        //</GET DATA> --------------------------------------------------------------------------------------------------------------------------------------------
+        
+        //<PUBLIC METHODS> --------------------------------------------------------------------------------------------------------------------------------------------
         
         function __construct(){
             parent::__construct();
@@ -75,6 +121,9 @@
             $this->load->helper("url");
         }
         
+        /*
+         * Controls the view flow when user wants to list all customers.
+         */
         public function customer_show_view(){
             $data["fromController"] = $this->getData_customer_show_view();
             
@@ -83,7 +132,10 @@
             $this->load->view("Site/customer_view", $data);
             $this->load->view("Site/parts/footer");
         }
-            
+        
+        /*
+         * Controls the view flow when user wants to edit a customer
+         */
         public function customer_edit_view(){
             $this->load->helper("form");
             $customerId = $this->uri->segment(3);
@@ -97,6 +149,9 @@
             $this->load->view("Site/parts/footer");
         }
         
+        /*
+         * Edits the customer with POST data.
+         */
         public function customer_edit(){
             $this->load->model("Customer_model");
             
@@ -107,6 +162,9 @@
             redirect("customer_controller/customer_show_view");
         }
         
+        /*
+         * Controls the view flow when user wants to add the customer.
+         */
         public function customer_add_view(){
             $this->load->helper("form");
             $this->load->view("Site/parts/header");
@@ -115,7 +173,12 @@
             $this->load->view("Site/parts/footer");
         }
         
+        /*
+         * Add customer using the POST data. 
+         * @param bool $ajax    - When true, the user will be added considering that the function was called by Ajax.
+         */
         public function customer_add($ajax = false){
+            // Adapt the input from ajax to the customer adding
             if($ajax){
                 $ajaxData = $_POST['data'];
                 $data = array();
@@ -125,13 +188,13 @@
                     $key = key($obj);
                     $_POST[$key] = $obj[$key];
                 }
-                //echo "<pre>".var_export($_POST, true)."</pre>";
             }
             
             $this->load->model("Customer_model");
             $data = $this->fetchInput_customer_edit();
             $customerId = $this->Customer_model->add($data);
             
+            // Return inormation about added user...
             if($ajax) {
                 $customer["id"] = $customerId;
                 $customer["name"] = $_POST[__DB_CUSTOMERS_NAME__]." - ".$this->fetch_customer_address($_POST);
@@ -140,7 +203,9 @@
                 return true;
             }
             
+            // ...or redirect user to the list of customers
             redirect("customer_controller/customer_show_view");
         }
+        //</PUBLIC METHODS> --------------------------------------------------------------------------------------------------------------------------------------------
         
     }

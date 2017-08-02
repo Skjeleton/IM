@@ -1,9 +1,16 @@
- <div class="Kontener"> <?php echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES_INVOICEID__], array("id" => "mainForm")); ?>
+ <div class="Kontener"> 
+ <?php
+    if(isset($fromController[__DB_INVOICES_INVOICEID__]))
+        echo form_open("invoice_controller/invoice_edit/".$fromController[__DB_INVOICES_INVOICEID__], array("id" => "mainForm")); 
+    else
+        echo form_open("invoice_controller/invoice_add", array("id" => "mainForm"));
+ ?>
  <div class="row margines-top panel">
      <div class="col-md-4"></div>
      <div class="col-md-4">
 	<?php
-    	echo form_hidden(__DB_INVOICES_INVOICEID__, $fromController[__DB_INVOICES_INVOICEID__]);
+    	if(isset($fromController[__DB_INVOICES_INVOICEID__]))
+	       echo form_hidden(__DB_INVOICES_INVOICEID__, $fromController[__DB_INVOICES_INVOICEID__]);
     	
     	require "parts/invoice_form.php";
     ?>
@@ -37,8 +44,7 @@
         		            $i == 1 AND $title = __DB_TRANSACTIONS_MEASUREUNIT__;
         		            $i == 2 AND $title = __DB_TRANSACTIONS_COUNT__;
         		            $i == 3 AND $title = __DB_TRANSACTIONS_NETUNITPRICE__;
-        		            echo "<td>";
-        		            echo "<input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
+        		            echo "<td><input type='text' name='tData_".$key."_".$i."' value='".$transaction[$title]."'></input></td>";
         		        }
         		        echo "<td></td>";
         		        echo "<td><button type='button' id='button".$key."' onclick='removeTransaction(".$key.")'>-</button></td>";
@@ -67,12 +73,17 @@
                                     'content'       => 'PDF',
                                     'onclick'       => 'redirectPDF()',
                                 );
-                                echo form_button($data); 
+                                if(isset($fromController[__DB_INVOICES_INVOICEID__]))
+                                    echo form_button($data); 
                             ?>
 	</div>
     <div class="col-md-2">
     						<?php
-                            	echo form_submit("Submit", "Zapisz zmiany")."</br>";
+    						    if(isset($fromController[__DB_INVOICES_INVOICEID__]))
+                            	    echo form_submit("Submit", "Zapisz zmiany")."</br>";
+                            	else 
+                            	    echo form_submit("Submit", "Dodaj fakturę")."</br>";
+                            	   
                             	echo form_close();
                             	
                             	include "parts/customer_add_modal.php";
