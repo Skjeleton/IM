@@ -1,4 +1,12 @@
 <?php
+    /*
+     *  $fromController[0-?][__DB_CUSTOMERS_NAME__]
+     *                      [__DB_CUSTOMERS_CUSTOMERID__]
+     *                      ["Address"]
+     */
+?>
+
+<?php
     echo form_open("invoice_controller/invoice_add", array("id" => "mainForm"));
 ?>
 

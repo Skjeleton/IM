@@ -1,4 +1,11 @@
-
+<?php
+    /*
+     *  $fromController[0-?][__DB_CUSTOMERS_NAME__]
+     *                      [__DB_CUSTOMERS_CUSTOMERID__]
+     *                      ["Address"]
+     */
+?>
+	
 <html>
 <head>	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
