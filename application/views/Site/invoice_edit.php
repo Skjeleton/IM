@@ -1,4 +1,35 @@
- <pre><?php var_dump($fromController); ?></pre>
+<?php
+    /*
+     * $fromController[__DB_INVOICES_INVOICEID__]
+     *                [__DB_INVOICES_CUSTOMER__]
+     *                [__DB_INVOICES_INVOICENUMBER__]
+     *                [__DB_INVOICES_DATE__]
+     *                [__DB_INVOICES_PAYMENTDEADLINE__]
+     *                [__DB_INVOICES_OTHERS__]
+     *                [__DB_INVOICES_NETVALUE__]
+     *                [__DB_INVOICES_VATVALUE__]
+     *                [__DB_INVOICES_GROSSVALUE__]
+     *                [__DB_INVOICES_CURRENCY__]
+     *                [__DB_INVOICES_LANGUAGE__]
+     *                [__DB_INVOICES_STATUS__]
+     *                [__DB_CUSTOMERS_NAME__]
+     *                [__DB_TRANSACTIONS__]
+     *                                  [0-?]
+     *                                       [__DB_TRANSACTIONS_TRANSACTIONID__]
+     *                                       [__DB_TRANSACTIONS_INVOICE__]
+     *                                       [__DB_TRANSACTIONS_NAME__]
+     *                                       [__DB_TRANSACTIONS_MEASUREUNIT__]
+     *                                       [__DB_TRANSACTIONS_COUNT__]
+     *                                       [__DB_TRANSACTIONS_NETUNITPRICE__]
+     *                                       [__DB_TRANSACTIONS_NETVALUE__]
+     *                                       [__DB_TRANSACTIONS_VATVALUE__]
+     *                                       [__DB_TRANSACTIONS_GROSSVALUE__]
+     *                [__DB_CUSTOMERS__]
+     *                                  [0-?] (CustomerID)
+     *                ["Languages"]
+     *                ["Currencies"]
+     */
+?>
  <div class="Kontener"> 
  <?php
     if(isset($fromController[__DB_INVOICES_INVOICEID__]))

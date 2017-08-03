@@ -1,8 +1,10 @@
 <?php
     /*
-     *  $fromController[0-?][__DB_CUSTOMERS_NAME__]
-     *                      [__DB_CUSTOMERS_CUSTOMERID__]
-     *                      ["Address"]
+     * $fromController[__DB_INVOICES_INVOICENUMBER__]
+     *                [__DB_CUSTOMERS__]
+     *                                  [0-?] (Customer ID)
+     *                ["Languages"]
+     *                ["Currencies"]
      */
 ?>
 
