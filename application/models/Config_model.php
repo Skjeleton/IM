@@ -2,6 +2,11 @@
     defined('BASEPATH') OR exit('No direct script access allowed');
 
     class Config_model extends CI_Model{
+        private function isJson($string) {
+            json_decode($string);
+            return (json_last_error() == JSON_ERROR_NONE);
+        }
+        
         function __construct(){
             parent::__construct();
         }
@@ -62,17 +67,15 @@
             if($keys !== null) $this->db->where_in("Configs".".".__DB_CONFIG_KEY__, $keys);
             $answer = $this->db->get()->result_array();
             
-            // If user wants only one key then return value of that key
-            if($singleKey) return $answer[0][__DB_CONFIG_VALUE__];
-            
             // Else return an array(configKey => configValue)
             $toReturn = array();
             foreach($answer as $config){
+                if($this->isJson($config[__DB_CONFIG_VALUE__]))
+                    $config[__DB_CONFIG_VALUE__] = json_decode($config[__DB_CONFIG_VALUE__]);
                 $toReturn[$config[__DB_CONFIG_KEY__]] = $config[__DB_CONFIG_VALUE__];
             }
-            return $toReturn;
             
-            return $this->db->last_query();
+            return $toReturn;
         }
         
         //Setters and Updaters

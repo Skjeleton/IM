@@ -26,9 +26,11 @@
     echo form_input($data, $fromController[$data["name"]])."</br>";
     
     //Echo field containing customer's country
+    $datalistName = "countriesList";
     $data= array(
         'name' => __DB_CUSTOMERS_COUNTRY__,
-        'class' => 'AdresStyle'
+        'class' => 'AdresStyle',
+        'list' => $datalistName
     );
     echo form_label("Państwo / Miasto", $data["name"]);
     echo form_input($data, $fromController[$data["name"]]);
@@ -83,5 +85,10 @@
     );
     echo form_label("Inne", $data["name"]);
     echo form_textarea($data,$fromController[__DB_CUSTOMERS_OTHERS__])."</br>";
+    
+    echo "<datalist id='$datalistName'>";
+    foreach($fromController[__DB_CONFIG__][__CONFKEY_DEFAULT_COUNTRIES__] as $country)
+        echo "<option value='$country'>";
 
+    echo "</datalist>";
     

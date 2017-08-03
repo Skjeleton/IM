@@ -96,6 +96,15 @@
             return $toReturn;
         }
         
+        private function getData_customer_add_view(){
+            $this->load->model("Config_model");
+            
+            $toReturn = array();
+            $toReturn[__DB_CONFIG__] = $this->Config_model->get($this->getUserId(), __CONFKEY_DEFAULT_COUNTRIES__);
+            
+            return $toReturn;
+        }
+        
         /*
          * $fromController[__DB_CUSTOMERS_CUSTOMERID__]
          *                [__DB_CUSTOMERS_NAME__]
@@ -203,11 +212,9 @@
         /*
          * Controls the view flow when user wants to edit a customer
          */
-        public function customer_edit_view(){
+        public function customer_edit_view($customerId){
             $this->load->helper("form");
-            $customerId = $this->uri->segment(3);
             
-            $data = array();
             $data["fromController"] = $this->getData_customer_edit_view($customerId);
             
             $this->load->view("Site/parts/header");
@@ -221,9 +228,12 @@
          */
         public function customer_add_view(){
             $this->load->helper("form");
+            
+            $data["fromController"] = $this->getData_customer_add_view();
+            
             $this->load->view("Site/parts/header");
             $this->load->view("Site/parts/navbar");
-            $this->load->view("Site/customer_add");
+            $this->load->view("Site/customer_add",$data);
             $this->load->view("Site/parts/footer");
         }
         

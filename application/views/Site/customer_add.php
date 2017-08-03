@@ -8,8 +8,6 @@
         
         echo form_submit("Submit", "Dodaj!");
         echo form_close();
-        
-       
 	?>
 </div>
 <div class="col-md-3"></div>
