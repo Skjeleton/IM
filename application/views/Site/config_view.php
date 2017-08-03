@@ -79,6 +79,22 @@
 		  echo form_button($data, "Zatwierdź zmiany");
 		  echo $inputEnd;
 		  
+		  // Default countries
+		  echo $inputStart;
+		  echo form_label("Lista państw domyślnych:");
+		  $title = __CONFKEY_DEFAULT_COUNTRIES__;
+		  $data = array(
+		      "id" => $title,
+		      "value" => implode(', ', $fromController[$title])
+		  );
+		  echo form_textarea($data);
+		  $data = array(
+		      "type" => "button",
+		      "onclick" => "updateConfig('".$data["id"]."', true)"
+		  );
+		  echo form_button($data, "Zatwierdź zmiany");
+		  echo $inputEnd;
+		  
 		  echo form_close();
 		?>	
 	</div>

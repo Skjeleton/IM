@@ -1,11 +1,8 @@
 <?php 
     defined('BASEPATH') OR exit('No direct script access allowed');
+    require_once("Main_controller.php");
 
-    class Config_controller extends CI_Controller{
-        private function getUserId(){
-            return 1;
-        }
-        
+    class Config_controller extends Main_controller{
         private function getData_config_show_view($userId){
             $this->load->model("Config_model");
             return $this->Config_model->get($userId);
